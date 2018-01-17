@@ -4,11 +4,80 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/quantitybg"
+    android:orientation="vertical"
     tools:context="com.infosolution.dev.tfc.activities.ProductPageActivity">
 
 
+    <ImageView
+        android:id="@+id/iv_proimg"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:src="@drawable/abc" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_minus"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/circle"
+            android:gravity="center"
+            android:text="-"
+            android:textColor="#00DDCB" />
+
+
+        <TextView
+            android:id="@+id/tv_proqty"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="#00DDCB"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/tv_plus"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/circle"
+            android:gravity="center"
+            android:text="+"
+            android:textColor="#00DDCB" />
+
+
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_bookpay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_userregister"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+android:layout_marginTop="10dp"
+        android:textColor="#00DDCB"
+        android:background="@drawable/borderet"
+        android:text="Book and Pay Now"
+        android:textStyle="bold"/>
 
 
 </LinearLayout>
