@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">TFC</string>
+
+
+    <string name="select">Choose a country</string>
+    <string-array name="cusine_array">
+        <item>Cusine Type</item>
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D</item>
+    </string-array>
+
+    <string name="selectday">Choose a country</string>
+    <string-array name="closingDay_array">
+        <item>Closing Days</item>
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D</item>
+    </string-array>
+
+    <string name="selecttime">Choose a country</string>
+    <string-array name="closingTime_array">
+        <item>Closing Time</item>
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D</item>
+    </string-array>
+</resources>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/resbg"
+    tools:context="com.infosolution.dev.tfc.activities.UserRegNext">
+
+    <Spinner
+        android:id="@+id/sp_cusinetype"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/cusine_array"
+        android:prompt="@string/select"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/dropdown"
+        android:padding="16dp"
+        android:paddingLeft="22dp"
+        android:paddingRight="22dp"/>
+
+
+    <Spinner
+        android:id="@+id/sp_closingday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/closingDay_array"
+        android:prompt="@string/selectday"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/dropdown"
+        android:padding="16dp"
+        android:paddingLeft="22dp"
+        android:paddingRight="22dp"/>
+
+
+
+    <Spinner
+        android:id="@+id/sp_closingtime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/closingTime_array"
+        android:prompt="@string/selecttime"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/dropdown"
+        android:padding="16dp"
+        android:paddingLeft="22dp"
+        android:paddingRight="22dp"/>
+
+
+
+    <Button
+        android:id="@+id/btn_signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/borderetcolored"
+        android:text="Sign up"
+        android:textAllCaps="true"
+        android:textColor="#fff"
+        android:textStyle="bold" />
+
+</LinearLayout>
