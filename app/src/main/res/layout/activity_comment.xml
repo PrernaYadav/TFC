@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/quantitybg"
+    android:orientation="vertical"
+    tools:context="com.infosolution.dev.tfc.activities.CommentActivity">
+
+
+    <include
+        layout="@layout/comments_actionbar"/>
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/icon" />
+
+    <TextView
+        android:id="@+id/tv_comname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="Shreyansh Srivastava"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
+
+
+    <RatingBar
+        android:id="@+id/rb_comm"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="40dp"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:rating="5"
+        android:scaleX="2.5"
+        android:scaleY="2.5"
+        android:theme="@style/RatingBar" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:background="@android:color/white">
+
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Comments"
+    android:padding="15dp"
+    android:textColor="@android:color/black"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="0/600"
+            android:padding="15dp"
+            android:textColor="@android:color/black"/>
+
+    </LinearLayout>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="30dp"
+        android:text="Post"
+        android:layout_marginBottom="10dp"
+        android:background="#04b4a9"
+        android:textColor="#cad1d7"
+        android:textStyle="bold"/>
+
+</LinearLayout>

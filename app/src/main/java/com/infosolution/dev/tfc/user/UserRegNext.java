@@ -1,4 +1,4 @@
-package com.infosolution.dev.tfc.activities;
+package com.infosolution.dev.tfc.user;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

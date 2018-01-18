@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.infosolution.dev.tfc.R;
+import com.infosolution.dev.tfc.business.LoginBusinessActivity;
+import com.infosolution.dev.tfc.user.UserRegisterActivity;
 
 public class MainActivity extends AppCompatActivity {
     private Button btnmailid,btnuserreg,btnbusilogin;

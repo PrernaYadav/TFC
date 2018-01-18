@@ -1,30 +1,57 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/resbg"
-    tools:context="com.infosolution.dev.tfc.user.UserRegisterActivity">
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    tools:context="com.infosolution.dev.tfc.business_fragments.UploadMenuFragment">
 
-    <LinearLayout
+
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:text="Upload Menu Image"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"
+        android:textColor="#F9A825"
+        android:textAppearance="?android:textAppearanceMedium"/>
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:tint="@android:color/white"
+        android:backgroundTint="@android:color/white"
+        android:src="@drawable/uploadimage" />
+
     <EditText
-        android:id="@+id/et_emailreg"
+        android:id="@+id/et_menuname_upload"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="5dp"
         android:backgroundTint="@android:color/white"
         android:gravity="center"
-        android:hint="Please Enter Your Email id"
+        android:hint="Please Enter Menu Name"
+        android:inputType="text"
+        android:padding="10dp"
+        android:textAppearance="?android:textAppearanceSmall"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"
+        android:textCursorDrawable="@null"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/et_price_upload"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@android:color/white"
+        android:gravity="center"
+        android:hint="Please Enter Price"
         android:inputType="textEmailAddress"
         android:padding="10dp"
         android:textAppearance="?android:textAppearanceSmall"
@@ -34,7 +61,7 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/et_addreg"
+        android:id="@+id/et_foodtype_upload"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -42,7 +69,7 @@
         android:layout_marginTop="10dp"
         android:backgroundTint="@android:color/white"
         android:gravity="center"
-        android:hint="Please Enter Address"
+        android:hint="Please Enter Food Type"
         android:inputType="text"
         android:padding="10dp"
         android:textAppearance="?android:textAppearanceSmall"
@@ -52,7 +79,7 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/et_countryreg"
+        android:id="@+id/et_collectiontime_upload"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -60,25 +87,7 @@
         android:layout_marginTop="10dp"
         android:backgroundTint="@android:color/white"
         android:gravity="center"
-        android:hint="Please Enter Country Name"
-        android:inputType="text"
-        android:padding="10dp"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white"
-        android:textCursorDrawable="@null"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/et_cityreg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@android:color/white"
-        android:gravity="center"
-        android:hint="Please Enter Your City"
+        android:hint="Please Enter Collection Time"
         android:inputType="text"
         android:padding="10dp"
         android:textAppearance="?android:textAppearanceSmall"
@@ -89,7 +98,7 @@
 
 
     <EditText
-        android:id="@+id/et_zipreg"
+        android:id="@+id/et_qtyleft"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -97,44 +106,8 @@
         android:layout_marginTop="10dp"
         android:backgroundTint="@android:color/white"
         android:gravity="center"
-        android:hint="Please Enter Zip Code"
-        android:inputType="number"
-        android:padding="10dp"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white"
-        android:textCursorDrawable="@null"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/et_websitereg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@android:color/white"
-        android:gravity="center"
-        android:hint="Please Enter Website"
+        android:hint="Please Enter Quantity Left"
         android:inputType="text"
-        android:padding="10dp"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white"
-        android:textCursorDrawable="@null"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/et_otherinfo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@android:color/white"
-        android:gravity="center"
-        android:hint="Other Information"
-        android:inputType="textPassword"
         android:padding="10dp"
         android:textAppearance="?android:textAppearanceSmall"
         android:textColor="@android:color/white"
@@ -144,17 +117,17 @@
 
 
     <Button
-        android:id="@+id/btn_nextreg"
+        android:id="@+id/btn_signup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="30dp"
-        android:background="@drawable/borderblue"
-        android:text="Next"
+        android:background="@drawable/borderetcolored"
+        android:text="Submit"
+        android:textAppearance="?android:textAppearanceMedium"
         android:textAllCaps="true"
         android:textColor="#fff"
         android:textStyle="bold" />
-    </LinearLayout>
-</ScrollView>
+
 </LinearLayout>

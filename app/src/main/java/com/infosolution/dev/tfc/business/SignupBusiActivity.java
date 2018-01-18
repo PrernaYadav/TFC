@@ -1,4 +1,4 @@
-package com.infosolution.dev.tfc.activities;
+package com.infosolution.dev.tfc.business;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

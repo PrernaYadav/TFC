@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.MainActivity">
+        <activity android:name=".business.Navigation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,11 +20,20 @@
         </activity>
         <activity android:name=".activities.LoginMailActivity" />
         <activity android:name=".activities.SignupMailActivity" />
-        <activity android:name=".activities.LoginBusinessActivity" />
-        <activity android:name=".activities.SignupBusiActivity" />
-        <activity android:name=".activities.UserRegisterActivity" />
-        <activity android:name=".activities.UserRegNext" />
-        <activity android:name=".activities.ProductPageActivity"></activity>
+        <activity android:name=".business.LoginBusinessActivity" />
+        <activity android:name=".business.SignupBusiActivity" />
+        <activity android:name=".user.UserRegisterActivity" />
+        <activity android:name=".user.UserRegNext" />
+        <activity android:name=".activities.ProductPageActivity" />
+        <!--
+            <activity
+            android:name=".navigation.Navigation"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/AppTheme"></activity>
+        -->
+        <!-- <activity android:name=".activities.CommentsActivity"></activity> -->
+        <!-- <activity android:name=".activities.CommentActivity"></activity> -->
+        <!--<activity android:name=".activities.BuyNowActivity"></activity>-->
     </application>
 
 </manifest>
