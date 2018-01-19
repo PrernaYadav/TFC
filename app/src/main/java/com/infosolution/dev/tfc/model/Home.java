@@ -14,11 +14,11 @@ public class Home {
         this.proname = proname;
     }
 
-    public int getProimage() {
+    public String getProimage() {
         return proimage;
     }
 
-    public void setProimage(int proimage) {
+    public void setProimage(String proimage) {
         this.proimage = proimage;
     }
 
@@ -54,11 +54,11 @@ public class Home {
         this.quantity = quantity;
     }
 
-    public int getAvailimg() {
+    public String getAvailimg() {
         return availimg;
     }
 
-    public void setAvailimg(int availimg) {
+    public void setAvailimg(String availimg) {
         this.availimg = availimg;
     }
 
@@ -70,25 +70,25 @@ public class Home {
         this.count = count;
     }
 
-    public int getFav() {
+    public String getFav() {
         return fav;
     }
 
-    public void setFav(int fav) {
+    public void setFav(String fav) {
         this.fav = fav;
     }
 
     String proname;
-    int  proimage;
+    String  proimage;
     String username;
     String timing;
     String price;
     String quantity;
-    int availimg;
+    String availimg;
     String count;
-    int fav;
+    String fav;
 
-    public Home(String proname, int proimage, String username, String timing, String price, String quantity, int availimg, String count, int fav) {
+    public Home() {
         this.proname = proname;
         this.proimage = proimage;
         this.username = username;

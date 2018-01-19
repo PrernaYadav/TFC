@@ -1,5 +1,6 @@
 package com.infosolution.dev.tfc.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,9 +9,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.infosolution.dev.tfc.R;
 import com.infosolution.dev.tfc.model.Home;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -20,44 +23,29 @@ import java.util.List;
 
 public class Homeadapter extends RecyclerView.Adapter<Homeadapter.MyViewHolder> {
 
-    List<Home> homeList= Collections.emptyList();
-    Context context;
+    private ArrayList<Home> homeList;
 
-    public Homeadapter(List<Home> homeList, Context context) {
+    public Homeadapter(ArrayList<Home> homeList, Context context, Activity activity) {
         this.homeList = homeList;
         this.context = context;
+        this.activity = activity;
     }
 
+    Context context;
+    private Activity activity;
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-
-        ImageView ivproimage,ivavail,ivfav;
-        TextView tvusername,tvproname,tvprice,tvquantity,tvtiming,tvcount;
-        public MyViewHolder(View view) {
-            super(view);
-            ivproimage=(ImageView) view.findViewById(R.id.iv_proimagee);
-            ivavail=(ImageView) view.findViewById(R.id.iv_avail);
-            ivfav=(ImageView) view.findViewById(R.id.iv_fav);
-            tvproname=(TextView) view.findViewById(R.id.tv_proname);
-            tvusername=(TextView) view.findViewById(R.id.tv_username);
-            tvtiming=(TextView) view.findViewById(R.id.tv_timing);
-            tvprice=(TextView) view.findViewById(R.id.tv_price);
-            tvquantity=(TextView) view.findViewById(R.id.tv_quantity);
-            tvcount=(TextView) view.findViewById(R.id.tv_count);
-        }
-    }
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_row, parent, false);
-
-        return new MyViewHolder(itemView);
+    public Homeadapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_row, parent, false);
+        return new MyViewHolder(view, context, homeList);
     }
-    @Override
-    public void onBindViewHolder(final MyViewHolder holder, final int position) {
 
-        holder.ivproimage.setImageResource(homeList.get(position).getProimage());
-        holder.ivavail.setImageResource(homeList.get(position).getAvailimg());
-        holder.ivfav.setImageResource(homeList.get(position).getFav());
+    @Override
+    public void onBindViewHolder(Homeadapter.MyViewHolder holder, int position) {
+        final Home home = homeList.get(position);
+
+
+
         holder.tvproname.setText(homeList.get(position).getProname());
         holder.tvusername.setText(homeList.get(position).getUsername());
         holder.tvprice.setText(homeList.get(position).getPrice());
@@ -66,11 +54,47 @@ public class Homeadapter extends RecyclerView.Adapter<Homeadapter.MyViewHolder> 
         holder.tvcount.setText(homeList.get(position).getCount());
 
 
+        Glide.with(activity).load(home.getProimage()).into(holder.ivproimage);
+        Glide.with(activity).load(home.getAvailimg()).into(holder.ivavail);
+        Glide.with(activity).load(home.getFav()).into(holder.ivfav);
 
     }
+
     @Override
-    public int getItemCount()
-    {
+    public int getItemCount() {
+        if (homeList == null)
+            return 0;
         return homeList.size();
     }
+
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        ImageView ivproimage, ivavail, ivfav;
+        TextView tvusername, tvproname, tvprice, tvquantity, tvtiming, tvcount;
+        Context ctx;
+        ArrayList<Home> home = new ArrayList<Home>();
+//        public Button btnJoinEvent;
+
+        public MyViewHolder(final View view, final Context ctx, ArrayList<Home> home) {
+            super(view);
+            this.home = home;
+            this.ctx = ctx;
+
+            ivproimage = (ImageView) view.findViewById(R.id.iv_proimagee);
+            ivavail = (ImageView) view.findViewById(R.id.iv_avail);
+            ivfav = (ImageView) view.findViewById(R.id.iv_fav);
+            tvproname = (TextView) view.findViewById(R.id.tv_proname);
+            tvusername = (TextView) view.findViewById(R.id.tv_username);
+            tvtiming = (TextView) view.findViewById(R.id.tv_timing);
+            tvprice = (TextView) view.findViewById(R.id.tv_price);
+            tvquantity = (TextView) view.findViewById(R.id.tv_quantity);
+            tvcount = (TextView) view.findViewById(R.id.tv_count);
+
+        }
+
+
+    }
 }
+
+
+
+

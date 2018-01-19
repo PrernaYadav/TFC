@@ -9,4 +9,5 @@ public class ConfigInfo {
     public static final String login="http://thefoodcircle.co.uk/restaurant/demo/web-service/login.php";
     public static final String registration="http://thefoodcircle.co.uk/restaurant/demo/web-service/registration.php";
     public static final String loginbusi="http://thefoodcircle.co.uk/restaurant/demo/web-service/res_login.php";
+    public static final String reslist="http://thefoodcircle.co.uk/restaurant/demo/web-service/res_list.php";
 }

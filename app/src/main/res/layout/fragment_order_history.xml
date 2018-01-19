@@ -44,7 +44,13 @@
 
     </RelativeLayout>
 
-
+<!--<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">-->
 
     <TextView
         android:layout_width="match_parent"
@@ -60,17 +66,16 @@
 
 
     <GridView
-        android:id="@+id/gv_product"
+        android:id="@+id/gv_producthis"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:numColumns="2"
-        android:verticalSpacing="0.5dp"
-        android:horizontalSpacing="0.5dp"
+        android:verticalSpacing="10dp"
+        android:horizontalSpacing="10dp"
         android:gravity="center"
-        android:background="#E6808080"
         android:columnWidth="100dp"
         android:stretchMode="columnWidth">
     </GridView>
-
-
+   <!-- </LinearLayout>
+</ScrollView>-->
 </LinearLayout>

@@ -1,5 +1,6 @@
 package com.infosolution.dev.tfc.business;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,7 +16,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.infosolution.dev.tfc.R;
+import com.infosolution.dev.tfc.business_fragments.OrderHistoryFragment;
+import com.infosolution.dev.tfc.business_fragments.UploadedMenuFragment;
 import com.infosolution.dev.tfc.fragment.HomeFragment;
+import com.infosolution.dev.tfc.model.UploadedMenu;
 
 public class Navigation extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -101,7 +105,19 @@ public class Navigation extends AppCompatActivity
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
 
+            OrderHistoryFragment fragment =new OrderHistoryFragment();
+            FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.frame,fragment," ");
+            fragmentTransaction.commit();
+
         } else if (id == R.id.nav_slideshow) {
+
+            Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+            sharingIntent.setType("text/plain");
+            String shareBody = "Here is the share content body";
+            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject Here");
+            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+            startActivity(Intent.createChooser(sharingIntent, "Share via"));
 
         } else if (id == R.id.nav_manage) {
 

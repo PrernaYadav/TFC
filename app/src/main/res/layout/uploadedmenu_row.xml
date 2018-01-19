@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+    <ImageView
+        android:id="@+id/iv_menuimg"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/icon"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"/>
+
+    <TextView
+        android:id="@+id/tv_pronameupld"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Matar Paneer"
+        android:layout_toRightOf="@+id/iv_menuimg"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@android:color/black"/>
+
+
+        <TextView
+            android:id="@+id/tv_timingupld"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9.00-9.30 PM"
+            android:layout_toRightOf="@+id/iv_menuimg"
+            android:layout_below="@+id/tv_pronameupld"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="@android:color/black"/>
+
+
+        <TextView
+            android:id="@+id/tv_prupld"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Price:"
+            android:layout_toRightOf="@+id/iv_menuimg"
+            android:layout_below="@+id/tv_timingupld"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:id="@+id/tv_priceupld"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="200"
+            android:layout_toRightOf="@+id/tv_prupld"
+            android:layout_below="@+id/tv_timingupld"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:id="@+id/tv_qtupld"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quantity:"
+            android:layout_toRightOf="@+id/iv_menuimg"
+            android:layout_below="@+id/tv_priceupld"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:id="@+id/tv_qtyupld"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5"
+            android:layout_toRightOf="@+id/tv_qtupld"
+            android:layout_below="@+id/tv_priceupld"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:textColor="@android:color/black"/>
+
+
+        <TextView
+            android:id="@+id/tv_reupload"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="Reupload"
+            android:textColor="@android:color/white"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="80dp"
+            android:padding="3dp"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:background="#2a2442" />
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,84 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f5f5f5"
+    tools:context="com.infosolution.dev.tfc.activities.EditProfileFragment">
+
+    <ImageView
+        android:id="@+id/iv_imgep"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/icon"/>
+
+    <EditText
+        android:id="@+id/et_nameep"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:hint="Shreyansh srivastva"
+        android:textColorHint="#676767"
+        android:gravity="center_horizontal"
+        android:backgroundTint="@android:color/white"/>
+
+
+    <EditText
+        android:id="@+id/et_emailep"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:hint="Abc@gmail.com"
+        android:inputType="textEmailAddress"
+        android:textColorHint="#676767"
+        android:gravity="center_horizontal"
+        android:backgroundTint="@android:color/white"/>
+
+    <EditText
+        android:id="@+id/et_phoneep"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:hint="85638669863"
+        android:inputType="number"
+        android:textColorHint="#676767"
+        android:gravity="center_horizontal"
+        android:backgroundTint="@android:color/white"/>
+
+
+    <Button
+        android:id="@+id/btn_doneep"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Done"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:background="@android:color/black"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"/>
+
+
+
+    <Button
+        android:id="@+id/btn_changepassep"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Change Password"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:background="@android:color/black"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"/>
+
+
+</LinearLayout>
