@@ -22,8 +22,7 @@ import android.widget.Toast;
 import com.infosolution.dev.tfc.R;
 import com.infosolution.dev.tfc.business.LoginBusinessActivity;
 import com.infosolution.dev.tfc.business.Navigation;
-import com.infosolution.dev.tfc.location.CurrentLocation;
-import com.infosolution.dev.tfc.user.UserRegisterActivity;
+import com.infosolution.dev.tfc.user.UserRegActivity;
 
 import java.io.IOException;
 import java.util.List;
@@ -101,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         btnuserreg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,UserRegisterActivity.class);
+                Intent intent = new Intent(MainActivity.this,SignupUserActivity.class);
                 startActivity(intent);
             }
         });

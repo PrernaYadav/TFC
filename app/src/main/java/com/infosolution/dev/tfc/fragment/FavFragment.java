@@ -1,15 +1,12 @@
 package com.infosolution.dev.tfc.fragment;
 
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -25,11 +22,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.infosolution.dev.tfc.Class.ConfigInfo;
 import com.infosolution.dev.tfc.R;
-import com.infosolution.dev.tfc.activities.MainActivity;
+import com.infosolution.dev.tfc.activities.CommentsActivity;
 import com.infosolution.dev.tfc.adapter.Homeadapter;
 import com.infosolution.dev.tfc.model.Home;
+import com.infosolution.dev.tfc.model.OrderHistoryModel;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -38,19 +35,10 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -58,12 +46,12 @@ import static android.content.Context.MODE_PRIVATE;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends Fragment {
+public class FavFragment extends Fragment {
 
-   private RecyclerView rcview;
+    private RecyclerView rcview;
     private Homeadapter homeadapter;
-//    private List<Home> homeList;
-private String city;
+    //    private List<Home> homeList;
+    private String city;
     private ArrayList<Home> homeList;
     private ProgressDialog pd;
 
@@ -75,39 +63,31 @@ private String city;
     private String Quantity;
     private String Availimg;
     private String Count;
-    private String Fav;
+    private String Fav,ress;
     private String resID,menuID,Quantityyy;
+    String UserId;
 
 
-
-
-
-
-    public HomeFragment() {
+    public FavFragment() {
+        // Required empty public constructor
     }
-
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-
-        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         // Inflate the layout for this fragment
-        View v= inflater.inflate(R.layout.fragment_home, container, false);
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        View v= inflater.inflate(R.layout.fragment_fav, container, false);
+        //fetching userid
 
 
-        //fetching city
-        final SharedPreferences prefs = getActivity().getSharedPreferences("City", MODE_PRIVATE);
-        city = prefs.getString("city", null);
-
-        Log.i("city",""+city);
-
+        final SharedPreferences prefs = getContext().getSharedPreferences("useridd", MODE_PRIVATE);
+        UserId = prefs.getString("userid", null);
 
 
 
-        rcview=v.findViewById(R.id.rc_home);
+        rcview=v.findViewById(R.id.rc_fav);
 
 
         rcview.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -116,16 +96,69 @@ private String city;
         rcview.setAdapter(homeadapter);
         homeList= new ArrayList<>();
         homeadapter = new Homeadapter(homeList, getContext(), getActivity());
-        new FetchEventPreviousDataTask().execute();
+        /*FetchFav();
+
+        final SharedPreferences prefss = getContext().getSharedPreferences("ResFav", MODE_PRIVATE);
+        ress = prefs.getString("responceee", null);
+        Log.i("tvt",""+ress);
+
+*/
+        new FetchEventPreviousDataTaskFav().execute();
 
 
 
 
-        return v;
+
+  return v;
     }
 
+    private void FetchFav() {
 
-    public class FetchEventPreviousDataTask extends AsyncTask<Object, Object, Boolean> {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://thefoodcircle.co.uk/restaurant/demo/web-service/my_fav_res.php",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.e("response..........", response);
+                        // Toast.makeText(CommentsActivity.this, response.toString(), Toast.LENGTH_LONG).show();
+
+                        Log.i("ressssss..",""+response.toString());
+                        SharedPreferences sharedPreferences = getContext().getSharedPreferences("ResFav", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("responceee", response.toString());
+                        editor.apply();
+
+
+
+
+
+
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getContext(), error.toString(), Toast.LENGTH_LONG).show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+
+
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("userid", "1");
+
+
+                return params;
+            }
+
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        requestQueue.add(stringRequest);
+    }
+
+    public class FetchEventPreviousDataTaskFav extends AsyncTask<Object, Object, Boolean> {
 
         @Override
         protected void onPreExecute() {
@@ -220,7 +253,5 @@ private String city;
     }
 
 
-   }
 
-
-
+}

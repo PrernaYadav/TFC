@@ -6,26 +6,29 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_camera"
-            android:title="Upload Menu" />
+            android:title="Favourite"
+            android:icon="@drawable/favselectedicon"/>
         <item
             android:id="@+id/nav_gallery"
-            android:title="Uploaded History" />
+            android:icon="@drawable/orderhistoryicon"
+            android:title="Order History" />
         <item
             android:id="@+id/nav_slideshow"
-            android:title="Share With Friends" />
+            android:title="Edit Profile"
+            android:icon="@drawable/myaccounticon"/>
         <item
             android:id="@+id/nav_manage"
-            android:title="New Order" />
+            android:title="Share With Friend"
+            android:icon="@drawable/shareicon"/>
     </group>
 
 
 
             <item
                 android:id="@+id/nav_share"
-                android:title="Order History" />
-            <item
-                android:id="@+id/nav_send"
-                android:title="Edit Profile" />
+                android:title="Log Out"
+                android:icon="@drawable/supporticon"/>
+
 
 
 

@@ -70,11 +70,11 @@ public class Home {
         this.count = count;
     }
 
-    public String getFav() {
+    public int getFav() {
         return fav;
     }
 
-    public void setFav(String fav) {
+    public void setFav(int fav) {
         this.fav = fav;
     }
 
@@ -86,7 +86,7 @@ public class Home {
     String quantity;
     String availimg;
     String count;
-    String fav;
+    int fav;
 
     public Home() {
         this.proname = proname;

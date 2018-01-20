@@ -9,9 +9,9 @@ public class Comments {
     int profileimage;
     String username;
     String comments;
-    float rating;
+    String rating;
 
-    public Comments(int profileimage, String username, String comments, float rating) {
+    public Comments() {
         this.profileimage = profileimage;
         this.username = username;
         this.comments = comments;
@@ -42,11 +42,11 @@ public class Comments {
         this.comments = comments;
     }
 
-    public float getRating() {
+    public String getRating() {
         return rating;
     }
 
-    public void setRating(Float rating) {
+    public void setRating(String rating) {
         this.rating = rating;
     }
 }

@@ -8,7 +8,7 @@ import android.widget.Button;
 
 import com.infosolution.dev.tfc.R;
 
-public class UserRegisterActivity extends AppCompatActivity {
+public class UserRegActivity extends AppCompatActivity {
     Button btnnxt;
 
     @Override
@@ -20,7 +20,7 @@ public class UserRegisterActivity extends AppCompatActivity {
         btnnxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(UserRegisterActivity.this,UserRegNext.class);
+                Intent intent = new Intent(UserRegActivity.this,UserRegNext.class);
                 startActivity(intent);
             }
         });

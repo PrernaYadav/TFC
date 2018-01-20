@@ -1,6 +1,8 @@
 package com.infosolution.dev.tfc.business;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,13 +18,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.infosolution.dev.tfc.R;
+import com.infosolution.dev.tfc.activities.EditProfileFragment;
 import com.infosolution.dev.tfc.business_fragments.OrderHistoryFragment;
 import com.infosolution.dev.tfc.business_fragments.UploadedMenuFragment;
+import com.infosolution.dev.tfc.fragment.FavFragment;
 import com.infosolution.dev.tfc.fragment.HomeFragment;
 import com.infosolution.dev.tfc.model.UploadedMenu;
 
 public class Navigation extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    public String Fav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,12 +101,11 @@ public class Navigation extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
 
-
-
-            HomeFragment fragment =new HomeFragment();
+            FavFragment fragment =new FavFragment();
             FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.frame,fragment," ");
             fragmentTransaction.commit();
+
 
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
@@ -112,6 +117,15 @@ public class Navigation extends AppCompatActivity
 
         } else if (id == R.id.nav_slideshow) {
 
+            EditProfileFragment fragment =new EditProfileFragment();
+            FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.frame,fragment," ");
+            fragmentTransaction.commit();
+
+
+
+        } else if (id == R.id.nav_manage) {
+
             Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
             sharingIntent.setType("text/plain");
             String shareBody = "Here is the share content body";
@@ -119,11 +133,7 @@ public class Navigation extends AppCompatActivity
             sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
             startActivity(Intent.createChooser(sharingIntent, "Share via"));
 
-        } else if (id == R.id.nav_manage) {
-
         } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
 
         }
 

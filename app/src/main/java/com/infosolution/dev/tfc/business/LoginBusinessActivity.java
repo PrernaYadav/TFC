@@ -47,7 +47,7 @@ public class LoginBusinessActivity extends AppCompatActivity {
        /* tvsignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(LoginBusinessActivity.this,SignupMailActivity.class);
+                Intent intent= new Intent(LoginBusinessActivity.this,SignupUserActivity.class);
                 startActivity(intent);
             }
         });*/

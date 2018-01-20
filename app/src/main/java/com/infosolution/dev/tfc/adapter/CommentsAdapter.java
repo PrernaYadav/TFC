@@ -1,5 +1,6 @@
 package com.infosolution.dev.tfc.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,10 +10,12 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.infosolution.dev.tfc.R;
 import com.infosolution.dev.tfc.model.Comments;
 import com.infosolution.dev.tfc.model.Home;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -21,8 +24,77 @@ import java.util.List;
  */
 
 public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.MyViewHolder> {
+    public CommentsAdapter(ArrayList<Comments> commentsArrayList, Context context, Activity activity) {
+        this.commentsArrayList = commentsArrayList;
+        this.context = context;
+        this.activity = activity;
+    }
 
-    List<Comments> commentsList= Collections.emptyList();
+    private ArrayList<Comments> commentsArrayList;
+    Context context;
+    private Activity activity;
+
+    @Override
+    public CommentsAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.comment_row, parent, false);
+       return new MyViewHolder(view,context,commentsArrayList);
+    }
+
+    @Override
+    public void onBindViewHolder(CommentsAdapter.MyViewHolder holder, int position) {
+
+        final Comments comments= commentsArrayList.get(position);
+
+
+        holder.tvusernamecomm.setText(commentsArrayList.get(position).getUsername());
+        holder.tvcomments.setText(commentsArrayList.get(position).getComments());
+        holder.rbcomments.setRating(Float.parseFloat(commentsArrayList.get(position).getRating()));
+
+
+
+        Glide.with(activity).load(comments.getProfileimage()).into(holder.ivprofileimage);
+
+
+
+
+
+    }
+
+
+
+    @Override
+    public int getItemCount() {
+        if (commentsArrayList == null)
+            return 0;
+        return commentsArrayList.size();
+    }
+
+    public  class  MyViewHolder extends  RecyclerView.ViewHolder{
+
+        ImageView ivprofileimage;
+        TextView tvusernamecomm,tvcomments;
+        RatingBar rbcomments;
+        Context ctx;
+        ArrayList<Comments> comments= new ArrayList<Comments>();
+
+        public MyViewHolder(View itemView, Context ctx, ArrayList<Comments> comments) {
+            super(itemView);
+            this.ctx = ctx;
+            this.comments = comments;
+
+
+            ivprofileimage=(ImageView) itemView.findViewById(R.id.profile_image);
+            tvusernamecomm=(TextView) itemView.findViewById(R.id.tv_namecom);
+            tvcomments=(TextView) itemView.findViewById(R.id.tv_comments);
+            rbcomments=(RatingBar) itemView.findViewById(R.id.rb_comm);
+        }
+    }
+
+
+
+
+
+    /* List<Comments> commentsList= Collections.emptyList();
     Context context;
 
     public CommentsAdapter(List<Comments> commentsList, Context context) {
@@ -59,7 +131,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.MyView
         holder.ivprofileimage.setImageResource(commentsList.get(position).getProfileimage());
         holder.tvusernamecomm.setText(commentsList.get(position).getUsername());
         holder.tvcomments.setText(commentsList.get(position).getComments());
-        holder.rbcomments.setRating(commentsList.get(position).getRating());
+        holder.rbcomments.setRating(Float.parseFloat(commentsList.get(position).getRating()));
 
 
 
@@ -68,5 +140,5 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.MyView
     public int getItemCount()
     {
         return commentsList.size();
-    }
+    }*/
 }

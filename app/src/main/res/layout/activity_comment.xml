@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/quantitybg"
     android:orientation="vertical"
-    tools:context="com.infosolution.dev.tfc.activities.CommentActivity">
+    tools:context="com.infosolution.dev.tfc.activities.PostCommentActivity">
 
 
     <include
@@ -31,7 +31,7 @@
         android:textStyle="bold" />
 
 
-    <RatingBar
+  <!--  <RatingBar
         android:id="@+id/rb_comm"
         style="?android:attr/ratingBarStyleSmall"
         android:layout_width="80dp"
@@ -40,12 +40,19 @@
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="40dp"
-        android:isIndicator="true"
         android:numStars="5"
         android:rating="5"
         android:scaleX="2.5"
         android:scaleY="2.5"
-        android:theme="@style/RatingBar" />
+        />-->
+
+    <RatingBar
+        android:id="@+id/rb_comm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:layout_gravity="center_horizontal"
+        android:stepSize="1.0" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -55,24 +62,45 @@
         android:orientation="vertical"
         android:background="@android:color/white">
 
-<TextView
+<EditText
+    android:id="@+id/et_com"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="Comments"
+  android:hint="Comments"
+    android:textColorHint="@android:color/black"
     android:padding="15dp"
     android:textColor="@android:color/black"/>
 
-        <TextView
+
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="0/600"
-            android:padding="15dp"
+            android:orientation="horizontal"
+            android:padding="15dp">
+
+
+            <TextView
+                android:id="@+id/tv_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+
+                android:textColor="@android:color/black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="/600"
             android:textColor="@android:color/black"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
 
     <Button
+        android:id="@+id/btn_postcom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/resbg"
-    tools:context="com.infosolution.dev.tfc.user.UserRegisterActivity">
+    tools:context="com.infosolution.dev.tfc.user.UserRegActivity">
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent">
