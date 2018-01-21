@@ -6,10 +6,10 @@ package com.infosolution.dev.tfc.model;
 
 public class Comments {
 
-    int profileimage;
+    String profileimage;
     String username;
     String comments;
-    String rating;
+    Float rating;
 
     public Comments() {
         this.profileimage = profileimage;
@@ -18,11 +18,11 @@ public class Comments {
         this.rating = rating;
     }
 
-    public int getProfileimage() {
+    public String getProfileimage() {
         return profileimage;
     }
 
-    public void setProfileimage(int profileimage) {
+    public void setProfileimage(String profileimage) {
         this.profileimage = profileimage;
     }
 
@@ -42,11 +42,11 @@ public class Comments {
         this.comments = comments;
     }
 
-    public String getRating() {
+    public Float getRating() {
         return rating;
     }
 
-    public void setRating(String rating) {
+    public void setRating(Float rating) {
         this.rating = rating;
     }
 }

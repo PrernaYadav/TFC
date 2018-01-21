@@ -24,6 +24,9 @@ import java.util.List;
  */
 
 public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.MyViewHolder> {
+
+
+
     public CommentsAdapter(ArrayList<Comments> commentsArrayList, Context context, Activity activity) {
         this.commentsArrayList = commentsArrayList;
         this.context = context;
@@ -48,7 +51,8 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.MyView
 
         holder.tvusernamecomm.setText(commentsArrayList.get(position).getUsername());
         holder.tvcomments.setText(commentsArrayList.get(position).getComments());
-        holder.rbcomments.setRating(Float.parseFloat(commentsArrayList.get(position).getRating()));
+        holder.rbcomments.setRating(commentsArrayList.get(position).getRating());
+
 
 
 
@@ -64,8 +68,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.MyView
 
     @Override
     public int getItemCount() {
-        if (commentsArrayList == null)
-            return 0;
+
         return commentsArrayList.size();
     }
 
@@ -90,55 +93,4 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.MyView
         }
     }
 
-
-
-
-
-    /* List<Comments> commentsList= Collections.emptyList();
-    Context context;
-
-    public CommentsAdapter(List<Comments> commentsList, Context context) {
-        this.commentsList = commentsList;
-        this.context = context;
-    }
-
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-
-        ImageView ivprofileimage;
-        TextView tvusernamecomm,tvcomments;
-        RatingBar rbcomments;
-        public MyViewHolder(View view) {
-            super(view);
-            ivprofileimage=(ImageView) view.findViewById(R.id.profile_image);
-
-            tvusernamecomm=(TextView) view.findViewById(R.id.tv_namecomm);
-            tvcomments=(TextView) view.findViewById(R.id.tv_comments);
-            rbcomments=(RatingBar) view.findViewById(R.id.rb_comm);
-
-        }
-}
-   @Override
-    public  MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
-
-       View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.comment_row, parent, false);
-
-       return new MyViewHolder(itemView);
-   }
-
-    @Override
-    public void onBindViewHolder(final CommentsAdapter.MyViewHolder holder, final int position) {
-
-        holder.ivprofileimage.setImageResource(commentsList.get(position).getProfileimage());
-        holder.tvusernamecomm.setText(commentsList.get(position).getUsername());
-        holder.tvcomments.setText(commentsList.get(position).getComments());
-        holder.rbcomments.setRating(Float.parseFloat(commentsList.get(position).getRating()));
-
-
-
-    }
-    @Override
-    public int getItemCount()
-    {
-        return commentsList.size();
-    }*/
 }

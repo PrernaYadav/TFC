@@ -69,6 +69,7 @@ public class CommentsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comments);
+        FetchComments();
         rvcomments = findViewById(R.id.rv_comments);
 
 
@@ -87,29 +88,12 @@ public class CommentsActivity extends AppCompatActivity {
         commentsList= new ArrayList<>();
         commentsAdapter = new CommentsAdapter(commentsList, this, this);
 
-        FetchComments();
-
-
-        final SharedPreferences prefs = getSharedPreferences("Res", MODE_PRIVATE);
-        res = prefs.getString("responce", null);
-        Log.i("bbb",""+res);
 
         new Fet().execute();
 
 
 
     }
-
-
-
-
-
-
-
-
-
-
-
 
     public void FetchComments() {
 
@@ -123,15 +107,7 @@ public class CommentsActivity extends AppCompatActivity {
 
                         Log.i("ressssss..",""+response.toString());
 
-
-                         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("Res", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("responcee", response.toString());
-                        editor.apply();
-
-
-
-
+                        res=response;
 
                     }
                 },
@@ -146,8 +122,8 @@ public class CommentsActivity extends AppCompatActivity {
 
 
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("resid", MenuId);
-                params.put("menuid", ResId);
+                params.put("resid", "1");
+                params.put("menuid", "1");
 
                 return params;
             }
@@ -173,7 +149,7 @@ public class CommentsActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Object... params) {
             try {
-                String dataurl = "http://thefoodcircle.co.uk/restaurant/demo/web-service/res_list.php";
+                String dataurl = "http://thefoodcircle.co.uk/restaurant/demo/web-service/res_menu.php";
                 HttpPost httppost = new HttpPost(dataurl);
                 HttpClient httpclient = new DefaultHttpClient();
                 HttpResponse response = httpclient.execute(httppost);
@@ -193,12 +169,12 @@ public class CommentsActivity extends AppCompatActivity {
                         jarray = jsono.getJSONArray("data");
                         JSONArray jarray1 = object.getJSONArray("comments_data");
 
-                        for (int j = 0; j < jsono.length(); j++) {
+                        for (int j = 0; j < jarray1.length(); j++) {
                             JSONObject object1 = jarray1.getJSONObject(j);
-
-                            final String Namee = object1.getString("username");
-                            final String Ratingg = object1.getString("rating");
-                            final String Commentt = object1.getString("comment");
+                            String Namee = object1.getString("username");
+                            float Ratingg = object1.getInt("rating");
+                            String Commentt = object1.getString("comment");
+                            String Userimage= object1.getString("userimage");
 
 
                             Comments comments1 = new Comments();
@@ -207,14 +183,19 @@ public class CommentsActivity extends AppCompatActivity {
                             comments1.setUsername(Namee);
                             comments1.setRating(Ratingg);
                             comments1.setComments(Commentt);
-                            comments1.setProfileimage(R.drawable.fav);
+                            comments1.setProfileimage(Userimage);
+
 
 
                             commentsList.add(comments1);
 
-                        }
-                    }
 
+
+                        }
+
+
+
+                    }
 
 
                     return true;

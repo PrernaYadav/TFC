@@ -79,6 +79,8 @@ public class FavFragment extends Fragment {
         // Inflate the layout for this fragment
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         View v= inflater.inflate(R.layout.fragment_fav, container, false);
+
+        FetchFav();
         //fetching userid
 
 
@@ -96,13 +98,9 @@ public class FavFragment extends Fragment {
         rcview.setAdapter(homeadapter);
         homeList= new ArrayList<>();
         homeadapter = new Homeadapter(homeList, getContext(), getActivity());
-        /*FetchFav();
 
-        final SharedPreferences prefss = getContext().getSharedPreferences("ResFav", MODE_PRIVATE);
-        ress = prefs.getString("responceee", null);
-        Log.i("tvt",""+ress);
 
-*/
+
         new FetchEventPreviousDataTaskFav().execute();
 
 
@@ -119,13 +117,10 @@ public class FavFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
                         Log.e("response..........", response);
+                        ress=response;
                         // Toast.makeText(CommentsActivity.this, response.toString(), Toast.LENGTH_LONG).show();
 
                         Log.i("ressssss..",""+response.toString());
-                        SharedPreferences sharedPreferences = getContext().getSharedPreferences("ResFav", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("responceee", response.toString());
-                        editor.apply();
 
 
 
@@ -146,7 +141,7 @@ public class FavFragment extends Fragment {
 
 
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("userid", "1");
+                params.put("userid", UserId);
 
 
                 return params;
@@ -179,8 +174,8 @@ public class FavFragment extends Fragment {
                 if (status == 200) {
                     HttpEntity entity = response.getEntity();
                     String data = EntityUtils.toString(entity);
-                    JSONObject jsono = new JSONObject(data);
-                    JSONArray jarray = jsono.getJSONArray("restaurents");
+                    JSONObject jsono = new JSONObject(ress);
+                    JSONArray jarray = jsono.getJSONArray("data");
 
                     for (int i = 0; i < jarray.length(); i++) {
                         JSONObject object = jarray.getJSONObject(i);
@@ -194,11 +189,11 @@ public class FavFragment extends Fragment {
                         home.setUsername(Username);
 
 
-                        JSONObject jsono1 = new JSONObject(data);
-                        jarray = jsono.getJSONArray("restaurents");
+                        JSONObject jsono1 = new JSONObject(ress);
+                        jarray = jsono.getJSONArray("data");
                         JSONArray jarray1 = object.getJSONArray("menu");
 
-                        for (int j = 0; j < jsono1.length(); j++) {
+                        for (int j = 0; j < jarray1.length(); j++) {
                             JSONObject object1 = jarray1.getJSONObject(j);
 
                             Proname = object1.getString("menu_name");
@@ -211,13 +206,7 @@ public class FavFragment extends Fragment {
                             menuID = object1.getString("id");
                             Log.i("menuId",""+menuID);
 
-                            SharedPreferences sharedPreferences = getContext().getSharedPreferences("resmenuDetails", Context.MODE_PRIVATE);
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putString("name", Proname);
-                            editor.putString("resid", resID);
-                            editor.putString("menuid", menuID);
-                            editor.putString("quantityyy", Quantity);
-                            editor.commit();
+
 
 
                             home.setProname(Proname);
@@ -237,7 +226,7 @@ public class FavFragment extends Fragment {
 
 
                     return true;
-                }
+              }
             } catch (Exception e1) {
                 e1.printStackTrace();
             }

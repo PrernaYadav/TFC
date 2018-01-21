@@ -165,7 +165,7 @@ private String city;
                         jarray = jsono.getJSONArray("restaurents");
                         JSONArray jarray1 = object.getJSONArray("menu");
 
-                        for (int j = 0; j < jsono1.length(); j++) {
+                        for (int j = 0; j < jarray1.length(); j++) {
                             JSONObject object1 = jarray1.getJSONObject(j);
 
                             Proname = object1.getString("menu_name");
