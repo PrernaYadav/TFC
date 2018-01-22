@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,14 +23,12 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.infosolution.dev.tfc.Class.ConfigInfo;
 import com.infosolution.dev.tfc.R;
-import com.infosolution.dev.tfc.activities.PostCommentActivity;
+import com.infosolution.dev.tfc.activities.BuyNowActivity;
 import com.infosolution.dev.tfc.activities.ProductPageActivity;
 import com.infosolution.dev.tfc.model.Home;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -52,7 +51,7 @@ public class Homeadapter extends RecyclerView.Adapter<Homeadapter.MyViewHolder> 
 
     Context context;
     private Activity activity;
-    String qty,price;
+private    String qty,price;
 
     @Override
     public Homeadapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -72,7 +71,8 @@ public class Homeadapter extends RecyclerView.Adapter<Homeadapter.MyViewHolder> 
         holder.tvquantity.setText(homeList.get(position).getQuantity());
         holder.tvtiming.setText(homeList.get(position).getTiming());
         holder.tvcount.setText(homeList.get(position).getCount());
-
+        holder.ress.setText(homeList.get(position).getRes());
+        holder.ivfav.setImageResource(homeList.get(position).getFav());
 
         Glide.with(activity).load(home.getProimage()).into(holder.ivproimage);
         Glide.with(activity).load(home.getAvailimg()).into(holder.ivavail);
@@ -91,7 +91,7 @@ public class Homeadapter extends RecyclerView.Adapter<Homeadapter.MyViewHolder> 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView ivproimage, ivavail, ivfav;
-        TextView tvusername, tvproname, tvprice, tvquantity, tvtiming, tvcount;
+        TextView tvusername, tvproname, tvprice, tvquantity, tvtiming, tvcount,ress;
         Context ctx;
         ArrayList<Home> home = new ArrayList<Home>();
 
@@ -112,31 +112,33 @@ public class Homeadapter extends RecyclerView.Adapter<Homeadapter.MyViewHolder> 
             tvprice = (TextView) view.findViewById(R.id.tv_price);
             tvquantity = (TextView) view.findViewById(R.id.tv_quantity);
             tvcount = (TextView) view.findViewById(R.id.tv_count);
-            qty=tvquantity.getText().toString();
-            price=tvprice.getText().toString();
+            ress = (TextView) view.findViewById(R.id.res);
+          /*  qty=tvquantity.getText().toString();
+            price=tvprice.getText().toString();*/
 
             ivfav.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //fetching values from sharedpreferece
+                    int positions=getAdapterPosition();
 
-
-
-
-
+                    ResId=homeList.get(positions).getRes();
                     ivfav.setImageResource(R.drawable.favselectedicon);
                     Fav();
                 }
             });
 
 
+
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(activity, ProductPageActivity.class);
-                    intent.putExtra("qty",qty);
-                    intent.putExtra("price",price);
-                    activity.startActivity(intent);
+                  int position=getAdapterPosition();
+
+                    Intent intent = new Intent(activity, BuyNowActivity.class);
+                    intent.putExtra("qty",homeList.get(position).getQuantity());
+                    intent.putExtra("price",homeList.get(position).getPrice());
+                    intent.putExtra("proimage",homeList.get(position).getProimage());
+                  activity.startActivity(intent);
                 }
             });
 
@@ -148,11 +150,14 @@ public class Homeadapter extends RecyclerView.Adapter<Homeadapter.MyViewHolder> 
     private void Fav() {
 
 
-        final SharedPreferences prefs = activity.getSharedPreferences("useridd", MODE_PRIVATE);
+        final SharedPreferences prefs = activity.getSharedPreferences("useriddsign", MODE_PRIVATE);
         UserId = prefs.getString("userid", null);
 
-        final SharedPreferences prefss = activity.getSharedPreferences("resmenuDetails", MODE_PRIVATE);
-        ResId = prefss.getString("resid", null);
+        /*final SharedPreferences prefss = activity.getSharedPreferences("resmenuDetails", MODE_PRIVATE);
+        ResId = prefss.getString("resid", null); */
+
+        /*final SharedPreferences prefsss = activity.getSharedPreferences("resmenuDetailss", MODE_PRIVATE);
+        ResId = prefsss.getString("resid", null);*/
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, ConfigInfo.AddtoFav,
                 new Response.Listener<String>() {
@@ -178,7 +183,7 @@ public class Homeadapter extends RecyclerView.Adapter<Homeadapter.MyViewHolder> 
 
                 params.put("userid", UserId);
                 params.put("resid", ResId);
-                params.put("favorite_status","fav" );
+                params.put("favorite_status","1" );
 
 
                 Log.i("paramsss",""+params);

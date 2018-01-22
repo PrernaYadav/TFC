@@ -5,9 +5,17 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_dashboard"
+            android:title="DashBoard"
+            android:icon="@drawable/favselectedicon"
+            android:iconTint="@android:color/holo_red_dark" />
+
+
+        <item
             android:id="@+id/nav_camera"
             android:title="Favourite"
-            android:icon="@drawable/favselectedicon"/>
+            android:icon="@drawable/favselectedicon"
+            android:iconTint="@android:color/holo_red_dark" />
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/orderhistoryicon"

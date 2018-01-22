@@ -88,6 +88,16 @@ public class Home {
     String count;
     int fav;
 
+    public String getRes() {
+        return res;
+    }
+
+    public void setRes(String res) {
+        this.res = res;
+    }
+
+    String res;
+
     public Home() {
         this.proname = proname;
         this.proimage = proimage;

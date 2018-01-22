@@ -8,6 +8,14 @@
     android:background="@drawable/loginbg"
     tools:context="com.infosolution.dev.tfc.activities.LoginMailActivity">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
     <ImageView
         android:layout_width="150dp"
         android:layout_height="150dp"
@@ -94,5 +102,7 @@
 
 
     </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

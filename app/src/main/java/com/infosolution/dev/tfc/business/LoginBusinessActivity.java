@@ -44,13 +44,7 @@ public class LoginBusinessActivity extends AppCompatActivity {
         etpassword=findViewById(R.id.et_passwordbusi);
         btnsignin=findViewById(R.id.btn_signinbusi);
         tvsignup=findViewById(R.id.tv_signupp);
-       /* tvsignup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent= new Intent(LoginBusinessActivity.this,SignupUserActivity.class);
-                startActivity(intent);
-            }
-        });*/
+
 
         btnsignin.setOnClickListener(new View.OnClickListener() {
             @Override

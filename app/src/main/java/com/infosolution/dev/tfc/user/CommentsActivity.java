@@ -1,18 +1,16 @@
-package com.infosolution.dev.tfc.activities;
+package com.infosolution.dev.tfc.user;
 
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -21,45 +19,34 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.infosolution.dev.tfc.Class.ConfigInfo;
-import com.infosolution.dev.tfc.Class.Jsonparse;
 import com.infosolution.dev.tfc.R;
 import com.infosolution.dev.tfc.adapter.CommentsAdapter;
-import com.infosolution.dev.tfc.adapter.Homeadapter;
-import com.infosolution.dev.tfc.adapter.OrderHistoryAdapter;
-import com.infosolution.dev.tfc.business.Navigation;
-import com.infosolution.dev.tfc.fragment.HomeFragment;
 import com.infosolution.dev.tfc.model.Comments;
-import com.infosolution.dev.tfc.model.Home;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONTokener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import static java.security.AccessController.getContext;
 
 public class CommentsActivity extends AppCompatActivity {
 
     RecyclerView rvcomments;
     CommentsAdapter commentsAdapter;
-    View view;
+  private   View view;
     private ArrayList<Comments> commentsList;
     ProgressDialog pd;
     String res;
+    private ImageView ivbackk;
+    private TextView textView;
+
 
 
    private String Name,Rating,Comment,ResId,MenuId;
@@ -71,6 +58,23 @@ public class CommentsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_comments);
         FetchComments();
         rvcomments = findViewById(R.id.rv_comments);
+        view=findViewById(R.id.ab_comments);
+        ivbackk=findViewById(R.id.iv);
+        ivbackk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        textView=findViewById(R.id.tv);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                textView.setText("Change Password");
+            }
+        });
+
 
 
 

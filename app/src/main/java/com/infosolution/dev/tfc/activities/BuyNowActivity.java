@@ -1,15 +1,124 @@
 package com.infosolution.dev.tfc.activities;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.infosolution.dev.tfc.Class.ConfigInfo;
 import com.infosolution.dev.tfc.R;
+import com.infosolution.dev.tfc.user.CommentsActivity;
+import com.infosolution.dev.tfc.user.PostCommentActivity;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class BuyNowActivity extends AppCompatActivity {
 
+    private TextView tvqty,tvprice,tvtime,tvadd,tvviewcom,tvpostcom;
+    private ImageView ivlogo,ivreslogo;
+    private Button btnbuy;
+    private String UserId,ResId,MenuID,MenuName,pricee,Quantity,Ct;
+   private String qty,price,proimage,logo,Add;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buy_now);
+
+
+
+        final SharedPreferences prefss = getSharedPreferences("resmenuDetails", MODE_PRIVATE);
+        Ct = prefss.getString("ct", null);
+
+        final SharedPreferences prefsss = getSharedPreferences("resmenuDetailss", MODE_PRIVATE);
+        logo = prefsss.getString("log", null);
+        Add = prefsss.getString("add", null);
+
+        final SharedPreferences prefssss = getSharedPreferences("resmenuDetails", MODE_PRIVATE);
+        MenuName = prefssss.getString("name", null);
+        ResId = prefssss.getString("resid", null);
+        MenuID = prefssss.getString("menuid", null);
+
+
+        Intent intent=getIntent();
+        qty=intent.getStringExtra("qty");
+        price=intent.getStringExtra("price");
+        proimage=intent.getStringExtra("proimage");
+
+
+
+
+        tvqty=findViewById(R.id.tv_quantitybuy);
+        tvprice=findViewById(R.id.tv_pricebuy);
+        tvtime=findViewById(R.id.tv_timebuy);
+        tvadd=findViewById(R.id.tv_addbuy);
+        tvviewcom=findViewById(R.id.tv_viewcommbuy);
+        tvpostcom=findViewById(R.id.tv_postcommbuy);
+        btnbuy=findViewById(R.id.btn_buynow);
+
+        tvqty.setText(qty);
+        tvprice.setText(price);
+        tvtime.setText(Ct);
+        tvadd.setText(Add);
+
+        ivlogo=findViewById(R.id.iv_proimagebuy);
+        Glide.with(this)
+                .load(Uri.parse(proimage))
+                .into(ivlogo);
+
+
+        ivreslogo=findViewById(R.id.iv_logobuy);
+        Glide.with(this)
+                .load(Uri.parse(logo))
+                .into(ivreslogo);
+
+        tvpostcom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(BuyNowActivity.this,PostCommentActivity.class);
+                startActivity(intent1);
+            }
+        });
+
+        tvviewcom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(BuyNowActivity.this,CommentsActivity.class);
+                startActivity(intent1);
+            }
+        });
+
+
+
+        btnbuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(BuyNowActivity.this,ProductPageActivity.class);
+                intent1.putExtra("img",proimage);
+                intent1.putExtra("qtyyy",qty);
+                intent1.putExtra("priceee",price);
+                startActivity(intent1);
+
+            }
+        });
+
     }
+
+
+
+
 }

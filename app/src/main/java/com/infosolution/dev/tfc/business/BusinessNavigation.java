@@ -1,8 +1,6 @@
 package com.infosolution.dev.tfc.business;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,26 +16,24 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.infosolution.dev.tfc.R;
-import com.infosolution.dev.tfc.activities.EditProfileFragment;
+import com.infosolution.dev.tfc.business_fragments.EditProfileBusiFragment;
 import com.infosolution.dev.tfc.business_fragments.OrderHistoryFragment;
+import com.infosolution.dev.tfc.business_fragments.UploadMenuFragment;
 import com.infosolution.dev.tfc.business_fragments.UploadedMenuFragment;
 import com.infosolution.dev.tfc.fragment.FavFragment;
-import com.infosolution.dev.tfc.fragment.HomeFragment;
 import com.infosolution.dev.tfc.model.UploadedMenu;
 
-public class Navigation extends AppCompatActivity
+public class BusinessNavigation extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
-    public String Fav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_navigation);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setContentView(R.layout.activity_business_navigation);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarbusi);
         setSupportActionBar(toolbar);
 
-      /*  FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+       /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,11 +50,6 @@ public class Navigation extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        HomeFragment fragment =new HomeFragment();
-        FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.frame,fragment," ");
-        fragmentTransaction.commit();
     }
 
     @Override
@@ -74,7 +65,7 @@ public class Navigation extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.navigation, menu);
+        getMenuInflater().inflate(R.menu.business_navigation, menu);
         return true;
     }
 
@@ -86,9 +77,9 @@ public class Navigation extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-       /* if (id == R.id.action_settings) {
+        if (id == R.id.action_settings) {
             return true;
-        }*/
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -99,32 +90,24 @@ public class Navigation extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_upldmenu) {
 
-            FavFragment fragment =new FavFragment();
+            UploadedMenuFragment fragment =new UploadedMenuFragment();
             FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.frame,fragment," ");
             fragmentTransaction.commit();
 
 
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-            OrderHistoryFragment fragment =new OrderHistoryFragment();
-            FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.frame,fragment," ");
-            fragmentTransaction.commit();
-
-        } else if (id == R.id.nav_slideshow) {
-
-            EditProfileFragment fragment =new EditProfileFragment();
+        } else if (id == R.id.nav_upldHistory) {
+            UploadMenuFragment fragment =new UploadMenuFragment();
             FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.frame,fragment," ");
             fragmentTransaction.commit();
 
 
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_share) {
 
             Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
             sharingIntent.setType("text/plain");
@@ -133,7 +116,22 @@ public class Navigation extends AppCompatActivity
             sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
             startActivity(Intent.createChooser(sharingIntent, "Share via"));
 
-        } else if (id == R.id.nav_share) {
+
+        } else if (id == R.id.nav_neworder) {
+
+        } else if (id == R.id.nav_orderhis) {
+
+            OrderHistoryFragment fragment =new OrderHistoryFragment();
+            FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.frame,fragment," ");
+            fragmentTransaction.commit();
+
+        } else if (id == R.id.nav_editprofile) {
+
+            EditProfileBusiFragment fragment =new EditProfileBusiFragment();
+            FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.frame,fragment," ");
+            fragmentTransaction.commit();
 
         }
 

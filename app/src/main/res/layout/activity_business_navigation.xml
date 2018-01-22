@@ -9,30 +9,19 @@
     tools:openDrawer="start">
 
     <include
-        layout="@layout/app_bar_navigation"
+        layout="@layout/app_bar_business_navigation"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
-    <!--<android.support.design.widget.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="#80000000"
-        android:fitsSystemWindows="true"
-
-        app:headerLayout="@layout/nav_header_navigation"
-        app:menu="@menu/activity_navigation_drawer"
-        />-->
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:background="#80000000"
         android:fitsSystemWindows="true"
-        android:background="#000000"
-        app:headerLayout="@layout/nav_header_navigation"
-        app:menu="@menu/activity_navigation_drawer" />
+        android:theme="@style/NavigationTheme"
+        app:headerLayout="@layout/nav_header_business_navigation"
+        app:menu="@menu/activity_business_navigation_drawer" />
 
 </android.support.v4.widget.DrawerLayout>

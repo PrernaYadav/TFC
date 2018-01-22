@@ -1,6 +1,5 @@
-package com.infosolution.dev.tfc.activities;
+package com.infosolution.dev.tfc.user;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -26,6 +27,9 @@ public class ChangePasswordActivity extends AppCompatActivity {
     private EditText etoldpass,etnewpass;
     private Button btnupdate;
     private  String oldpass,newpass,email;
+    private View view;
+    private ImageView ivbackk;
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +39,26 @@ public class ChangePasswordActivity extends AppCompatActivity {
         etnewpass=findViewById(R.id.et_enternewpass);
         btnupdate=findViewById(R.id.btn_updatepass);
 
+        view=findViewById(R.id.ab_changepassworda);
+        ivbackk=findViewById(R.id.iv);
+        ivbackk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
-        final SharedPreferences prefs = getSharedPreferences("useridd", MODE_PRIVATE);
+        textView=findViewById(R.id.tv);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                textView.setText("Change Password");
+            }
+        });
+
+
+
+        final SharedPreferences prefs = getSharedPreferences("useriddsign", MODE_PRIVATE);
         email = prefs.getString("email", null);
 
         btnupdate.setOnClickListener(new View.OnClickListener() {

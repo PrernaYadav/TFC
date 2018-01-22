@@ -2,38 +2,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@android:color/white"
+    android:orientation="vertical"
     tools:context="com.infosolution.dev.tfc.fragment.HomeFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#2A2342"
         android:orientation="vertical"
-        android:padding="10dp"
-        android:background="#2A2342">
+        android:padding="10dp">
 
         <EditText
             android:id="@+id/et_searchcity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/roundedsearch"
-            android:hint="Enter City Name"
-            android:textColorHint="#40000000"
-           android:drawableLeft="@drawable/ic_searchicon"
+            android:layout_marginBottom="5dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="5dp"
-
+            android:background="@drawable/roundedsearch"
+            android:drawableLeft="@drawable/ic_searchicon"
+            android:drawableTint="#40000000"
+            android:hint="Enter City Name"
             android:padding="8dp"
-            android:drawableTint="#40000000"/>
+            android:textColor="@android:color/black"
+            android:textColorHint="#40000000" />
     </LinearLayout>
 
 
     <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:weightSum="2">
 
         <LinearLayout
@@ -51,20 +51,20 @@
                 android:layout_height="35dp"
                 android:src="@drawable/sort" />
 
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:text="Sort"
-               android:textColor="@android:color/black"
-               android:textSize="20sp"
-               android:layout_marginLeft="5dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="Sort"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
 
         </LinearLayout>
 
         <View
             android:layout_width="2dp"
             android:layout_height="45dp"
-            android:background="#B3000000"/>
+            android:background="#B3000000" />
 
         <LinearLayout
             android:id="@+id/ll_listgrid"
@@ -84,18 +84,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
                 android:text="Filter"
                 android:textColor="@android:color/black"
-                android:textSize="20sp"
-                android:layout_marginLeft="5dp"/>
+                android:textSize="20sp" />
 
         </LinearLayout>
     </LinearLayout>
-    
+
     <View
         android:layout_width="match_parent"
         android:layout_height="4dp"
-        android:background="#80889CB4"/>
+        android:background="#80889CB4" />
 
     <!--<android.support.v7.widget.RecyclerView
         android:id="@+id/rc_home"
@@ -110,8 +110,7 @@
         android:id="@+id/rc_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        />
+        android:layout_marginTop="2dp" />
 
 
 </LinearLayout>

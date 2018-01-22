@@ -74,6 +74,7 @@
             android:text="User Register"
             android:background="#3A589E"
             android:textColor="@android:color/white"
+            android:textAllCaps="false"
 
             />
         </LinearLayout>
@@ -87,6 +88,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="15dp"
+            android:textAllCaps="false"
             android:textColor="#00DDCB"
             android:background="@drawable/borderet"
             android:text="Business Login" />
@@ -98,6 +100,7 @@
             android:layout_marginTop="45dp"
             android:textColor="@android:color/white"
             android:gravity="center"
+            android:visibility="gone"
             android:layout_marginBottom="5dp"
             android:text="Continue as Guest" />
     </LinearLayout>

@@ -2,11 +2,16 @@ package com.infosolution.dev.tfc.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,20 +21,25 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.infosolution.dev.tfc.Class.ConfigInfo;
 import com.infosolution.dev.tfc.R;
+import com.infosolution.dev.tfc.user.PostCommentActivity;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static java.security.AccessController.getContext;
 
 public class ProductPageActivity extends AppCompatActivity {
 
     TextView proqty,tvminus,tvplus,tvtotalprice;
     int count=1;
-    String qty,price;
-   // int qtyyy,priceee,totalpricee;
-    String tp,qtyy;
+    String qty,price,proimage;
+    int qtyyy,priceee,totalpricee;
+    private String tp,qtyy;
     Button btnbook;
+    private ImageView ivproduct;
 
    private String UserId,ResId,MenuID,MenuName,pricee,Quantity;
 
@@ -38,6 +48,7 @@ public class ProductPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_page);
 
+        ivproduct=findViewById(R.id.iv_proimg);
         proqty = (TextView) findViewById(R.id.tv_proqty);
         tvminus = (TextView) findViewById(R.id.tv_minus);
         tvplus = (TextView) findViewById(R.id.tv_plus);
@@ -47,34 +58,36 @@ public class ProductPageActivity extends AppCompatActivity {
 
         //fetching values from sharedpreferece
 
-        final SharedPreferences prefs = getSharedPreferences("useridd", MODE_PRIVATE);
+        final SharedPreferences prefs = getSharedPreferences("useriddsign", MODE_PRIVATE);
         UserId = prefs.getString("userid", null);
 
         final SharedPreferences prefss = getSharedPreferences("resmenuDetails", MODE_PRIVATE);
         MenuName = prefss.getString("name", null);
         ResId = prefss.getString("resid", null);
         MenuID = prefss.getString("menuid", null);
-        Quantity = prefss.getString("quantityyy", null);
-
-
-
-
-
-
-
-
-
+     //   Quantity = prefss.getString("quantityyy", null);
 
         btnbook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Book();
             }
         });
 
         Intent intent=getIntent();
-        qty=intent.getStringExtra("qty");
-        price=intent.getStringExtra("price");
+        qty=intent.getStringExtra("qtyyy");
+        price=intent.getStringExtra("priceee");
+        proimage=intent.getStringExtra("img");
+
+        qtyyy = Integer.parseInt(qty);
+
+
+
+
+        Glide.with(this)
+                .load(Uri.parse(proimage))
+                .into(ivproduct);
 
         tvtotalprice.setText(price);
 
@@ -93,17 +106,21 @@ public class ProductPageActivity extends AppCompatActivity {
 
                 qtyy=proqty.getText().toString();
 
-//                totalpricee=qtyyy*priceee;
-
                  tp = String.valueOf(Integer.parseInt(qtyy) * Integer.parseInt(price));
                  tvtotalprice.setText(tp);
                 pricee=tvtotalprice.getText().toString();
+              //  Quantity=proqty.getText().toString();
             }
         });
         tvplus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 count++;
+                if (count>qtyyy){
+                    count=qtyyy;
+                }
 
                 proqty.setText(String.valueOf(count));
                 qtyy=proqty.getText().toString();
@@ -112,8 +129,6 @@ public class ProductPageActivity extends AppCompatActivity {
                 tvtotalprice.setText(tp);
                 pricee=tvtotalprice.getText().toString();
 
-              /*  totalpricee=qtyyy*priceee;
-                tvtotalprice.setText(String.valueOf(totalpricee));*/
 
             }
         });
@@ -164,5 +179,7 @@ public class ProductPageActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
+
+
 
     }

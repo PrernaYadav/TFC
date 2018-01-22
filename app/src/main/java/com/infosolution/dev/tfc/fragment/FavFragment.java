@@ -2,7 +2,6 @@ package com.infosolution.dev.tfc.fragment;
 
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -23,10 +22,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.infosolution.dev.tfc.R;
-import com.infosolution.dev.tfc.activities.CommentsActivity;
 import com.infosolution.dev.tfc.adapter.Homeadapter;
 import com.infosolution.dev.tfc.model.Home;
-import com.infosolution.dev.tfc.model.OrderHistoryModel;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -84,7 +81,7 @@ public class FavFragment extends Fragment {
         //fetching userid
 
 
-        final SharedPreferences prefs = getContext().getSharedPreferences("useridd", MODE_PRIVATE);
+        final SharedPreferences prefs = getContext().getSharedPreferences("useriddsign", MODE_PRIVATE);
         UserId = prefs.getString("userid", null);
 
 
@@ -142,7 +139,7 @@ public class FavFragment extends Fragment {
 
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("userid", UserId);
-
+        Log.i("mmm",""+params);
 
                 return params;
             }

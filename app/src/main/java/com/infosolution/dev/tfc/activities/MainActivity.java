@@ -17,12 +17,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.infosolution.dev.tfc.R;
 import com.infosolution.dev.tfc.business.LoginBusinessActivity;
-import com.infosolution.dev.tfc.business.Navigation;
-import com.infosolution.dev.tfc.user.UserRegActivity;
+import com.infosolution.dev.tfc.user.Navigation;
 
 import java.io.IOException;
 import java.util.List;
@@ -53,6 +51,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
 
 
+
+
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         Criteria criteria = new Criteria();
 
@@ -67,8 +67,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
             if (location != null)
                 onLocationChanged(location);
-            else
-                Toast.makeText(getBaseContext(), "No Location Provider Found Check Your Code", Toast.LENGTH_SHORT).show();
+            else{
+                //  Toast.makeText(getBaseContext(), "No Location Provider Found Check Your Code", Toast.LENGTH_SHORT).show();
+            }
+
         }
 
 
@@ -100,7 +102,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         btnuserreg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,SignupUserActivity.class);
+                Intent intent = new Intent(MainActivity.this,LoginMailActivity.class);
+                intent.putExtra("citttyy",area);
                 startActivity(intent);
             }
         });
@@ -144,10 +147,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             String country= addresses.get(0).getCountryName();
 
 
-            SharedPreferences sharedPreferences = getSharedPreferences("City", MODE_PRIVATE);
+          /*  SharedPreferences sharedPreferences = getSharedPreferences("City", MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("city", area);
-            editor.commit();
+            editor.commit();*/
 
            /* fulladd= address+","+area+","+city+","+country;
             textview.setText(fulladd);*/
@@ -169,6 +172,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     @Override
     public void onProviderDisabled(String s) {
+
+
+
 
     }
 }

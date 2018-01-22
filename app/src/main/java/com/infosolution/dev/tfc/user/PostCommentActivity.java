@@ -1,4 +1,4 @@
-package com.infosolution.dev.tfc.activities;
+package com.infosolution.dev.tfc.user;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -43,9 +43,9 @@ public class PostCommentActivity extends AppCompatActivity {
 
 //fetching required values
 
-        final SharedPreferences prefs = getSharedPreferences("useridd", MODE_PRIVATE);
-        UserId = prefs.getString("userid", null);
-        UserName = prefs.getString("username", null);
+        final SharedPreferences prefs = getSharedPreferences("useriddsign", MODE_PRIVATE);
+        UserId = prefs.getString("useriddsign", null);
+        UserName = prefs.getString("usernamesign", null);
 
         final SharedPreferences prefss = getSharedPreferences("resmenuDetails", MODE_PRIVATE);
         ResId = prefss.getString("resid", null);

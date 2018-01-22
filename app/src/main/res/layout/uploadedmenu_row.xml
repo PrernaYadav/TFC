@@ -9,6 +9,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
+        <FrameLayout
+            android:id="@+id/frame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
     <ImageView
         android:id="@+id/iv_menuimg"
         android:layout_width="100dp"
@@ -17,12 +21,20 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"/>
 
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@mipmap/ic_launcher_round"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"/>
+        </FrameLayout>
+
     <TextView
         android:id="@+id/tv_pronameupld"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Matar Paneer"
-        android:layout_toRightOf="@+id/iv_menuimg"
+        android:layout_toRightOf="@+id/frame"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:textColor="@android:color/black"/>
@@ -33,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="9.00-9.30 PM"
-            android:layout_toRightOf="@+id/iv_menuimg"
+            android:layout_toRightOf="@+id/frame"
             android:layout_below="@+id/tv_pronameupld"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="10dp"
@@ -45,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Price:"
-            android:layout_toRightOf="@+id/iv_menuimg"
+            android:layout_toRightOf="@+id/frame"
             android:layout_below="@+id/tv_timingupld"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="10dp"
@@ -67,7 +79,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Quantity:"
-            android:layout_toRightOf="@+id/iv_menuimg"
+            android:layout_toRightOf="@+id/frame"
             android:layout_below="@+id/tv_priceupld"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="10dp"

@@ -7,19 +7,27 @@
     android:background="#2a2342"
     android:orientation="vertical"
     tools:context="com.infosolution.dev.tfc.activities.BuyNowActivity">
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
+            android:id="@+id/iv_proimagebuy"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:scaleType="fitXY"
             android:src="@drawable/stat" />
 
         <ImageView
+            android:id="@+id/iv_logobuy"
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:layout_gravity="center_horizontal"
@@ -44,7 +52,7 @@
                 android:src="@drawable/pricebackgroundreverse" />
 
                 <TextView
-                    android:id="@+id/tv_quantity"
+                    android:id="@+id/tv_quantitybuy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="4"
@@ -66,7 +74,7 @@
                 android:layout_marginTop="10dp"
                 android:src="@drawable/pricebackground" />
                 <TextView
-                    android:id="@+id/tv_price"
+                    android:id="@+id/tv_pricebuy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="200"
@@ -91,6 +99,7 @@
                     android:textColor="@android:color/white" />
 
                 <TextView
+                    android:id="@+id/tv_timebuy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_ctime"
@@ -118,19 +127,18 @@
 
 
     <TextView
-
+        android:id="@+id/tv_addbuy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Lucknow,Lucknow"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
         android:textColor="@android:color/white"
-
         android:textAppearance="?android:textAppearanceMedium"/>
 
 
     <Button
-        android:id="@+id/btn_busilogin"
+        android:id="@+id/btn_buynow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btn_userregister"
@@ -142,7 +150,7 @@
         android:text="Buy Now" />
 
     <TextView
-
+android:id="@+id/tv_viewcommbuy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="View Comments"
@@ -154,7 +162,7 @@
 
 
     <TextView
-
+        android:id="@+id/tv_postcommbuy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Post Comments and Rating"
@@ -163,5 +171,6 @@
         android:textColor="@android:color/white"
         android:textStyle="bold"
         android:textAppearance="?android:textAppearanceMedium"/>
-
+    </LinearLayout>
+</ScrollView>
 </LinearLayout>

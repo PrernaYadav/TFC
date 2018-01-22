@@ -6,11 +6,19 @@
     android:layout_height="match_parent"
     android:background="@drawable/quantitybg"
     android:orientation="vertical"
-    tools:context="com.infosolution.dev.tfc.activities.PostCommentActivity">
+    tools:context="com.infosolution.dev.tfc.user.PostCommentActivity">
 
 
     <include
         layout="@layout/comments_actionbar"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
     <ImageView
         android:layout_width="150dp"
@@ -111,5 +119,7 @@
         android:background="#04b4a9"
         android:textColor="#cad1d7"
         android:textStyle="bold"/>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

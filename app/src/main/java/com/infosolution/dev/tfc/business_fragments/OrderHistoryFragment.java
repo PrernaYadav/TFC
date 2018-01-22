@@ -60,7 +60,7 @@ public class OrderHistoryFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_order_history, container, false);
 
 
-        final SharedPreferences prefs = getActivity().getSharedPreferences("useridd", MODE_PRIVATE);
+        final SharedPreferences prefs = getActivity().getSharedPreferences("useriddsign", MODE_PRIVATE);
         UserId = prefs.getString("userid", null);
 
         rvhistory=v.findViewById(R.id.rc_orderhis);
@@ -68,9 +68,12 @@ public class OrderHistoryFragment extends Fragment {
 
         rvhistory.setLayoutManager(new LinearLayoutManager(getContext()));
         rvhistory.setHasFixedSize(true);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2);
+      /*  GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2);
         gridLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL); // set Horizontal Orientation
-        rvhistory.setLayoutManager(gridLayoutManager);
+        rvhistory.setLayoutManager(gridLayoutManager);*/
+
+        int numberOfColumns = 2;
+        rvhistory.setLayoutManager(new GridLayoutManager(getContext(), numberOfColumns));
 
         rvhistory.setAdapter(orderHistoryAdapter);
         historyModelArrayList= new ArrayList<>();
@@ -135,7 +138,7 @@ public class OrderHistoryFragment extends Fragment {
 
 
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("user_id", "1");
+                params.put("user_id", UserId);
 
                 return params;
             }

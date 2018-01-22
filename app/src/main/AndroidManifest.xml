@@ -31,15 +31,18 @@
         <activity android:name=".user.UserRegActivity" />
         <activity android:name=".user.UserRegNext" />
         <activity android:name=".activities.ProductPageActivity" />
-            <activity
-            android:name=".business.Navigation"
+        <activity
+            android:name=".user.Navigation"
             android:label="@string/title_activity_navigation"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".user.CommentsActivity" />
+        <activity android:name=".user.PostCommentActivity" />
+        <activity android:name=".activities.BuyNowActivity" />
+        <activity android:name=".user.ChangePasswordActivity" />
+        <activity
+            android:name=".business.BusinessNavigation"
+            android:label="@string/title_activity_business_navigation"
             android:theme="@style/AppTheme"></activity>
-
-         <activity android:name=".activities.CommentsActivity"></activity>
-         <activity android:name=".activities.PostCommentActivity"></activity>
-         <activity android:name=".activities.BuyNowActivity"></activity>
-        <activity android:name=".activities.ChangePasswordActivity"></activity>
     </application>
 
 </manifest>

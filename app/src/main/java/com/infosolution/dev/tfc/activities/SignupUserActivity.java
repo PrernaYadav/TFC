@@ -21,9 +21,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.infosolution.dev.tfc.Class.ConfigInfo;
 import com.infosolution.dev.tfc.R;
-import com.infosolution.dev.tfc.business.Navigation;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -92,7 +90,10 @@ public class SignupUserActivity extends AppCompatActivity {
                     etname.setError("Please Enter Name");
                 } else if (phone.length() < 10) {
                     etphone.setError("Please Enter Valid Phone Number ");
-                } else {
+                } else if (!pass.equals(repass)){
+                    etreppass.setError("Password Does't Match");
+
+                }else {
                     Signup();
                 }
 
@@ -121,9 +122,9 @@ public class SignupUserActivity extends AppCompatActivity {
 
                             SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("useridd", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putString("userid", userID);
-                            editor.putString("username", userName);
-                            editor.putString("email", Email);
+                        //    editor.putString("userid", userID);
+                            //editor.putString("username", userName);
+                          //  editor.putString("email", Email);
                             editor.commit();
 
 
@@ -134,7 +135,7 @@ public class SignupUserActivity extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        Intent intent = new Intent(SignupUserActivity.this, Navigation.class);
+                        Intent intent = new Intent(SignupUserActivity.this, LoginMailActivity.class);
                         startActivity(intent);
 
 
