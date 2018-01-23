@@ -50,6 +50,13 @@ public class BusinessNavigation extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+
+        UploadMenuFragment fragment =new UploadMenuFragment();
+        FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.frame,fragment," ");
+        fragmentTransaction.commit();
     }
 
     @Override
@@ -92,7 +99,7 @@ public class BusinessNavigation extends AppCompatActivity
 
         if (id == R.id.nav_upldmenu) {
 
-            UploadedMenuFragment fragment =new UploadedMenuFragment();
+            UploadMenuFragment fragment =new UploadMenuFragment();
             FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.frame,fragment," ");
             fragmentTransaction.commit();
@@ -100,7 +107,9 @@ public class BusinessNavigation extends AppCompatActivity
 
             // Handle the camera action
         } else if (id == R.id.nav_upldHistory) {
-            UploadMenuFragment fragment =new UploadMenuFragment();
+
+
+            UploadedMenuFragment fragment =new UploadedMenuFragment();
             FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.frame,fragment," ");
             fragmentTransaction.commit();

@@ -4,6 +4,8 @@ package com.infosolution.dev.tfc.business_fragments;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -68,9 +70,12 @@ public class OrderHistoryFragment extends Fragment {
 
         rvhistory.setLayoutManager(new LinearLayoutManager(getContext()));
         rvhistory.setHasFixedSize(true);
-      /*  GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2);
-        gridLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL); // set Horizontal Orientation
-        rvhistory.setLayoutManager(gridLayoutManager);*/
+        rvhistory.addItemDecoration(new DividerItemDecoration(getActivity(),
+                DividerItemDecoration.VERTICAL));
+
+
+      /*  DividerItemDecoration itemDecorator = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
+        itemDecorator.setDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.divider));*/
 
         int numberOfColumns = 2;
         rvhistory.setLayoutManager(new GridLayoutManager(getContext(), numberOfColumns));

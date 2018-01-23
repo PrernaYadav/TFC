@@ -1,6 +1,9 @@
 package com.infosolution.dev.tfc.business;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +22,9 @@ import com.android.volley.toolbox.Volley;
 import com.infosolution.dev.tfc.Class.ConfigInfo;
 import com.infosolution.dev.tfc.R;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -31,6 +37,7 @@ public class LoginBusinessActivity extends AppCompatActivity {
     private  String email,password;
     private ProgressDialog pdLoading;
     private TextView tvsignup;
+    private String ResIdB,EmailB,Phone1B,Phone2B;
 
     private static final String email_pattern =
             "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
@@ -77,18 +84,47 @@ public class LoginBusinessActivity extends AppCompatActivity {
 
     private void Loginbusi() {
 
-
+        pdLoading = new ProgressDialog(LoginBusinessActivity.this);
+        //this method will be running on UI thread
+        pdLoading.setMessage("\tLoading...");
+        pdLoading.setCancelable(false);
+        pdLoading.show();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, ConfigInfo.loginbusi,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
-
-
                         Log.e("pppppppppp", response);
-                        Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
-//                        pdLoading.dismiss();
+                     //   Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
+                        pdLoading.dismiss();
 
+                        try {
+
+
+                            JSONObject result = new JSONObject(response);
+                            JSONArray routearray = result.getJSONArray("record");
+                            for (int i = 0; i < routearray.length(); i++) {
+
+                                ResIdB = routearray.getJSONObject(i).getString("res_id");
+                                EmailB = routearray.getJSONObject(i).getString("email");
+                                Phone1B = routearray.getJSONObject(i).getString("phone1");
+                                Phone2B = routearray.getJSONObject(i).getString("phone2");
+
+                                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("LogindataB", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                  editor.putString("resid", ResIdB);
+                                  editor.putString("emailid", EmailB);
+                                  editor.putString("phone1", Phone1B);
+                                  editor.putString("phone2", Phone2B);
+                                editor.commit();
+
+                            }
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+//                        pdLoading.dismiss();
+                        Intent intent = new Intent(LoginBusinessActivity.this,BusinessNavigation.class);
+                        startActivity(intent);
 
                     }
                 },
@@ -100,7 +136,7 @@ public class LoginBusinessActivity extends AppCompatActivity {
 
                         Toast.makeText(LoginBusinessActivity.this, error.toString(), Toast.LENGTH_LONG).show();
 
-//                        pdLoading.dismiss();
+                       pdLoading.dismiss();
                     }
                 }) {
             @Override

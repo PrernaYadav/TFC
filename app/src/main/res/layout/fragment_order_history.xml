@@ -7,7 +7,7 @@
     tools:context="com.infosolution.dev.tfc.business_fragments.OrderHistoryFragment">
 
 
-    <RelativeLayout
+   <!-- <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
@@ -42,7 +42,7 @@
             android:tint="@android:color/black"
             />
 
-    </RelativeLayout>
+    </RelativeLayout>-->
 
 <!--<ScrollView
     android:layout_width="match_parent"

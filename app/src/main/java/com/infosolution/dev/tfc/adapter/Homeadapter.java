@@ -40,7 +40,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class Homeadapter extends RecyclerView.Adapter<Homeadapter.MyViewHolder> {
 
     private ArrayList<Home> homeList;
-    private String UserId,ResId;
+    private String UserId,ResId,favstat;
 
 
     public Homeadapter(ArrayList<Home> homeList, Context context, Activity activity) {
@@ -72,6 +72,7 @@ private    String qty,price;
         holder.tvtiming.setText(homeList.get(position).getTiming());
         holder.tvcount.setText(homeList.get(position).getCount());
         holder.ress.setText(homeList.get(position).getRes());
+        holder.favstatus.setText(homeList.get(position).getFavstatus());
         holder.ivfav.setImageResource(homeList.get(position).getFav());
 
         Glide.with(activity).load(home.getProimage()).into(holder.ivproimage);
@@ -91,7 +92,7 @@ private    String qty,price;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView ivproimage, ivavail, ivfav;
-        TextView tvusername, tvproname, tvprice, tvquantity, tvtiming, tvcount,ress;
+        TextView tvusername, tvproname, tvprice, tvquantity, tvtiming, tvcount,ress,favstatus;
         Context ctx;
         ArrayList<Home> home = new ArrayList<Home>();
 
@@ -113,6 +114,7 @@ private    String qty,price;
             tvquantity = (TextView) view.findViewById(R.id.tv_quantity);
             tvcount = (TextView) view.findViewById(R.id.tv_count);
             ress = (TextView) view.findViewById(R.id.res);
+            favstatus = (TextView) view.findViewById(R.id.fav_status);
           /*  qty=tvquantity.getText().toString();
             price=tvprice.getText().toString();*/
 
@@ -122,6 +124,21 @@ private    String qty,price;
                     int positions=getAdapterPosition();
 
                     ResId=homeList.get(positions).getRes();
+                    favstat=homeList.get(positions).getFavstatus();
+
+
+
+                    int favv = Integer.parseInt(favstat);
+
+
+                    if (favv == 1) {
+                        favstat="0";
+
+                    } else if (favv == 0){
+                        favstat="1";
+
+                    }
+
                     ivfav.setImageResource(R.drawable.favselectedicon);
                     Fav();
                 }
@@ -153,11 +170,7 @@ private    String qty,price;
         final SharedPreferences prefs = activity.getSharedPreferences("useriddsign", MODE_PRIVATE);
         UserId = prefs.getString("userid", null);
 
-        /*final SharedPreferences prefss = activity.getSharedPreferences("resmenuDetails", MODE_PRIVATE);
-        ResId = prefss.getString("resid", null); */
 
-        /*final SharedPreferences prefsss = activity.getSharedPreferences("resmenuDetailss", MODE_PRIVATE);
-        ResId = prefsss.getString("resid", null);*/
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, ConfigInfo.AddtoFav,
                 new Response.Listener<String>() {
@@ -171,7 +184,7 @@ private    String qty,price;
                     public void onErrorResponse(VolleyError error) {
 
 
-                        Toast.makeText(activity, error.toString(), Toast.LENGTH_LONG).show();
+                      //  Toast.makeText(activity, error.toString(), Toast.LENGTH_LONG).show();
 
 //                        pdLoading.dismiss();
                     }
@@ -183,10 +196,10 @@ private    String qty,price;
 
                 params.put("userid", UserId);
                 params.put("resid", ResId);
-                params.put("favorite_status","1" );
+                params.put("favorite_status",favstat );
 
 
-                Log.i("paramsss",""+params);
+                Log.i("paramsssad",""+params);
 
 
                 return params;

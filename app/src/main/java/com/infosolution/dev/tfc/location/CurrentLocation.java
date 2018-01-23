@@ -95,6 +95,9 @@ public class CurrentLocation extends AppCompatActivity implements LocationListen
 
             fulladd= address+","+area+","+city+","+country;
             textview.setText(fulladd);
+            Toast.makeText(getBaseContext(), fulladd, Toast.LENGTH_SHORT).show();
+
+
 
         } catch (IOException e) {
             e.printStackTrace();

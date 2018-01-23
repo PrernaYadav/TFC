@@ -4,7 +4,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.infosolution.dev.tfc.business_fragments.UploadMenuFragment">
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
@@ -16,6 +22,7 @@
         android:textColor="#F9A825"
         android:textAppearance="?android:textAppearanceMedium"/>
     <ImageView
+        android:id="@+id/iv_image_upload"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_gravity="center"
@@ -60,8 +67,8 @@
         android:textCursorDrawable="@null"
         android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/et_foodtype_upload"
+   <!-- <Spinner
+        android:id="@+id/sp_foodtype_upload"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -69,16 +76,45 @@
         android:layout_marginTop="10dp"
         android:backgroundTint="@android:color/white"
         android:gravity="center"
-        android:hint="Please Enter Food Type"
-        android:inputType="text"
         android:padding="10dp"
         android:textAppearance="?android:textAppearanceSmall"
         android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white"
-        android:textCursorDrawable="@null"
-        android:textStyle="bold" />
+        android:textStyle="bold" />-->
 
-    <EditText
+        <Spinner
+            android:id="@+id/sp_foodtype"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/foodtype_array"
+            android:prompt="@string/foodtype"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/dropdown"
+            android:padding="16dp"
+            android:paddingLeft="22dp"
+            android:textAlignment="center"
+            android:paddingRight="22dp"/>
+
+
+
+
+        <Spinner
+            android:id="@+id/sp_collectiontime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/collection_array"
+            android:prompt="@string/collectiontime"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/dropdown"
+            android:padding="16dp"
+            android:paddingLeft="22dp"
+            android:textAlignment="center"
+            android:paddingRight="22dp"/>
+
+   <!-- <EditText
         android:id="@+id/et_collectiontime_upload"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -94,7 +130,7 @@
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
         android:textCursorDrawable="@null"
-        android:textStyle="bold" />
+        android:textStyle="bold" />-->
 
 
     <EditText
@@ -117,7 +153,7 @@
 
 
     <Button
-        android:id="@+id/btn_signup"
+        android:id="@+id/btn_submit_upload"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -129,5 +165,7 @@
         android:textAllCaps="true"
         android:textColor="#fff"
         android:textStyle="bold" />
+    </LinearLayout>
+</ScrollView>
 
 </LinearLayout>

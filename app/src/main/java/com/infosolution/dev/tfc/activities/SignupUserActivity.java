@@ -73,7 +73,7 @@ public class SignupUserActivity extends AppCompatActivity {
                 pass = etpass.getText().toString().trim();
                 repass = etreppass.getText().toString().trim();
 
-               /* pdLoading = new ProgressDialog(SignupUserActivity.this);
+              /*  pdLoading = new ProgressDialog(SignupUserActivity.this);
                 //this method will be running on UI thread
                 pdLoading.setMessage("\tLoading...");
                 pdLoading.setCancelable(false);
@@ -149,7 +149,7 @@ public class SignupUserActivity extends AppCompatActivity {
 
                         Toast.makeText(SignupUserActivity.this, error.toString(), Toast.LENGTH_LONG).show();
 
-//                        pdLoading.dismiss();
+//                       pdLoading.dismiss();
                     }
                 }) {
             @Override

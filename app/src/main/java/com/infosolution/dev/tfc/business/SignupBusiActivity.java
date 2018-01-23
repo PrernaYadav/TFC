@@ -1,6 +1,7 @@
 package com.infosolution.dev.tfc.business;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +21,8 @@ public class SignupBusiActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_busi);
+
+
 
 
         etcontactper=findViewById(R.id.et_namesignupbusi);

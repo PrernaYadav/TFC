@@ -17,5 +17,9 @@ public class ConfigInfo {
     public static final String AddtoFav= "http://thefoodcircle.co.uk/restaurant/demo/web-service/add_res_to_favorite.php";
     public static final String changePass= "http://thefoodcircle.co.uk/restaurant/demo/web-service/change-password.php";
 
+    //business part
+    public static final String uploadmenu= "http://thefoodcircle.co.uk/restaurant/demo/web-service/upload_menu_details.php";
+    public static final String uploadedmenu= "http://thefoodcircle.co.uk/restaurant/demo/web-service/allmenu.php";
+
 
 }

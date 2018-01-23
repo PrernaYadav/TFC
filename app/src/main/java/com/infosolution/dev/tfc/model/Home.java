@@ -88,6 +88,16 @@ public class Home {
     String count;
     int fav;
 
+    public String getFavstatus() {
+        return favstatus;
+    }
+
+    public void setFavstatus(String favstatus) {
+        this.favstatus = favstatus;
+    }
+
+    String favstatus;
+
     public String getRes() {
         return res;
     }

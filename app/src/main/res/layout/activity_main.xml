@@ -32,12 +32,16 @@
             android:layout_marginTop="15dp"
             android:orientation="horizontal">
 
-            <ImageView
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:padding="5dp"
-                android:src="@drawable/mailbox"
-                android:background="#4DFFFFFF"/>
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:background="#4DFFFFFF">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/mailbox" />
+            </LinearLayout>
             <Button
             android:id="@+id/btn_mailid"
             android:layout_width="match_parent"
@@ -59,13 +63,17 @@
             android:gravity="center"
             android:layout_marginTop="15dp"
             android:orientation="horizontal">
-
-            <ImageView
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="49dp"
-                android:padding="5dp"
+                android:layout_height="wrap_content"
+                android:padding="9dp"
+                android:background="#4DFFFFFF">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:src="@drawable/mailbox"
-                android:background="#4DFFFFFF"/>
+               />
+            </LinearLayout>
         <Button
             android:id="@+id/btn_userregister"
             android:layout_width="match_parent"

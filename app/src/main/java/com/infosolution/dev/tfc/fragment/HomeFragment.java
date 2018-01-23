@@ -6,20 +6,26 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.inputmethodservice.Keyboard;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -59,12 +65,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.net.ssl.KeyManager;
+
 import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment  {
 
     private RecyclerView rcview;
     private Homeadapter homeadapter;
@@ -86,11 +94,12 @@ public class HomeFragment extends Fragment {
     private EditText etsearchcity;
     // private String qty,price;
 
-    private String ressss, UserId, fav, resuser;
+    private String ressss, UserId, fav,resuser ;
 
 
     public HomeFragment() {
     }
+
 
 
     @Override
@@ -102,42 +111,21 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_home, container, false);
 
-Intent intent=getActivity().getIntent();
-city=intent.getStringExtra("citttyy");
-
-
         final SharedPreferences prefss = getContext().getSharedPreferences("useriddsign", MODE_PRIVATE);
         UserId = prefss.getString("userid", null);
-        UserId = prefss.getString("userid", null);
-
-        etsearchcity = v.findViewById(R.id.et_searchcity);
 
 
-        etsearchcity.setOnKeyListener(new View.OnKeyListener() {
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                // If the event is a key-down event on the "enter" button
-                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
-                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    // Perform action on key press
-                    city = etsearchcity.getText().toString();
-                    checkString();
-                    return true;
-                }
-                return false;
-            }
-        });
 
 
-        //fetching city
-       /* final SharedPreferences prefs = getActivity().getSharedPreferences("City", MODE_PRIVATE);
-        city = prefs.getString("city", null);*/
+        Log.i("cityuser", "" + city);
 
-        Log.i("city", "" + city);
+        checkString();
 
+       /* Intent intent=getActivity().getIntent();
+        city=intent.getStringExtra("citttyy");*/
 
         rcview = v.findViewById(R.id.rc_home);
-        //checking city is empty or not and hit api accordingly
-        checkString();
+
 
 
 
@@ -145,14 +133,37 @@ city=intent.getStringExtra("citttyy");
 
         rcview.setLayoutManager(new LinearLayoutManager(getContext()));
         rcview.setHasFixedSize(true);
-
         rcview.setAdapter(homeadapter);
         homeList = new ArrayList<>();
         homeadapter = new Homeadapter(homeList, getContext(), getActivity());
 
 
+        etsearchcity = v.findViewById(R.id.et_searchcity);
+        etsearchcity.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                 //   city = etsearchcity.getText().toString();
+
+                    SharedPreferences shared = getContext().getSharedPreferences("etcity", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor et = shared.edit();
+                    et.putString("etcity", etsearchcity.getText().toString());
+                    et.commit();
 
 
+
+
+                    checkString();
+
+                    InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(etsearchcity.getWindowToken(), 0);
+
+                    return true;
+                }
+                return false;
+            }
+        });
 
 
 
@@ -207,14 +218,16 @@ city=intent.getStringExtra("citttyy");
                         Log.i("resId", "" + resID);
                         Home home = new Home();
 
-                        if (favv == 1) {
+                        if (fav.equals(1)) {
 
                             home.setFav(R.drawable.favselectedicon);
-                        } else {
+                        } else if (fav.equals(0)){
+
                             home.setFav(R.drawable.fav);
                         }
                         home.setUsername(Username);
                         home.setRes(resID);
+                        home.setFavstatus(fav);
 
 
                         JSONObject jsono1 = new JSONObject(resuser);
@@ -287,6 +300,7 @@ city=intent.getStringExtra("citttyy");
                     public void onResponse(String response) {
                         Log.e("response..........", response);
                         ressss = response;
+                        new FetchEventPreviousData().execute();
                         // Toast.makeText(CommentsActivity.this, response.toString(), Toast.LENGTH_LONG).show();
 
                         Log.i("ressssss..", "" + response.toString());
@@ -343,86 +357,87 @@ city=intent.getStringExtra("citttyy");
                 if (status == 200) {
                     HttpEntity entity = response.getEntity();
                     String data = EntityUtils.toString(entity);*/
-                    JSONObject jsono = new JSONObject(ressss);
-                    JSONArray jarray = jsono.getJSONArray("restaurents");
+                JSONObject jsono = new JSONObject(ressss);
+                JSONArray jarray = jsono.getJSONArray("restaurents");
 
-                    for (int i = 0; i < jarray.length(); i++) {
-                        JSONObject object = jarray.getJSONObject(i);
+                for (int i = 0; i < jarray.length(); i++) {
+                    JSONObject object = jarray.getJSONObject(i);
 
-                        Username = object.getString("name");
-                        resID = object.getString("id");
-                        Logoo = object.getString("logo");
-                        Addresss = object.getString("address");
-                        fav = object.getString("fav_staus");
-                        int favv = Integer.parseInt(fav);
+                    Username = object.getString("name");
+                    resID = object.getString("id");
+                    Logoo = object.getString("logo");
+                    Addresss = object.getString("address");
+                    fav = object.getString("fav_staus");
+                    int favv = Integer.parseInt(fav);
 
-                        SharedPreferences sharedPreferencess = getContext().getSharedPreferences("resmenuDetailss", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferencess.edit();
-                        editor.putString("log", Logoo);
-                        editor.putString("add", Addresss);
-                        editor.commit();
+                    SharedPreferences sharedPreferencess = getContext().getSharedPreferences("resmenuDetailss", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferencess.edit();
+                    editor.putString("log", Logoo);
+                    editor.putString("add", Addresss);
+                    editor.commit();
 
-                        Log.i("resname", "" + Username);
-                        Log.i("resId", "" + resID);
-                        Home home = new Home();
-
-
-                        if (favv == 1) {
-
-                            home.setFav(R.drawable.favselectedicon);
-                        } else {
-                            home.setFav(R.drawable.fav);
-                        }
-                        home.setUsername(Username);
-                        home.setRes(resID);
+                    Log.i("resname", "" + Username);
+                    Log.i("resId", "" + resID);
+                    Home home = new Home();
 
 
-                        JSONObject jsono1 = new JSONObject(resuser);
-                        jarray = jsono.getJSONArray("restaurents");
-                        JSONArray jarray1 = object.getJSONArray("menu");
+                    if (favv == 1) {
 
-                        for (int j = 0; j < jarray1.length(); j++) {
-                            JSONObject object1 = jarray1.getJSONObject(j);
-
-                            Proname = object1.getString("menu_name");
-                            Timing = object1.getString("collection_time");
-                            Price = object1.getString("menu_rate");
-                            Quantity = object1.getString("quantity_left");
-                            Proimage = object1.getString("img1");
-                            Availimg = object1.getString("img2");
-                            Fav = object1.getString("img3");
-                            CollectionTime = object1.getString("collection_time");
-                            menuID = object1.getString("id");
-                            Log.i("menuId", "" + menuID);
-
-                            SharedPreferences sharedPreferences = getContext().getSharedPreferences("resmenuDetails", Context.MODE_PRIVATE);
-                            SharedPreferences.Editor editorr = sharedPreferences.edit();
-                            editorr.putString("name", Proname);
-                            editorr.putString("resid", resID);
-                            editorr.putString("menuid", menuID);
-                            editorr.putString("ct", CollectionTime);
-                            editorr.putString("quantityyy", Quantity);
-                            editorr.commit();
+                        home.setFav(R.drawable.favselectedicon);
+                    } else {
+                        home.setFav(R.drawable.fav);
+                    }
+                    home.setUsername(Username);
+                    home.setRes(resID);
+                    home.setFavstatus(fav);
 
 
-                            home.setProname(Proname);
-                            home.setTiming(Timing);
-                            home.setPrice(Price);
-                            home.setQuantity(Quantity);
-                            home.setProimage(Proimage);
-                            home.setAvailimg(Availimg);
+                    JSONObject jsono1 = new JSONObject(ressss);
+                    jarray = jsono.getJSONArray("restaurents");
+                    JSONArray jarray1 = object.getJSONArray("menu");
+
+                    for (int j = 0; j < jarray1.length(); j++) {
+                        JSONObject object1 = jarray1.getJSONObject(j);
+
+                        Proname = object1.getString("menu_name");
+                        Timing = object1.getString("collection_time");
+                        Price = object1.getString("menu_rate");
+                        Quantity = object1.getString("quantity_left");
+                        Proimage = object1.getString("img1");
+                        Availimg = object1.getString("img2");
+                        Fav = object1.getString("img3");
+                        CollectionTime = object1.getString("collection_time");
+                        menuID = object1.getString("id");
+                        Log.i("menuId", "" + menuID);
+
+                        SharedPreferences sharedPreferences = getContext().getSharedPreferences("resmenuDetails", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editorr = sharedPreferences.edit();
+                        editorr.putString("name", Proname);
+                        editorr.putString("resid", resID);
+                        editorr.putString("menuid", menuID);
+                        editorr.putString("ct", CollectionTime);
+                        editorr.putString("quantityyy", Quantity);
+                        editorr.commit();
 
 
-                            //home.setFav(R.id.iv_fav);
-                            homeList.add(home);
+                        home.setProname(Proname);
+                        home.setTiming(Timing);
+                        home.setPrice(Price);
+                        home.setQuantity(Quantity);
+                        home.setProimage(Proimage);
+                        home.setAvailimg(Availimg);
 
-                        }
 
+                        //home.setFav(R.id.iv_fav);
+                        homeList.add(home);
 
                     }
 
 
-                    return true;
+                }
+
+
+                return true;
 //                }
             } catch (Exception e1) {
                 e1.printStackTrace();
@@ -439,16 +454,30 @@ city=intent.getStringExtra("citttyy");
     }
 
     public void checkString() {
+        final SharedPreferences ct = getContext().getSharedPreferences("usercityy", MODE_PRIVATE);
+        city = ct.getString("citttyy", null);
+
+        final SharedPreferences ctt = getContext().getSharedPreferences("etcity", MODE_PRIVATE);
+        city = ctt.getString("etcity", null);
+
+
+
         if (TextUtils.isEmpty(city)) {
+           // Toast.makeText(getContext(),"City Not Found",Toast.LENGTH_LONG).show();
             SendId();
 
 
+
         } else {
+         //   Toast.makeText(getContext(),"City Found",Toast.LENGTH_LONG).show();
             Fetchcity();
-            new FetchEventPreviousData().execute();
+
 
         }
+
+
     }
+
 
     private void SendId() {
 
@@ -459,6 +488,7 @@ city=intent.getStringExtra("citttyy");
                         Log.e("response..........", response.toString());
                         resuser = response;
                         new FetchEventPreviousDataTask().execute();
+                        Log.i("resuserr",""+resuser);
 
 
                     }
@@ -487,7 +517,12 @@ city=intent.getStringExtra("citttyy");
 
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         requestQueue.add(stringRequest);
+
+
     }
 
 
+
+
 }
+
