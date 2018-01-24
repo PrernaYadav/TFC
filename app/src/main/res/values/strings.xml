@@ -32,7 +32,7 @@
     <string name="foodtype">Choose a FoodType</string>
     <string-array name="foodtype_array">
         <item>Veg</item>
-        <item>Non-Vage</item>
+        <item>Non-Veg</item>
         <item>Both</item>
     </string-array>
 

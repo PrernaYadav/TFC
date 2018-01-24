@@ -1,7 +1,9 @@
 package com.infosolution.dev.tfc.business_fragments;
 
 
+import android.app.ProgressDialog;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
@@ -23,10 +25,18 @@ import com.infosolution.dev.tfc.Class.ConfigInfo;
 import com.infosolution.dev.tfc.R;
 import com.infosolution.dev.tfc.adapter.Homeadapter;
 import com.infosolution.dev.tfc.adapter.UploadedMenuAdapter;
+import com.infosolution.dev.tfc.business.LoginBusinessActivity;
+import com.infosolution.dev.tfc.fragment.FavFragment;
 import com.infosolution.dev.tfc.model.Home;
 import com.infosolution.dev.tfc.model.OrderHistoryModel;
 import com.infosolution.dev.tfc.model.UploadedMenu;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -42,11 +52,16 @@ import static android.content.Context.MODE_PRIVATE;
  */
 public class UploadedMenuFragment extends Fragment {
 
-    RecyclerView rcview;
-    UploadedMenuAdapter uploadedMenuAdapter;
-    private List<UploadedMenu> uploadedMenuList;
+    private RecyclerView rcupld;
+    private UploadedMenuAdapter uploadedMenuAdapter;
+    //    private List<Home> homeList;
+    private String city;
+    private ArrayList<UploadedMenu> uploadedMenuList;
+    private ProgressDialog pd;
 
     private  String ResIdB;
+
+    private String respon;
 
    /* public UploadedMenuFragment() {
         // Required empty public constructor
@@ -62,66 +77,39 @@ public class UploadedMenuFragment extends Fragment {
         final SharedPreferences prefs = getContext().getSharedPreferences("LogindataB", MODE_PRIVATE);
         ResIdB = prefs.getString("resid", null);
 
-        rcview = v.findViewById(R.id.rc_uploadedmenu);
+        rcupld = v.findViewById(R.id.rc_uploadedmenu);
 
 
-        uploadedMenuList = fill_with_data();
 
 
-        uploadedMenuAdapter = new UploadedMenuAdapter(uploadedMenuList, getContext());
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        rcupld.setLayoutManager(new LinearLayoutManager(getContext()));
+        rcupld.setHasFixedSize(true);
 
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rcview.getContext(),
-                linearLayoutManager.getOrientation());
-        rcview.addItemDecoration(dividerItemDecoration);
-
-
-        rcview.setLayoutManager(linearLayoutManager);
-        rcview.setAdapter(uploadedMenuAdapter);
-
+        rcupld.setAdapter(uploadedMenuAdapter);
+        uploadedMenuList= new ArrayList<>();
+        uploadedMenuAdapter = new UploadedMenuAdapter(uploadedMenuList, getContext(), getActivity());
+        FetchValues();
+        new uploaded().execute();
 
         return v;
     }
 
-    private List<UploadedMenu> fill_with_data() {
 
 
-        final List<UploadedMenu> upload = new ArrayList<>();
+    private void FetchValues() {
 
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, ConfigInfo.uploadedmenu,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://thefoodcircle.co.uk/restaurant/demo/web-service/allmenu.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         Log.e("response..........", response);
-                        // Toast.makeText(getContext(), response.toString(), Toast.LENGTH_LONG).show();
+                        respon=response;
 
-
-                        try {
-
-                            JSONObject jsono = new JSONObject(response);
-                            JSONArray jarray = jsono.getJSONArray("data");
-                            for (int i = 0; i < jarray.length(); i++) {
-                                JSONObject object = jarray.getJSONObject(i);
-                                String ProductName = object.getString("menu_name");
-                                String Timing = object.getString("collection_time");
-                                String Logo = object.getString("img1");
-                                String Price = object.getString("menu_rate");
-                                String Qty = object.getString("quantity_left");
-
-                                upload.add(new UploadedMenu(ProductName, Timing, Qty, Price, R.drawable.icon));
+                        Log.i("respon",""+respon);
 
 
 
-                            }
-
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-
-                       // rvhistory.setAdapter(orderHistoryAdapter);
                     }
                 },
                 new Response.ErrorListener() {
@@ -136,6 +124,7 @@ public class UploadedMenuFragment extends Fragment {
 
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("res_id", ResIdB);
+                Log.i("mmm", "" + params);
 
                 return params;
             }
@@ -146,11 +135,65 @@ public class UploadedMenuFragment extends Fragment {
         requestQueue.add(stringRequest);
 
 
-        //upload.add(new UploadedMenu("Biryani", "Ankit", "8:00-8:30PM", "124", R.drawable.icon));
-
-
-        return upload;
-
     }
+    public class uploaded extends AsyncTask<Object, Object, Boolean> {
+
+        @Override
+        protected void onPreExecute() {
+            pd = new ProgressDialog(getContext());
+            pd.setMessage("loading");
+            pd.show();
+        }
+
+        @Override
+        protected Boolean doInBackground(Object... params) {
+            try {
+                String dataurl = "http://thefoodcircle.co.uk/restaurant/demo/web-service/res_list.php";
+                HttpPost httppost = new HttpPost(dataurl);
+                HttpClient httpclient = new DefaultHttpClient();
+                HttpResponse response = httpclient.execute(httppost);
+                Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
+                int status = response.getStatusLine().getStatusCode();
+                if (status == 200) {
+                    HttpEntity entity = response.getEntity();
+                    String data = EntityUtils.toString(entity);
+                    JSONObject jsono = new JSONObject(respon);
+                    JSONArray jarray = jsono.getJSONArray("data");
+
+                    for (int i = 0; i < jarray.length(); i++) {
+                        JSONObject object = jarray.getJSONObject(i);
+
+                        String ProductName = object.getString("menu_name");
+                        String Timing = object.getString("collection_time");
+                        String Logo = object.getString("img1");
+                        String Price = object.getString("menu_rate");
+                        String Qty = object.getString("quantity_left");
+
+                        UploadedMenu uploadedMenu= new UploadedMenu();
+                        uploadedMenu.setPronameupld(ProductName);
+                        uploadedMenu.setTiminguplad(Timing);
+                        uploadedMenu.setPriceupld(Price);
+                        uploadedMenu.setQtyupld(Qty);
+                        uploadedMenuList.add(uploadedMenu);
+
+                    }
+
+
+                    return true;
+                }
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+            return false;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean result) {
+            pd.dismiss();
+            rcupld.setAdapter(uploadedMenuAdapter);
+            uploadedMenuAdapter.notifyDataSetChanged();
+        }
+    }
+
 
 }

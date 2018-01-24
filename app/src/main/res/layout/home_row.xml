@@ -161,6 +161,13 @@
             android:visibility="gone"
             android:layout_marginLeft="10dp"/>
 
+        <TextView
+            android:id="@+id/foodtype"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginLeft="10dp"/>
+
 
 
 

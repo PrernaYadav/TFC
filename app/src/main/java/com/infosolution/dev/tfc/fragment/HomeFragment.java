@@ -94,7 +94,7 @@ public class HomeFragment extends Fragment  {
     private EditText etsearchcity;
     // private String qty,price;
 
-    private String ressss, UserId, fav,resuser ;
+    private String ressss, UserId, fav,resuser,Foodtype ;
 
 
     public HomeFragment() {
@@ -246,6 +246,7 @@ public class HomeFragment extends Fragment  {
                             Fav = object1.getString("img3");
                             menuID = object1.getString("id");
                             CollectionTime = object1.getString("collection_time");
+                            Foodtype = object1.getString("food_type");
                             Log.i("menuId", "" + menuID);
 
                             SharedPreferences sharedPreferences = getContext().getSharedPreferences("resmenuDetails", Context.MODE_PRIVATE);
@@ -263,7 +264,13 @@ public class HomeFragment extends Fragment  {
                             home.setPrice(Price);
                             home.setQuantity(Quantity);
                             home.setProimage(Proimage);
-                            home.setAvailimg(Availimg);
+                           // home.setAvailimg(Availimg);
+
+                            if (Foodtype.equals("Veg")){
+                                home.setAvailimg(R.drawable.green);
+                            }else if (Foodtype.equals("Non-Veg")){
+                                home.setAvailimg(R.drawable.red);
+                            }
 
 
                             //home.setFav(R.id.iv_fav);
@@ -407,6 +414,7 @@ public class HomeFragment extends Fragment  {
                         Availimg = object1.getString("img2");
                         Fav = object1.getString("img3");
                         CollectionTime = object1.getString("collection_time");
+                        Foodtype = object1.getString("food_type");
                         menuID = object1.getString("id");
                         Log.i("menuId", "" + menuID);
 
@@ -425,7 +433,13 @@ public class HomeFragment extends Fragment  {
                         home.setPrice(Price);
                         home.setQuantity(Quantity);
                         home.setProimage(Proimage);
-                        home.setAvailimg(Availimg);
+                       // home.setAvailimg(Availimg);
+
+                        if (Foodtype.equals("Veg")){
+                            home.setAvailimg(R.drawable.green);
+                        }else if (Foodtype.equals("Non-Veg")){
+                            home.setAvailimg(R.drawable.red);
+                        }
 
 
                         //home.setFav(R.id.iv_fav);

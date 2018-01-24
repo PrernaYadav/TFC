@@ -17,6 +17,8 @@ import android.view.MenuItem;
 
 import com.infosolution.dev.tfc.R;
 import com.infosolution.dev.tfc.business_fragments.EditProfileBusiFragment;
+import com.infosolution.dev.tfc.business_fragments.NewOrderdFragment;
+import com.infosolution.dev.tfc.business_fragments.OrderHisFragment;
 import com.infosolution.dev.tfc.business_fragments.OrderHistoryFragment;
 import com.infosolution.dev.tfc.business_fragments.UploadMenuFragment;
 import com.infosolution.dev.tfc.business_fragments.UploadedMenuFragment;
@@ -84,9 +86,9 @@ public class BusinessNavigation extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+       /* if (id == R.id.action_settings) {
             return true;
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }
@@ -99,6 +101,7 @@ public class BusinessNavigation extends AppCompatActivity
 
         if (id == R.id.nav_upldmenu) {
 
+            setTitle("Upload Menu");
             UploadMenuFragment fragment =new UploadMenuFragment();
             FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.frame,fragment," ");
@@ -108,7 +111,7 @@ public class BusinessNavigation extends AppCompatActivity
             // Handle the camera action
         } else if (id == R.id.nav_upldHistory) {
 
-
+            setTitle("Uploaded Menus");
             UploadedMenuFragment fragment =new UploadedMenuFragment();
             FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.frame,fragment," ");
@@ -127,16 +130,21 @@ public class BusinessNavigation extends AppCompatActivity
 
 
         } else if (id == R.id.nav_neworder) {
+            setTitle("New Order");
+            NewOrderdFragment fragment =new NewOrderdFragment();
+            FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.frame,fragment," ");
+            fragmentTransaction.commit();
 
         } else if (id == R.id.nav_orderhis) {
-
-            OrderHistoryFragment fragment =new OrderHistoryFragment();
+            setTitle("Order History");
+            OrderHisFragment fragment =new OrderHisFragment();
             FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.frame,fragment," ");
             fragmentTransaction.commit();
 
         } else if (id == R.id.nav_editprofile) {
-
+            setTitle("Edit Profile");
             EditProfileBusiFragment fragment =new EditProfileBusiFragment();
             FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.frame,fragment," ");

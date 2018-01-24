@@ -74,9 +74,10 @@ private    String qty,price;
         holder.ress.setText(homeList.get(position).getRes());
         holder.favstatus.setText(homeList.get(position).getFavstatus());
         holder.ivfav.setImageResource(homeList.get(position).getFav());
+        holder.ivavail.setImageResource(homeList.get(position).getAvailimg());
 
         Glide.with(activity).load(home.getProimage()).into(holder.ivproimage);
-        Glide.with(activity).load(home.getAvailimg()).into(holder.ivavail);
+      //  Glide.with(activity).load(home.getAvailimg()).into(holder.ivavail);
 
 
         //Glide.with(activity).load(home.getFav()).into(holder.ivfav);
@@ -211,6 +212,9 @@ private    String qty,price;
         requestQueue.add(stringRequest);
 
 
+    }
+
+    public class MyViewHolderNew {
     }
 }
 

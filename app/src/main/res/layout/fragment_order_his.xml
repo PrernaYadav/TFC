@@ -1,0 +1,28 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ececec"
+    tools:context="com.infosolution.dev.tfc.business_fragments.OrderHisFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Your Order History"
+        android:textColor="#656565"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:textStyle="bold"
+        android:textAppearance="?android:textAppearanceMedium"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rc_orderhisbusi"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="2dp"
+        />
+
+</LinearLayout>

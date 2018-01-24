@@ -107,6 +107,9 @@ public class FavFragment extends Fragment {
   return v;
     }
 
+
+
+
     private void FetchFav() {
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://thefoodcircle.co.uk/restaurant/demo/web-service/my_fav_res.php",
@@ -211,7 +214,7 @@ public class FavFragment extends Fragment {
                             home.setPrice(Price);
                             home.setQuantity(Quantity);
                             home.setProimage(Proimage);
-                            home.setAvailimg(Availimg);
+                           // home.setAvailimg(Availimg);
                             //home.setFav(R.id.iv_fav);
                             homeList.add(home);
 

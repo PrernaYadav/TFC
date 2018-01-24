@@ -20,6 +20,7 @@ public class ConfigInfo {
     //business part
     public static final String uploadmenu= "http://thefoodcircle.co.uk/restaurant/demo/web-service/upload_menu_details.php";
     public static final String uploadedmenu= "http://thefoodcircle.co.uk/restaurant/demo/web-service/allmenu.php";
+    public static final String newOrder= "http://thefoodcircle.co.uk/restaurant/demo/web-service/orderDetail.php";
 
 
 }

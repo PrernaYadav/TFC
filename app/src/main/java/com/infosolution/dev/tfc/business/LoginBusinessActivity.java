@@ -21,6 +21,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.infosolution.dev.tfc.Class.ConfigInfo;
 import com.infosolution.dev.tfc.R;
+import com.infosolution.dev.tfc.user.Navigation;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -39,6 +40,7 @@ public class LoginBusinessActivity extends AppCompatActivity {
     private TextView tvsignup;
     private String ResIdB,EmailB,Phone1B,Phone2B;
 
+
     private static final String email_pattern =
             "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                     + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
@@ -47,6 +49,11 @@ public class LoginBusinessActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_business);
+
+
+
+
+
         etusername=findViewById(R.id.et_usernamebusi);
         etpassword=findViewById(R.id.et_passwordbusi);
         btnsignin=findViewById(R.id.btn_signinbusi);
@@ -93,6 +100,8 @@ public class LoginBusinessActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+
+
                         Log.e("pppppppppp", response);
                      //   Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
                         pdLoading.dismiss();

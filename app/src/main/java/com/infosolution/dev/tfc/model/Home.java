@@ -54,11 +54,11 @@ public class Home {
         this.quantity = quantity;
     }
 
-    public String getAvailimg() {
+    public int getAvailimg() {
         return availimg;
     }
 
-    public void setAvailimg(String availimg) {
+    public void setAvailimg(int availimg) {
         this.availimg = availimg;
     }
 
@@ -84,9 +84,23 @@ public class Home {
     String timing;
     String price;
     String quantity;
-    String availimg;
+    int availimg;
     String count;
     int fav;
+
+    public Home(String foodType) {
+        FoodType = foodType;
+    }
+
+    public String getFoodType() {
+        return FoodType;
+    }
+
+    public void setFoodType(String foodType) {
+        FoodType = foodType;
+    }
+
+    String FoodType;
 
     public String getFavstatus() {
         return favstatus;

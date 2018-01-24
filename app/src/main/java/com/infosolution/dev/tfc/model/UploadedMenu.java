@@ -11,7 +11,7 @@ public class UploadedMenu {
     String priceupld;
     int imgupld;
 
-    public UploadedMenu(String pronameupld, String timinguplad, String qtyupld, String priceupld, int imgupld) {
+    public UploadedMenu() {
         this.pronameupld = pronameupld;
         this.timinguplad = timinguplad;
         this.qtyupld = qtyupld;

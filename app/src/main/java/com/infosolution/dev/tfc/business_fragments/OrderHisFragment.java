@@ -4,7 +4,6 @@ package com.infosolution.dev.tfc.business_fragments;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,7 +12,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -24,10 +22,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.infosolution.dev.tfc.Class.ConfigInfo;
 import com.infosolution.dev.tfc.R;
-import com.infosolution.dev.tfc.adapter.Homeadapter;
 import com.infosolution.dev.tfc.adapter.OrderHistoryAdapter;
-import com.infosolution.dev.tfc.fragment.HomeFragment;
-import com.infosolution.dev.tfc.model.Home;
 import com.infosolution.dev.tfc.model.OrderHistoryModel;
 
 import org.json.JSONArray;
@@ -42,16 +37,18 @@ import static android.content.Context.MODE_PRIVATE;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class OrderHistoryFragment extends Fragment {
+public class OrderHisFragment extends Fragment {
 
-   private RecyclerView rvhistory;
+  private   RecyclerView rvhistorybusi;
     private OrderHistoryAdapter orderHistoryAdapter;
 
     private ArrayList<OrderHistoryModel> historyModelArrayList;
 
     private String UserId;
 
-    public OrderHistoryFragment() {
+
+    public OrderHisFragment() {
+        // Required empty public constructor
     }
 
 
@@ -59,18 +56,18 @@ public class OrderHistoryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_order_history, container, false);
+        View v= inflater.inflate(R.layout.fragment_order_his, container, false);
 
 
         final SharedPreferences prefs = getActivity().getSharedPreferences("useriddsign", MODE_PRIVATE);
         UserId = prefs.getString("userid", null);
 
-        rvhistory=v.findViewById(R.id.rc_orderhis);
+        rvhistorybusi=v.findViewById(R.id.rc_orderhisbusi);
 
 
-        rvhistory.setLayoutManager(new LinearLayoutManager(getContext()));
-        rvhistory.setHasFixedSize(true);
-        rvhistory.addItemDecoration(new DividerItemDecoration(getActivity(),
+        rvhistorybusi.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvhistorybusi.setHasFixedSize(true);
+        rvhistorybusi.addItemDecoration(new DividerItemDecoration(getActivity(),
                 DividerItemDecoration.VERTICAL));
 
 
@@ -78,24 +75,25 @@ public class OrderHistoryFragment extends Fragment {
         itemDecorator.setDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.divider));*/
 
         int numberOfColumns = 2;
-        rvhistory.setLayoutManager(new GridLayoutManager(getContext(), numberOfColumns));
+        rvhistorybusi.setLayoutManager(new GridLayoutManager(getContext(), numberOfColumns));
 
-        rvhistory.setAdapter(orderHistoryAdapter);
+        rvhistorybusi.setAdapter(orderHistoryAdapter);
         historyModelArrayList= new ArrayList<>();
         orderHistoryAdapter = new OrderHistoryAdapter(historyModelArrayList, getContext(), getActivity());
-       FetchHistoryOrder();
+        FetchHistoryOrder();
+
 
         return v;
     }
 
     private void FetchHistoryOrder() {
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, ConfigInfo.orderHistory,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://thefoodcircle.co.uk/restaurant/demo/web-service/resturent_detail_by_id.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         Log.e("response..........", response);
-                       // Toast.makeText(getContext(), response.toString(), Toast.LENGTH_LONG).show();
+                        // Toast.makeText(getContext(), response.toString(), Toast.LENGTH_LONG).show();
 
 
                         try {
@@ -106,7 +104,7 @@ public class OrderHistoryFragment extends Fragment {
                                 JSONObject object = jarray.getJSONObject(i);
                                 String    ProductName = object.getString("menu_name");
                                 String  Quantity = object.getString("quantity");
-                                String  Logo = object.getString("logo");
+                                //String  Logo = object.getString("logo");
                                 String   Price = object.getString("price");
                                 String   Date = object.getString("date");
                                 String   UserName = object.getString("user_name");
@@ -117,7 +115,7 @@ public class OrderHistoryFragment extends Fragment {
                                 orderHistoryModel.setPrice(Price);
                                 orderHistoryModel.setDate(Date);
                                 orderHistoryModel.setUsername(UserName);
-                                orderHistoryModel.setLogo(Logo);
+                              //  orderHistoryModel.setLogo(Logo);
                                 historyModelArrayList.add(orderHistoryModel);
 
 
@@ -129,7 +127,7 @@ public class OrderHistoryFragment extends Fragment {
                             e.printStackTrace();
                         }
 
-                        rvhistory.setAdapter(orderHistoryAdapter);
+                        rvhistorybusi.setAdapter(orderHistoryAdapter);
                     }
                 },
                 new Response.ErrorListener() {
@@ -143,7 +141,7 @@ public class OrderHistoryFragment extends Fragment {
 
 
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("user_id", UserId);
+                params.put("res_id", "37");
 
                 return params;
             }

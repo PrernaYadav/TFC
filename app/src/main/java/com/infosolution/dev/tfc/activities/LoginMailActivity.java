@@ -34,20 +34,17 @@ import java.util.regex.Pattern;
 
 public class LoginMailActivity extends AppCompatActivity {
 
-    private EditText etusername,etpassword;
+    private EditText etusername, etpassword;
     private Button btnsignin;
-    private  String email,password;
+    private String email, password;
     private ProgressDialog pdLoading;
     private TextView tvsignup;
-  //  String userID,Email;
+    //  String userID,Email;
 
-    SharedPreferences sh_Pref;
-    SharedPreferences.Editor editor;
-
+    private SharedPreferences sh_Pref;
+    private SharedPreferences.Editor editor;
     private static final String IS_LOGIN = "IsLoggedIn";
     int PRIVATE_MODE = 0;
-
-
 
 
     private static final String email_pattern =
@@ -58,27 +55,25 @@ public class LoginMailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_mail);
-        etusername=findViewById(R.id.et_username);
-        etpassword=findViewById(R.id.et_password);
-        btnsignin=findViewById(R.id.btn_signin);
-        tvsignup=findViewById(R.id.tv_signupp);
+        etusername = findViewById(R.id.et_username);
+        etpassword = findViewById(R.id.et_password);
+        btnsignin = findViewById(R.id.btn_signin);
+        tvsignup = findViewById(R.id.tv_signupp);
 
 
-         sh_Pref = getSharedPreferences("Login Credentials", PRIVATE_MODE);
+        sh_Pref = getSharedPreferences("Login Credentials", PRIVATE_MODE);
         boolean check = sh_Pref.getBoolean(IS_LOGIN, false);
-        if(check){
+        if (check) {
             Intent intent = new Intent(this, Navigation.class);
             startActivity(intent);
             finish();
         }
 
 
-
-
         tvsignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(LoginMailActivity.this,SignupUserActivity.class);
+                Intent intent = new Intent(LoginMailActivity.this, SignupUserActivity.class);
                 startActivity(intent);
             }
         });
@@ -87,15 +82,14 @@ public class LoginMailActivity extends AppCompatActivity {
 
     }
 
-    public void BtnClick(){
+    public void BtnClick() {
 
         btnsignin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                email=etusername.getText().toString().trim();
-                password=etpassword.getText().toString().trim();
-
+                email = etusername.getText().toString().trim();
+                password = etpassword.getText().toString().trim();
 
 
                 Matcher matcherObj = Pattern.compile(email_pattern).matcher(email);
@@ -104,7 +98,7 @@ public class LoginMailActivity extends AppCompatActivity {
                     etusername.setError("Invalid Email");
                 } else if (etpassword.getText().toString().trim().length() < 0) {
                     etpassword.setError("Password Length is short");
-                }else {
+                } else {
                     Login();
                 }
 
@@ -117,89 +111,83 @@ public class LoginMailActivity extends AppCompatActivity {
     private void Login() {
 
 
-
-
-
         StringRequest stringRequest = new StringRequest(Request.Method.POST, ConfigInfo.login,
-            new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
 
-sharedPreferences();
-
-
-                    try {
+                        sharedPreferences();
 
 
+                        try {
 
 
-                        JSONObject jsono = new JSONObject(response);
-                        JSONArray jarray = jsono.getJSONArray("record");
-                        for (int i = 0; i < jarray.length(); i++) {
-                            JSONObject object = jarray.getJSONObject(i);
-                         String   userID = object.getString("userid");
-                            String  Email = object.getString("email");
-                            String  Username= object.getString("name");
-                            String  Phone= object.getString("phone");
+                            JSONObject jsono = new JSONObject(response);
+                            JSONArray jarray = jsono.getJSONArray("record");
+                            for (int i = 0; i < jarray.length(); i++) {
+                                JSONObject object = jarray.getJSONObject(i);
+                                String userID = object.getString("userid");
+                                String Email = object.getString("email");
+                                String Username = object.getString("name");
+                                String Phone = object.getString("phone");
 
 
-                            SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("useriddsign", Context.MODE_PRIVATE);
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putString("userid", userID);
-                            editor.putString("email", Email);
-                            editor.putString("usernamesign", Username);
-                            editor.putString("phone", Phone);
-                            editor.commit();
+                                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("useriddsign", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString("userid", userID);
+                                editor.putString("email", Email);
+                                editor.putString("usernamesign", Username);
+                                editor.putString("phone", Phone);
+                                editor.commit();
+                            }
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
 
 
+                        Intent intent = new Intent(LoginMailActivity.this, Navigation.class);
+                        // set the new task and clear flags
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+
+
+                        Log.e("pppppppppp", response);
+                        // Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
+//                        pdLoading.dismiss();
+
+
                     }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
 
 
-                    Intent intent = new Intent(LoginMailActivity.this, Navigation.class);
-                    startActivity(intent);
-
-
-
-                    Log.e("pppppppppp", response);
-                   // Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
-//                        pdLoading.dismiss();
-
-
-                }
-            },
-            new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-
-
-
-                    Toast.makeText(LoginMailActivity.this, error.toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginMailActivity.this, error.toString(), Toast.LENGTH_LONG).show();
 
 //                        pdLoading.dismiss();
-                }
-            }) {
-        @Override
-        protected Map<String, String> getParams() {
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
 
-            Map<String, String> params = new HashMap<String, String>();
+                Map<String, String> params = new HashMap<String, String>();
 
-            params.put("email",email );
-            params.put("password",password );
+                params.put("email", email);
+                params.put("password", password);
 
 
+                return params;
+            }
 
-            return params;
-        }
+        };
 
-    };
-
-    RequestQueue requestQueue = Volley.newRequestQueue(this);
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
-}
+    }
 
 
     public void sharedPreferences() {
@@ -213,5 +201,4 @@ sharedPreferences();
     }
 
 
-
-    }
+}

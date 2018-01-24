@@ -27,8 +27,6 @@
         android:layout_height="80dp"
         android:layout_gravity="center"
         android:layout_marginTop="15dp"
-        android:tint="@android:color/white"
-        android:backgroundTint="@android:color/white"
         android:src="@drawable/uploadimage" />
 
     <EditText
@@ -89,7 +87,7 @@
             android:prompt="@string/foodtype"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/dropdown"
             android:padding="16dp"
             android:paddingLeft="22dp"
@@ -107,7 +105,7 @@
             android:prompt="@string/collectiontime"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/dropdown"
             android:padding="16dp"
             android:paddingLeft="22dp"
