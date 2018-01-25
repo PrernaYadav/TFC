@@ -124,6 +124,13 @@ else
         latitde=location.getLatitude();
 
 
+        SharedPreferences sharedPreferencess = getApplicationContext().getSharedPreferences("latlong", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editorr = sharedPreferencess.edit();
+        editorr.putString("lat", String.valueOf(latitde));
+        editorr.putString("laong", String.valueOf(longitude));
+        editorr.commit();
+
+
       //  Toast.makeText(MainActivity.this,""+longitude+""+latitde,Toast.LENGTH_LONG).show();
 
 

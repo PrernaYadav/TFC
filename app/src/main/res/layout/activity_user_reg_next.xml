@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/resbg"
-    tools:context="com.infosolution.dev.tfc.user.UserRegNext">
+    tools:context="com.infosolution.dev.tfc.business.UserRegNext">
 
     <Spinner
         android:id="@+id/sp_cusinetype"
@@ -20,6 +20,7 @@
         android:background="@drawable/dropdown"
         android:padding="16dp"
         android:paddingLeft="22dp"
+        android:textAlignment="center"
         android:paddingRight="22dp"/>
 
 
@@ -32,6 +33,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
+        android:textAlignment="center"
         android:background="@drawable/dropdown"
         android:padding="16dp"
         android:paddingLeft="22dp"
@@ -48,6 +50,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
+        android:textAlignment="center"
         android:background="@drawable/dropdown"
         android:padding="16dp"
         android:paddingLeft="22dp"
@@ -56,7 +59,7 @@
 
 
     <Button
-        android:id="@+id/btn_signup"
+        android:id="@+id/btn_signupbusiinxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"

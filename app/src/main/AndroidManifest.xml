@@ -29,8 +29,8 @@
         <activity android:name=".activities.SignupUserActivity" />
         <activity android:name=".business.LoginBusinessActivity" />
         <activity android:name=".business.SignupBusiActivity" />
-        <activity android:name=".user.UserRegActivity" />
-        <activity android:name=".user.UserRegNext" />
+        <activity android:name=".business.UserRegActivity" />
+        <activity android:name=".business.UserRegNext" />
         <activity android:name=".activities.ProductPageActivity" />
         <activity
             android:name=".user.Navigation"

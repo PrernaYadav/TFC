@@ -70,10 +70,6 @@ public class OrderHisFragment extends Fragment {
         rvhistorybusi.addItemDecoration(new DividerItemDecoration(getActivity(),
                 DividerItemDecoration.VERTICAL));
 
-
-      /*  DividerItemDecoration itemDecorator = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
-        itemDecorator.setDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.divider));*/
-
         int numberOfColumns = 2;
         rvhistorybusi.setLayoutManager(new GridLayoutManager(getContext(), numberOfColumns));
 

@@ -30,10 +30,12 @@ public class SignupBusiActivity extends AppCompatActivity {
         etposition=findViewById(R.id.et_positionbusi);
         etphone=findViewById(R.id.et_phonebusi);
         etothphone=findViewById(R.id.et_othphonebusi);
-        etpass=findViewById(R.id.et_passwordbusi);
+        etpass=findViewById(R.id.et_passbusinxt);
         etreppass=findViewById(R.id.et_reppassbusi);
         tvsignin=findViewById(R.id.tv__signinsignupbusi);
-        btnsignup=findViewById(R.id.btn_signinbusi);
+        btnsignup=findViewById(R.id.btn_signupbusinxt);
+
+
         btnsignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,6 +46,18 @@ public class SignupBusiActivity extends AppCompatActivity {
                 othphone=etothphone.getText().toString().trim();
                 pass=etpass.getText().toString().trim();
                 reppass=etreppass.getText().toString().trim();
+
+                Intent intent = new Intent(SignupBusiActivity.this,UserRegActivity.class);
+
+                intent.putExtra("contactperson",contactper);
+                intent.putExtra("storename",store);
+                intent.putExtra("position",position);
+                intent.putExtra("phone1",phone);
+                intent.putExtra("phone2",othphone);
+                intent.putExtra("password",pass);
+                intent.putExtra("repassword",reppass);
+
+                startActivity(intent);
             }
         });
 

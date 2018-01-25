@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.infosolution.dev.tfc.R;
+import com.infosolution.dev.tfc.business_fragments.NewOrderdFragment;
 import com.infosolution.dev.tfc.user.ChangePasswordActivity;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -55,6 +56,8 @@ public class EditProfileFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(),ChangePasswordActivity.class);
                 startActivity(intent);
+
+
             }
         });
 

@@ -118,7 +118,7 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/et_passbusi"
+        android:id="@+id/et_passbusinxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -155,14 +155,14 @@
 
 
     <Button
-        android:id="@+id/btn_signupbusi"
+        android:id="@+id/btn_signupbusinxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="30dp"
-        android:background="@drawable/borderetcolored"
-        android:text="Sign up"
+        android:background="@drawable/yellowborder"
+        android:text="Next"
         android:textAllCaps="true"
         android:textColor="#fff"
         android:textStyle="bold" />
