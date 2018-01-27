@@ -1,11 +1,12 @@
 package com.infosolution.dev.tfc.business;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -14,19 +15,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.infosolution.dev.tfc.R;
+import com.infosolution.dev.tfc.activities.LoginMailActivity;
 import com.infosolution.dev.tfc.business_fragments.EditProfileBusiFragment;
 import com.infosolution.dev.tfc.business_fragments.NewOrderdFragment;
-import com.infosolution.dev.tfc.business_fragments.OrderHisFragment;
-import com.infosolution.dev.tfc.business_fragments.OrderHistoryFragment;
+import com.infosolution.dev.tfc.business_fragments.OrderHisBusinessFragment;
 import com.infosolution.dev.tfc.business_fragments.UploadMenuFragment;
 import com.infosolution.dev.tfc.business_fragments.UploadedMenuFragment;
-import com.infosolution.dev.tfc.fragment.FavFragment;
-import com.infosolution.dev.tfc.model.UploadedMenu;
+import com.infosolution.dev.tfc.user.Navigation;
 
 public class BusinessNavigation extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private String Imagee,Namee;
+    private  TextView tv;
+    private  ImageView iv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +42,11 @@ public class BusinessNavigation extends AppCompatActivity
         setContentView(R.layout.activity_business_navigation);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarbusi);
         setSupportActionBar(toolbar);
+
+        final SharedPreferences prefs = getSharedPreferences("LogindataB", MODE_PRIVATE);
+        Imagee = prefs.getString("proimg", null);
+        Namee = prefs.getString("name", null);
+
 
        /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +63,21 @@ public class BusinessNavigation extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_viewbusi);
+
+
+        navigationView.setNavigationItemSelectedListener(this);
+        View header=navigationView.getHeaderView(0);
+/*View view=navigationView.inflateHeaderView(R.layout.nav_header_main);*/
+        tv = (TextView)header.findViewById(R.id.tv_namebusiii);
+        iv = (ImageView) header.findViewById(R.id.imageViewbusi);
+        tv.setText(Namee);
+
+        if (Imagee.equals("")){
+            iv.setImageResource(R.drawable.icon);
+        }else {
+            Glide.with(this).load(Imagee).into(iv);
+        }
         navigationView.setNavigationItemSelectedListener(this);
 
 
@@ -138,7 +165,7 @@ public class BusinessNavigation extends AppCompatActivity
 
         } else if (id == R.id.nav_orderhis) {
             setTitle("Order History");
-            OrderHisFragment fragment =new OrderHisFragment();
+            OrderHisBusinessFragment fragment =new OrderHisBusinessFragment();
             FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.frame,fragment," ");
             fragmentTransaction.commit();
@@ -151,9 +178,49 @@ public class BusinessNavigation extends AppCompatActivity
             fragmentTransaction.commit();
 
         }
+        else if (id == R.id.logout) {
+
+Alertt();
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void Alertt() {
+
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(BusinessNavigation.this);
+        builder1.setMessage("Do You Want to Logout?");
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        SharedPreferences preferences =getSharedPreferences("Login Busi", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.clear();
+                        editor.commit();
+                        finish();
+
+                        Intent intent=new Intent(BusinessNavigation.this,LoginBusinessActivity.class);
+                        startActivity(intent);
+
+
+                    }
+                });
+
+        builder1.setNegativeButton(
+                "No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
     }
 }

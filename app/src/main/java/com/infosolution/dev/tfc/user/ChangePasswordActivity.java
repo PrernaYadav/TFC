@@ -1,6 +1,7 @@
 package com.infosolution.dev.tfc.user;
 
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,6 +39,15 @@ public class ChangePasswordActivity extends AppCompatActivity {
         etoldpass=findViewById(R.id.et_enteroldpass);
         etnewpass=findViewById(R.id.et_enternewpass);
         btnupdate=findViewById(R.id.btn_updatepass);
+
+
+        Typeface typefaceregular = Typeface.createFromAsset(getAssets(), "font/tahoma.ttf");
+        Typeface typefacebold = Typeface.createFromAsset(getAssets(), "font/tahomabd.ttf");
+
+        etoldpass.setTypeface(typefaceregular);
+        etnewpass.setTypeface(typefaceregular);
+        btnupdate.setTypeface(typefacebold);
+
 
         view=findViewById(R.id.ab_changepassworda);
         ivbackk=findViewById(R.id.iv);

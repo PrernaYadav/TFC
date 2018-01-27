@@ -19,9 +19,11 @@
         android:layout_height="100dp"
         android:src="@drawable/icon"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"/>
 
             <ImageView
+                android:id="@+id/vegiv"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@drawable/red"
@@ -36,6 +38,7 @@
         android:text="Matar Paneer"
         android:layout_toRightOf="@+id/frame"
         android:layout_marginTop="10dp"
+        android:textStyle="bold"
         android:layout_marginLeft="10dp"
         android:textColor="@android:color/black"/>
 

@@ -3,6 +3,7 @@ package com.infosolution.dev.tfc.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,11 +15,8 @@ import android.widget.Toast;
 
 import com.infosolution.dev.tfc.R;
 import com.infosolution.dev.tfc.model.NewOrderModel;
-import com.infosolution.dev.tfc.model.UploadedMenu;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Created by Shreyansh Srivastava on 1/24/2018.
@@ -78,6 +76,9 @@ public class NewOrderAdapter extends RecyclerView.Adapter<NewOrderAdapter.MyView
         TextView tvusername,tvmenuname,tvdate,tvtime,tvprice,tvqty,tvphone,tvstatus;
         ImageView ivlogo,ivphone,ivmenuimage;
 
+        Typeface typefaceregular = Typeface.createFromAsset(activity.getAssets(), "font/tahoma.ttf");
+        Typeface typefacebold = Typeface.createFromAsset(activity.getAssets(), "font/tahomabd.ttf");
+
         public MyViewHolder(View itemView, Context context, final ArrayList<NewOrderModel> newOrderModelArrayList) {
             super(itemView);
 
@@ -92,6 +93,16 @@ public class NewOrderAdapter extends RecyclerView.Adapter<NewOrderAdapter.MyView
             ivlogo=itemView.findViewById(R.id.iv_logonew);
             ivmenuimage=itemView.findViewById(R.id.iv_menuimgnew);
             ivphone=itemView.findViewById(R.id.iv_call);
+
+            tvusername.setTypeface(typefaceregular);
+            tvdate.setTypeface(typefaceregular);
+            tvtime.setTypeface(typefaceregular);
+            tvprice.setTypeface(typefacebold);
+            tvqty.setTypeface(typefacebold);
+            tvmenuname.setTypeface(typefaceregular);
+
+
+
             ivphone.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

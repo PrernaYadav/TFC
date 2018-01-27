@@ -3,6 +3,7 @@ package com.infosolution.dev.tfc.fragment;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,7 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.infosolution.dev.tfc.R;
-import com.infosolution.dev.tfc.business_fragments.NewOrderdFragment;
 import com.infosolution.dev.tfc.user.ChangePasswordActivity;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -40,6 +40,14 @@ public class EditProfileFragment extends Fragment {
         etname=v.findViewById(R.id.et_nameep);
         etemail=v.findViewById(R.id.et_emailep);
         etphone=v.findViewById(R.id.et_phoneep);
+
+        Typeface typefaceregular = Typeface.createFromAsset(getContext().getAssets(), "font/tahoma.ttf");
+        Typeface typefacebold = Typeface.createFromAsset(getContext().getAssets(), "font/tahomabd.ttf");
+
+        btnchangepass.setTypeface(typefacebold);
+        etname.setTypeface(typefaceregular);
+        etemail.setTypeface(typefaceregular);
+        etphone.setTypeface(typefaceregular);
 
         final SharedPreferences prefs = getContext().getSharedPreferences("useriddsign", MODE_PRIVATE);
         Username = prefs.getString("usernamesign", null);

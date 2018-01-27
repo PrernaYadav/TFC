@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,7 +24,6 @@ import com.bumptech.glide.Glide;
 import com.infosolution.dev.tfc.Class.ConfigInfo;
 import com.infosolution.dev.tfc.R;
 import com.infosolution.dev.tfc.activities.BuyNowActivity;
-import com.infosolution.dev.tfc.activities.ProductPageActivity;
 import com.infosolution.dev.tfc.model.Home;
 
 import java.util.ArrayList;
@@ -97,6 +96,9 @@ private    String qty,price;
         Context ctx;
         ArrayList<Home> home = new ArrayList<Home>();
 
+        Typeface typefaceregular = Typeface.createFromAsset(activity.getAssets(), "font/tahoma.ttf");
+        Typeface typefacebold = Typeface.createFromAsset(activity.getAssets(), "font/tahomabd.ttf");
+
 
 //        public Button btnJoinEvent;
 
@@ -118,6 +120,12 @@ private    String qty,price;
             favstatus = (TextView) view.findViewById(R.id.fav_status);
           /*  qty=tvquantity.getText().toString();
             price=tvprice.getText().toString();*/
+
+          tvproname.setTypeface(typefaceregular);
+          tvprice.setTypeface(typefaceregular);
+          tvquantity.setTypeface(typefaceregular);
+          tvtiming.setTypeface(typefaceregular);
+          tvusername.setTypeface(typefaceregular);
 
             ivfav.setOnClickListener(new View.OnClickListener() {
                 @Override

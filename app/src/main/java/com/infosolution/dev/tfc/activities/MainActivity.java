@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Typeface;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
@@ -75,6 +76,15 @@ else
         btnbusilogin=findViewById(R.id.btn_busilogin);
         tvguest=findViewById(R.id.tv_guest);
 
+
+
+        Typeface typefaceregular = Typeface.createFromAsset(getAssets(), "font/tahoma.ttf");
+        Typeface typefacebold = Typeface.createFromAsset(getAssets(), "font/tahomabd.ttf");
+
+        btnmailid.setTypeface(typefaceregular);
+        btnuserreg.setTypeface(typefaceregular);
+        btnbusilogin.setTypeface(typefaceregular);
+
         btnmailid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,7 +105,7 @@ else
         btnuserreg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,LoginMailActivity.class);
+                Intent intent = new Intent(MainActivity.this,SignupUserActivity.class);
          //       intent.putExtra("citttyy",area);
                 startActivity(intent);
             }

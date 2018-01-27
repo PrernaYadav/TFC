@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.infosolution.dev.tfc.R;
 import com.infosolution.dev.tfc.business.BusinessNavigation;
 import com.infosolution.dev.tfc.model.Home;
@@ -48,11 +49,14 @@ public class UploadedMenuAdapter extends RecyclerView.Adapter<UploadedMenuAdapte
         final  UploadedMenu uploadd=uploadedMenusList.get(position);
 
 
-        holder.ivmenu.setImageResource(uploadedMenusList.get(position).getImgupld());
+        holder.ivveg.setImageResource(uploadedMenusList.get(position).getImgveg());
+
         holder.name.setText(uploadedMenusList.get(position).getPronameupld());
         holder.qty.setText(uploadedMenusList.get(position).getQtyupld());
         holder.price.setText(uploadedMenusList.get(position).getPriceupld());
         holder.timing.setText(uploadedMenusList.get(position).getTiminguplad());
+
+        Glide.with(activity).load(uploadd.getImgupld()).into(holder.ivmenu);
 
 
     }
@@ -67,7 +71,7 @@ public class UploadedMenuAdapter extends RecyclerView.Adapter<UploadedMenuAdapte
 
     public class MyViewHolderNew extends RecyclerView.ViewHolder {
 
-        ImageView ivmenu;
+        ImageView ivmenu,ivveg;
         TextView name,qty,price,timing,tvreupload;
         Context ctx;
         ArrayList<UploadedMenu> upload = new ArrayList<UploadedMenu>();
@@ -78,6 +82,7 @@ public class UploadedMenuAdapter extends RecyclerView.Adapter<UploadedMenuAdapte
             this.upload=upload;
 
             ivmenu=itemView.findViewById(R.id.iv_menuimg);
+            ivveg=itemView.findViewById(R.id.vegiv);
             name=itemView.findViewById(R.id.tv_pronameupld);
             qty=itemView.findViewById(R.id.tv_qtyupld);
             price=itemView.findViewById(R.id.tv_priceupld);
@@ -86,8 +91,16 @@ public class UploadedMenuAdapter extends RecyclerView.Adapter<UploadedMenuAdapte
             tvreupload.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    int pos =getAdapterPosition();
                     Intent intent = new Intent(activity, BusinessNavigation.class);
+
+                    intent.putExtra("menuname",uploadedMenusList.get(pos).getPronameupld());
+                    intent.putExtra("price",uploadedMenusList.get(pos).getPriceupld());
+                    intent.putExtra("timing",uploadedMenusList.get(pos).getTiminguplad());
+                    intent.putExtra("qty",uploadedMenusList.get(pos).getQtyupld());
+
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
                     activity.startActivity(intent);
                 }
             });

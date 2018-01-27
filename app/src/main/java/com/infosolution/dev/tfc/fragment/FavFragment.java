@@ -61,7 +61,7 @@ public class FavFragment extends Fragment {
     private String Availimg;
     private String Count;
     private String Fav,ress;
-    private String resID,menuID,Quantityyy;
+    private String resID,menuID,Quantityyy,Foodtype;
     String UserId;
 
 
@@ -204,9 +204,16 @@ public class FavFragment extends Fragment {
                             Availimg = object1.getString("img2");
                             Fav = object1.getString("img3");
                             menuID = object1.getString("id");
+                            Foodtype = object1.getString("food_type");
                             Log.i("menuId",""+menuID);
 
 
+
+                            if (Foodtype.equals("Veg")){
+                                home.setAvailimg(R.drawable.green);
+                            }else if (Foodtype.equals("Non-Veg")){
+                                home.setAvailimg(R.drawable.red);
+                            }
 
 
                             home.setProname(Proname);

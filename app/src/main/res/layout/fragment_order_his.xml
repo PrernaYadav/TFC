@@ -4,9 +4,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ececec"
-    tools:context="com.infosolution.dev.tfc.business_fragments.OrderHisFragment">
+    tools:context="com.infosolution.dev.tfc.business_fragments.OrderHisBusinessFragment">
 
-    <TextView
+  <!--  <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -16,7 +16,7 @@
         android:layout_marginTop="30dp"
         android:textStyle="bold"
         android:textAppearance="?android:textAppearanceMedium"
-        />
+        />-->
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rc_orderhisbusi"

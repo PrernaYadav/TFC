@@ -32,6 +32,7 @@ import com.infosolution.dev.tfc.R;
 import com.infosolution.dev.tfc.business.LoginBusinessActivity;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
@@ -58,6 +59,11 @@ public class UploadMenuFragment extends Fragment {
     private static final int REQUEST_CODE_JOB = 1;
     ProgressDialog pdLoading ;
     private Spinner spfoodtype,spcollectiontime;
+    private  Context ctx;
+    private Bitmap bmap;
+    private  String MN,P,Q;
+
+
 
 
    /* public UploadMenuFragment() {
@@ -77,6 +83,12 @@ public class UploadMenuFragment extends Fragment {
 
 
 
+
+
+
+
+//view=v.findViewById(R.id.llreg);
+
         etmenuname = v.findViewById(R.id.et_menuname_upload);
         etprice = v.findViewById(R.id.et_price_upload);
         spfoodtype = v.findViewById(R.id.sp_foodtype);
@@ -84,6 +96,38 @@ public class UploadMenuFragment extends Fragment {
         etqtyleft = v.findViewById(R.id.et_qtyleft);
         ivmenuimage = v.findViewById(R.id.iv_image_upload);
         btnupload = v.findViewById(R.id.btn_submit_upload);
+
+
+        etmenuname.setText("Please Enter Menu Name");
+        etprice.setText("Please Enter Price");
+        etqtyleft.setText("Please Enter Quantity left");
+
+
+        Intent intent= getActivity().getIntent();
+        MN=intent.getStringExtra("menuname");
+        P=intent.getStringExtra("price");
+        //T=intent.getStringExtra("timing");
+        Q=intent.getStringExtra("qty");
+
+
+        etmenuname.setText(MN);
+        etprice.setText(P);
+        etqtyleft.setText(Q);
+
+
+
+
+
+        bmap  = BitmapFactory.decodeResource(getResources(),  R.drawable.icon);
+        ByteArrayOutputStream bao = new ByteArrayOutputStream();
+        bmap.compress(Bitmap.CompressFormat.JPEG, 100, bao);
+        byte [] ba = bao.toByteArray();
+        encodedResume=Base64.encodeToString(ba,Base64.DEFAULT);
+
+     /*   etmenuname.setHint(MN);
+        etprice.setHint(P);
+        etqtyleft.setHint(Q);*/
+       // spcollectiontime.setTag(T);
 
         ivmenuimage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,9 +145,9 @@ public class UploadMenuFragment extends Fragment {
                 CollectionTime = spcollectiontime.getSelectedItem().toString();
                 Quantity = etqtyleft.getText().toString();
 
-                if (MenuName.length()<0){
+                 if (MenuName.length()<1){
                     etmenuname.setError("Please Enter Menu Name");
-                }else if (Price.length() < 0){
+                }else if (Price.length() < 1){
                     etprice.setError("Please Enter Price");
                 }else  if (FoodType.trim().equals("Food Type") ){
                    Toast.makeText(getContext(),"Please Select Food Type",Toast.LENGTH_SHORT).show();
@@ -135,9 +179,15 @@ public class UploadMenuFragment extends Fragment {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+
+
                         Log.e("pppppppppp", response);
-                        Toast.makeText(getContext(), response.toString(), Toast.LENGTH_LONG).show();
+                     //   Toast.makeText(getContext(), response.toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(),"Menu has Uploaded", Toast.LENGTH_LONG).show();
                         Log.i("uploadres",""+response.toString());
+                        etmenuname.setText("Please Enter Menu Name");
+                        etprice.setText("Please Enter Price");
+                        etqtyleft.setText("Please Enter Quantity left");
 
                         pdLoading.dismiss();
 
@@ -211,6 +261,7 @@ public class UploadMenuFragment extends Fragment {
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
                 byte[] byteArray = byteArrayOutputStream.toByteArray();
 
+
                 ivmenuimage.setImageBitmap(bitmap);
 
 
@@ -222,6 +273,7 @@ public class UploadMenuFragment extends Fragment {
             } finally {
                 if (stream != null)
                     try {
+
                         stream.close();
                     } catch (IOException e) {
                         e.printStackTrace();

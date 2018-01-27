@@ -2,6 +2,7 @@ package com.infosolution.dev.tfc.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,18 +14,14 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.infosolution.dev.tfc.R;
 import com.infosolution.dev.tfc.model.Comments;
-import com.infosolution.dev.tfc.model.Home;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Created by amit on 1/18/2018.
  */
 
 public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.MyViewHolder> {
-
 
 
     public CommentsAdapter(ArrayList<Comments> commentsArrayList, Context context, Activity activity) {
@@ -80,6 +77,9 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.MyView
         Context ctx;
         ArrayList<Comments> comments= new ArrayList<Comments>();
 
+        Typeface typefaceregular = Typeface.createFromAsset(activity.getAssets(), "font/tahoma.ttf");
+        Typeface typefacebold = Typeface.createFromAsset(activity.getAssets(), "font/tahomabd.ttf");
+
         public MyViewHolder(View itemView, Context ctx, ArrayList<Comments> comments) {
             super(itemView);
             this.ctx = ctx;
@@ -90,6 +90,9 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.MyView
             tvusernamecomm=(TextView) itemView.findViewById(R.id.tv_namecom);
             tvcomments=(TextView) itemView.findViewById(R.id.tv_comments);
             rbcomments=(RatingBar) itemView.findViewById(R.id.rb_comm);
+
+            tvusernamecomm.setTypeface(typefacebold);
+            tvcomments.setTypeface(typefaceregular);
         }
     }
 

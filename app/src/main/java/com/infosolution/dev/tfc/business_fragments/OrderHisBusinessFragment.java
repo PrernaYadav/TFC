@@ -37,17 +37,17 @@ import static android.content.Context.MODE_PRIVATE;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class OrderHisFragment extends Fragment {
+public class OrderHisBusinessFragment extends Fragment {
 
   private   RecyclerView rvhistorybusi;
     private OrderHistoryAdapter orderHistoryAdapter;
 
     private ArrayList<OrderHistoryModel> historyModelArrayList;
 
-    private String UserId;
+    private String ResId;
 
 
-    public OrderHisFragment() {
+    public OrderHisBusinessFragment() {
         // Required empty public constructor
     }
 
@@ -59,8 +59,8 @@ public class OrderHisFragment extends Fragment {
         View v= inflater.inflate(R.layout.fragment_order_his, container, false);
 
 
-        final SharedPreferences prefs = getActivity().getSharedPreferences("useriddsign", MODE_PRIVATE);
-        UserId = prefs.getString("userid", null);
+        final SharedPreferences prefs = getActivity().getSharedPreferences("LogindataB", MODE_PRIVATE);
+        ResId = prefs.getString("resid", null);
 
         rvhistorybusi=v.findViewById(R.id.rc_orderhisbusi);
 
@@ -104,6 +104,8 @@ public class OrderHisFragment extends Fragment {
                                 String   Price = object.getString("price");
                                 String   Date = object.getString("date");
                                 String   UserName = object.getString("user_name");
+                                String   Deliver = object.getString("del_id");
+
 
                                 OrderHistoryModel orderHistoryModel= new OrderHistoryModel();
                                 orderHistoryModel.setProname(ProductName);
@@ -111,7 +113,17 @@ public class OrderHisFragment extends Fragment {
                                 orderHistoryModel.setPrice(Price);
                                 orderHistoryModel.setDate(Date);
                                 orderHistoryModel.setUsername(UserName);
-                              //  orderHistoryModel.setLogo(Logo);
+                                orderHistoryModel.setDel(Deliver);
+                                orderHistoryModel.setLogo(R.drawable.icon);
+
+
+                                if (Deliver.equals("1")){
+                                    orderHistoryModel.setDeliver("Delivered");
+                                    orderHistoryModel.setDelimg(R.drawable.deliver);
+                                }else if (Deliver.equals("0")){
+                                    orderHistoryModel.setDeliver("Undeliver");
+                                    orderHistoryModel.setDelimg(R.drawable.undeliver);
+                                }
                                 historyModelArrayList.add(orderHistoryModel);
 
 
@@ -137,7 +149,7 @@ public class OrderHisFragment extends Fragment {
 
 
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("res_id", "37");
+                params.put("res_id", ResId);
 
                 return params;
             }

@@ -21,12 +21,12 @@
         app:srcCompat="@drawable/icon" />
 
     <TextView
+        android:id="@+id/tv_namebusiii"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Shreyansh Srivastava"
         android:textStyle="bold"
-
-       android:gravity="center"
+        android:gravity="center"
         android:textColor="#00DDCB"
         android:layout_marginTop="10dp"/>
 

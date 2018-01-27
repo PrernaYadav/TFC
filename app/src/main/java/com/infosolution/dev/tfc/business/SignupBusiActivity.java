@@ -1,7 +1,7 @@
 package com.infosolution.dev.tfc.business;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -36,6 +36,30 @@ public class SignupBusiActivity extends AppCompatActivity {
         btnsignup=findViewById(R.id.btn_signupbusinxt);
 
 
+
+        Typeface typefaceregular = Typeface.createFromAsset(getAssets(), "font/tahoma.ttf");
+        Typeface typefacebold = Typeface.createFromAsset(getAssets(), "font/tahomabd.ttf");
+
+        etcontactper.setTypeface(typefaceregular);
+        etstore.setTypeface(typefaceregular);
+        etposition.setTypeface(typefaceregular);
+        etphone.setTypeface(typefaceregular);
+        etothphone.setTypeface(typefaceregular);
+        etpass.setTypeface(typefaceregular);
+        etreppass.setTypeface(typefaceregular);
+        tvsignin.setTypeface(typefaceregular);
+        btnsignup.setTypeface(typefacebold);
+
+
+
+
+        tvsignin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(SignupBusiActivity.this,LoginBusinessActivity.class);
+                startActivity(intent);
+            }
+        });
         btnsignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

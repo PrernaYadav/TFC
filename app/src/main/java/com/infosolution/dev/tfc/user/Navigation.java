@@ -1,6 +1,8 @@
 package com.infosolution.dev.tfc.user;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,9 +13,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.infosolution.dev.tfc.R;
 import com.infosolution.dev.tfc.fragment.EditProfileFragment;
 import com.infosolution.dev.tfc.activities.LoginMailActivity;
@@ -25,9 +32,11 @@ import com.infosolution.dev.tfc.fragment.HomeFragment;
 
 public class Navigation extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    // Session Manager Class
 
-    public String Fav;
+
+   private ImageView ivimg;
+   private TextView tvnavheader;
+   private String Imagee,Namee;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,14 +45,22 @@ public class Navigation extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-      /*  FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
+   /*ivimg=findViewById(R.id.imageViewnavheader);
+   tvnavheader=findViewById(R.id.tv_navheader);*/
+
+        final SharedPreferences prefs = getSharedPreferences("useriddsign", MODE_PRIVATE);
+        Imagee = prefs.getString("profileimage", null);
+        Namee = prefs.getString("usernamesign", null);
+
+
+       /* tvnavheader.setText(Name);
+
+        if (Imagee.equals("")){
+            ivimg.setImageResource(R.drawable.icon);
+        }else {
+            Glide.with(this).load(Imagee).into(ivimg);
+        }*/
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -52,6 +69,16 @@ public class Navigation extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        View header=navigationView.getHeaderView(0);
+/*View view=navigationView.inflateHeaderView(R.layout.nav_header_main);*/
+        tvnavheader = (TextView)header.findViewById(R.id.tv_navheader);
+        ivimg = (ImageView) header.findViewById(R.id.imageViewnavheader);
+      tvnavheader.setText(Namee);
+
+
+
+
         navigationView.setNavigationItemSelectedListener(this);
 
         HomeFragment fragment =new HomeFragment();
@@ -142,22 +169,55 @@ public class Navigation extends AppCompatActivity
 
         } else if (id == R.id.nav_share) {
 
+            Alert();
 
-            SharedPreferences preferences =getSharedPreferences("Login Credentials", Context.MODE_PRIVATE);
+
+         /*   SharedPreferences preferences =getSharedPreferences("Login Credentials", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
             editor.clear();
             editor.commit();
             finish();
 
-
-
             Intent intent=new Intent(this,LoginMailActivity.class);
-            startActivity(intent);
+            startActivity(intent);*/
 
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void Alert() {
+
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(Navigation.this);
+        builder1.setMessage("Do You Want to Logout?");
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        SharedPreferences preferences =getSharedPreferences("Login Credentials", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.clear();
+                        editor.commit();
+                        finish();
+
+                        Intent intent=new Intent(Navigation.this,LoginMailActivity.class);
+                        startActivity(intent);
+                    }
+                });
+
+        builder1.setNegativeButton(
+                "No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
     }
 }

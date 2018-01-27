@@ -122,7 +122,7 @@ public class NewOrderdFragment extends Fragment {
 
 
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("resid", "37");
+                params.put("resid", ResIdNew);
                 Log.i("mmm", "" + params);
 
                 return params;

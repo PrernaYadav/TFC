@@ -10,7 +10,37 @@ public class OrderHistoryModel {
     String price;
     String username;
     String date;
-    String logo;
+    int logo;
+
+    public int getDelimg() {
+        return delimg;
+    }
+
+    public void setDelimg(int delimg) {
+        this.delimg = delimg;
+    }
+
+    int delimg;
+
+    public String getDel() {
+        return Del;
+    }
+
+    public void setDel(String del) {
+        Del = del;
+    }
+
+    String Del;
+
+    public String getDeliver() {
+        return deliver;
+    }
+
+    public void setDeliver(String deliver) {
+        this.deliver = deliver;
+    }
+
+    String deliver;
 
     public OrderHistoryModel() {
         this.proname = proname;
@@ -64,11 +94,11 @@ public class OrderHistoryModel {
         this.date = date;
     }
 
-    public String getLogo() {
+    public int getLogo() {
         return logo;
     }
 
-    public void setLogo(String logo) {
+    public void setLogo(int logo) {
         this.logo = logo;
     }
 }

@@ -1,14 +1,13 @@
 package com.infosolution.dev.tfc.business;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -18,14 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.infosolution.dev.tfc.Class.ConfigInfo;
 import com.infosolution.dev.tfc.R;
-import com.infosolution.dev.tfc.activities.LoginMailActivity;
-import com.infosolution.dev.tfc.activities.SignupUserActivity;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.JSONTokener;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -69,6 +61,12 @@ public class UserRegNext extends AppCompatActivity {
         spclosingdays = findViewById(R.id.sp_closingday);
         spcloasingtime = findViewById(R.id.sp_closingtime);
         btnsignup=findViewById(R.id.btn_signupbusiinxt);
+
+        Typeface typefaceregular = Typeface.createFromAsset(getAssets(), "font/tahoma.ttf");
+        Typeface typefacebold = Typeface.createFromAsset(getAssets(), "font/tahomabd.ttf");
+
+        btnsignup.setTypeface(typefacebold);
+
 
         btnsignup.setOnClickListener(new View.OnClickListener() {
             @Override

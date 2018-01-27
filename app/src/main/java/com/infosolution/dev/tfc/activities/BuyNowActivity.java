@@ -2,30 +2,19 @@ package com.infosolution.dev.tfc.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
-import com.infosolution.dev.tfc.Class.ConfigInfo;
 import com.infosolution.dev.tfc.R;
 import com.infosolution.dev.tfc.user.CommentsActivity;
 import com.infosolution.dev.tfc.user.PostCommentActivity;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class BuyNowActivity extends AppCompatActivity {
 
@@ -69,6 +58,26 @@ public class BuyNowActivity extends AppCompatActivity {
         tvviewcom=findViewById(R.id.tv_viewcommbuy);
         tvpostcom=findViewById(R.id.tv_postcommbuy);
         btnbuy=findViewById(R.id.btn_buynow);
+
+
+        Typeface typefaceregular = Typeface.createFromAsset(getAssets(), "font/tahoma.ttf");
+        Typeface typefacebold = Typeface.createFromAsset(getAssets(), "font/tahomabd.ttf");
+
+        tvqty.setTypeface(typefaceregular);
+        tvprice.setTypeface(typefaceregular);
+        tvtime.setTypeface(typefaceregular);
+        tvadd.setTypeface(typefaceregular);
+        tvviewcom.setTypeface(typefaceregular);
+        tvpostcom.setTypeface(typefaceregular);
+        btnbuy.setTypeface(typefacebold);
+
+
+
+
+
+
+
+
 
         tvqty.setText(qty);
         tvprice.setText(price);

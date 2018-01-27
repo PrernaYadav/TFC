@@ -168,12 +168,20 @@ public class UploadedMenuFragment extends Fragment {
                         String Logo = object.getString("img1");
                         String Price = object.getString("menu_rate");
                         String Qty = object.getString("quantity_left");
+                        String foodtype= object.getString("food_type");
 
                         UploadedMenu uploadedMenu= new UploadedMenu();
                         uploadedMenu.setPronameupld(ProductName);
                         uploadedMenu.setTiminguplad(Timing);
                         uploadedMenu.setPriceupld(Price);
                         uploadedMenu.setQtyupld(Qty);
+                        uploadedMenu.setImgupld(Logo);
+
+                        if (foodtype.equals("Non-Veg")){
+                            uploadedMenu.setImgveg(R.drawable.red);
+                        }else if (foodtype.equals("Veg")){
+                            uploadedMenu.setImgveg(R.drawable.green);
+                        }
                         uploadedMenuList.add(uploadedMenu);
 
                     }

@@ -2,6 +2,7 @@ package com.infosolution.dev.tfc.user;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -41,6 +42,9 @@ public class PostCommentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment);
 
+        Typeface typefaceregular = Typeface.createFromAsset(getAssets(), "font/tahoma.ttf");
+        Typeface typefacebold = Typeface.createFromAsset(getAssets(), "font/tahomabd.ttf");
+
 //fetching required values
 
         final SharedPreferences prefs = getSharedPreferences("useriddsign", MODE_PRIVATE);
@@ -53,8 +57,13 @@ public class PostCommentActivity extends AppCompatActivity {
 
 
         etcom=findViewById(R.id.et_com);
-        tvcount=findViewById(R.id.tv_count);
+        tvcount=findViewById(R.id.tv_counttt);
         btnpost=findViewById(R.id.btn_postcom);
+
+        etcom.setTypeface(typefaceregular);
+        tvcount.setTypeface(typefaceregular);
+        btnpost.setTypeface(typefacebold);
+
         btnpost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

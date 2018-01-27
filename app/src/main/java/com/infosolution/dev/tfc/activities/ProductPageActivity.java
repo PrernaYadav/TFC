@@ -2,10 +2,8 @@ package com.infosolution.dev.tfc.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
+import android.graphics.Typeface;
 import android.net.Uri;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,8 +26,6 @@ import com.infosolution.dev.tfc.user.PostCommentActivity;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static java.security.AccessController.getContext;
 
 public class ProductPageActivity extends AppCompatActivity {
 
@@ -54,6 +50,13 @@ public class ProductPageActivity extends AppCompatActivity {
         tvplus = (TextView) findViewById(R.id.tv_plus);
         tvtotalprice = (TextView) findViewById(R.id.tv_totalprice);
         btnbook=findViewById(R.id.btn_bookpay);
+
+        Typeface typefaceregular = Typeface.createFromAsset(getAssets(), "font/tahoma.ttf");
+        Typeface typefacebold = Typeface.createFromAsset(getAssets(), "font/tahomabd.ttf");
+
+        proqty.setTypeface(typefacebold);
+        tvtotalprice.setTypeface(typefaceregular);
+        btnbook.setTypeface(typefacebold);
 
 
         //fetching values from sharedpreferece

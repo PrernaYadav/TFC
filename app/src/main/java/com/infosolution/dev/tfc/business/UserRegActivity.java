@@ -1,6 +1,7 @@
 package com.infosolution.dev.tfc.business;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -37,10 +38,23 @@ public class UserRegActivity extends AppCompatActivity {
         etzip=findViewById(R.id.et_zipreg);
         etwebsite=findViewById(R.id.et_websitereg);
         etotherInfo=findViewById(R.id.et_otherinfo);
-
-
-
         btnnxt=findViewById(R.id.btn_nextreg);
+
+        Typeface typefaceregular = Typeface.createFromAsset(getAssets(), "font/tahoma.ttf");
+        Typeface typefacebold = Typeface.createFromAsset(getAssets(), "font/tahomabd.ttf");
+
+        etemail.setTypeface(typefaceregular);
+        etadd.setTypeface(typefaceregular);
+        etcountry.setTypeface(typefaceregular);
+        etcity.setTypeface(typefaceregular);
+        etzip.setTypeface(typefaceregular);
+        etwebsite.setTypeface(typefaceregular);
+        etotherInfo.setTypeface(typefaceregular);
+        btnnxt.setTypeface(typefacebold);
+
+
+
+
 
         btnnxt.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,7 +39,7 @@ public class LoginMailActivity extends AppCompatActivity {
     private Button btnsignin;
     private String email, password;
     private ProgressDialog pdLoading;
-    private TextView tvsignup;
+    private TextView tvsignup,tvfrgtpass;
     //  String userID,Email;
 
     private SharedPreferences sh_Pref;
@@ -59,6 +60,17 @@ public class LoginMailActivity extends AppCompatActivity {
         etpassword = findViewById(R.id.et_password);
         btnsignin = findViewById(R.id.btn_signin);
         tvsignup = findViewById(R.id.tv_signupp);
+        tvfrgtpass = findViewById(R.id.tv_forgotpass);
+
+
+        Typeface typefaceregular = Typeface.createFromAsset(getAssets(), "font/tahoma.ttf");
+        Typeface typefacebold = Typeface.createFromAsset(getAssets(), "font/tahomabd.ttf");
+
+        etusername.setTypeface(typefaceregular);
+        etpassword.setTypeface(typefaceregular);
+        btnsignin.setTypeface(typefacebold);
+        tvsignup.setTypeface(typefaceregular);
+        tvfrgtpass.setTypeface(typefaceregular);
 
 
         sh_Pref = getSharedPreferences("Login Credentials", PRIVATE_MODE);
@@ -116,45 +128,75 @@ public class LoginMailActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
 
+
                         sharedPreferences();
+                        JSONObject jsono = null;
+                        try {
+                            jsono = new JSONObject(response);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        if (response.equals("Success")) {
+
+                            Log.e("pppppppppp", jsono.toString());
+
+                            Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
+                        }
+
 
 
                         try {
 
 
-                            JSONObject jsono = new JSONObject(response);
-                            JSONArray jarray = jsono.getJSONArray("record");
-                            for (int i = 0; i < jarray.length(); i++) {
-                                JSONObject object = jarray.getJSONObject(i);
-                                String userID = object.getString("userid");
-                                String Email = object.getString("email");
-                                String Username = object.getString("name");
-                                String Phone = object.getString("phone");
 
 
-                                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("useriddsign", Context.MODE_PRIVATE);
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.putString("userid", userID);
-                                editor.putString("email", Email);
-                                editor.putString("usernamesign", Username);
-                                editor.putString("phone", Phone);
-                                editor.commit();
+
+
+
+
+
+                                JSONArray jarray = jsono.getJSONArray("record");
+                                for (int i = 0; i < jarray.length(); i++) {
+                                    JSONObject object = jarray.getJSONObject(i);
+                                    String userID = object.getString("userid");
+                                    String Email = object.getString("email");
+                                    String Username = object.getString("name");
+                                    String Phone = object.getString("phone");
+                                    String Profileimage = object.getString("Profile");
+
+
+                                    SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("useriddsign", Context.MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putString("userid", userID);
+                                    editor.putString("email", Email);
+                                    editor.putString("usernamesign", Username);
+                                    editor.putString("phone", Phone);
+                                    editor.putString("profileimage", Profileimage);
+                                    editor.commit();
+
+                                    Intent intent=new Intent(LoginMailActivity.this,Navigation.class);
+                                    startActivity(intent);
+
+
+
+                                }
+
+
+
+
+
+                            } catch(JSONException e){
+                                e.printStackTrace();
                             }
 
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-
-                        Intent intent = new Intent(LoginMailActivity.this, Navigation.class);
-                        // set the new task and clear flags
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent);
 
 
 
-                        Log.e("pppppppppp", response);
+
+
                         // Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
 //                        pdLoading.dismiss();
 
@@ -178,6 +220,7 @@ public class LoginMailActivity extends AppCompatActivity {
 
                 params.put("email", email);
                 params.put("password", password);
+                Log.i("userpar",""+params);
 
 
                 return params;
@@ -188,6 +231,8 @@ public class LoginMailActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
+
+
 
 
     public void sharedPreferences() {

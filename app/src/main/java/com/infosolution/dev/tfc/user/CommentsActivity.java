@@ -2,6 +2,7 @@ package com.infosolution.dev.tfc.user;
 
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -58,6 +59,7 @@ public class CommentsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_comments);
         FetchComments();
         rvcomments = findViewById(R.id.rv_comments);
+
         view=findViewById(R.id.ab_comments);
         ivbackk=findViewById(R.id.iv);
         ivbackk.setOnClickListener(new View.OnClickListener() {
