@@ -3,6 +3,7 @@ package com.infosolution.dev.tfc.business_fragments;
 
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -38,6 +40,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -53,13 +56,14 @@ import static android.content.Context.MODE_PRIVATE;
 public class NewOrderdFragment extends Fragment {
 
 
-  private   RecyclerView rcnew;
+    private RecyclerView rcnew;
     NewOrderAdapter newOrderAdapter;
     private ArrayList<NewOrderModel> newOrderModelList;
     private ProgressDialog pd;
-  private   String ResIdNew;
+    private String ResIdNew;
     private ProgressDialog pdLoading;
     private String responew;
+    private TextView emptyView;
 
 
 
@@ -72,27 +76,29 @@ public class NewOrderdFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v= inflater.inflate(R.layout.fragment_new_orderd, container, false);
+        View v = inflater.inflate(R.layout.fragment_new_orderd, container, false);
+
 
         final SharedPreferences prefs = getContext().getSharedPreferences("LogindataB", MODE_PRIVATE);
         ResIdNew = prefs.getString("resid", null);
 
+
         rcnew = v.findViewById(R.id.rc_newOrder);
+        emptyView = v.findViewById(R.id.text_empty);
+
 
         rcnew.setLayoutManager(new LinearLayoutManager(getContext()));
         rcnew.setHasFixedSize(true);
 
 
         rcnew.setAdapter(newOrderAdapter);
-        newOrderModelList= new ArrayList<>();
+        newOrderModelList = new ArrayList<>();
         newOrderAdapter = new NewOrderAdapter(newOrderModelList, getContext(), getActivity());
         FetchnewOrder();
         new NewOrder().execute();
 
 
-
-
-  return v;
+        return v;
     }
 
     private void FetchnewOrder() {
@@ -102,11 +108,35 @@ public class NewOrderdFragment extends Fragment {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.e("response..........", response);
-                        responew=response;
 
-                        Log.i("respon",""+responew);
+                        JSONObject jsono = null;
+                        try {
+                            JSONObject json_response = new JSONObject(response);
+                            String status = json_response.getString("status");
 
+                            if (status.equals("success"))
+                            {
+
+                                rcnew.setVisibility(View.VISIBLE);
+                                emptyView.setVisibility(View.GONE);
+                               // Toast.makeText(getContext(), "successs", Toast.LENGTH_LONG).show();
+                            }
+                            else
+                            {
+                              //  Toast.makeText(getContext(),"failed"+ status, Toast.LENGTH_LONG).show();
+                                rcnew.setVisibility(View.GONE);
+                                emptyView.setVisibility(View.VISIBLE);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+
+
+
+                        responew = response;
+                        Log.i("respon", "" + responew);
 
 
                     }
@@ -168,11 +198,11 @@ public class NewOrderdFragment extends Fragment {
                         String Phone = object.getString("phone");
                         String UserName = object.getString("name");
                         String MenuName = object.getString("menu_name");
-                        String ColTime= object.getString("collection_time");
-                        String Date= object.getString("date");
-                        String stat= object.getString("status");
+                        String ColTime = object.getString("collection_time");
+                        String Date = object.getString("date");
+                        String stat = object.getString("status");
 
-                        NewOrderModel newOrderModel= new NewOrderModel();
+                        NewOrderModel newOrderModel = new NewOrderModel();
                         newOrderModel.setCollectionTime(ColTime);
                         newOrderModel.setUsername(UserName);
                         newOrderModel.setStatus(stat);
@@ -181,7 +211,6 @@ public class NewOrderdFragment extends Fragment {
                         newOrderModel.setMenuName(MenuName);
                         newOrderModel.setPrice(Price);
                         newOrderModel.setDate(Date);
-
 
 
                         newOrderModelList.add(newOrderModel);
@@ -206,6 +235,6 @@ public class NewOrderdFragment extends Fragment {
     }
 
 
-    }
+}
 
 

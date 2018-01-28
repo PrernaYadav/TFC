@@ -31,6 +31,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -47,6 +48,8 @@ public class CommentsActivity extends AppCompatActivity {
     String res;
     private ImageView ivbackk;
     private TextView textView;
+    private TextView emptyView;
+
 
 
 
@@ -57,6 +60,7 @@ public class CommentsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comments);
+
         FetchComments();
         rvcomments = findViewById(R.id.rv_comments);
 
@@ -78,7 +82,7 @@ public class CommentsActivity extends AppCompatActivity {
         });
 
 
-
+        emptyView = findViewById(R.id.tv_empty);
 
 
 
@@ -111,6 +115,30 @@ public class CommentsActivity extends AppCompatActivity {
                         Log.e("response..........", response);
                        // Toast.makeText(CommentsActivity.this, response.toString(), Toast.LENGTH_LONG).show();
 
+
+
+                        JSONObject jsono = null;
+                        try {
+                            JSONObject json_response = new JSONObject(response);
+                            String status = json_response.getString("status");
+
+                            if (status.equals("success"))
+                            {
+
+                                rvcomments.setVisibility(View.VISIBLE);
+                                emptyView.setVisibility(View.GONE);
+                                // Toast.makeText(getContext(), "successs", Toast.LENGTH_LONG).show();
+                            }
+                            else
+                            {
+                                //  Toast.makeText(getContext(),"failed"+ status, Toast.LENGTH_LONG).show();
+                                rvcomments.setVisibility(View.GONE);
+                                emptyView.setVisibility(View.VISIBLE);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
                         Log.i("ressssss..",""+response.toString());
 
                         res=response;
@@ -128,8 +156,8 @@ public class CommentsActivity extends AppCompatActivity {
 
 
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("resid", "1");
-                params.put("menuid", "1");
+                params.put("resid", ResId);
+                params.put("menuid", MenuId);
 
                 return params;
             }

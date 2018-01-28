@@ -32,6 +32,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
     private ImageView ivbackk;
     private TextView textView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,7 +91,9 @@ public class ChangePasswordActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(ChangePasswordActivity.this,response.toString(),Toast.LENGTH_LONG).show();
+                        Toast.makeText(ChangePasswordActivity.this,"Password Has been Changed Successfully.",Toast.LENGTH_LONG).show();
+                        etoldpass.setText("Enter Old Password");
+                        etnewpass.setText("Enter New Password");
                     }
                 },
                 new Response.ErrorListener() {

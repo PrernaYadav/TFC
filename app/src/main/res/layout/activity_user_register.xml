@@ -51,7 +51,7 @@
         android:textCursorDrawable="@null"
         android:textStyle="bold" />
 
-    <EditText
+   <!-- <EditText
         android:id="@+id/et_countryreg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -67,7 +67,21 @@
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
         android:textCursorDrawable="@null"
-        android:textStyle="bold" />
+        android:textStyle="bold" />-->
+
+
+        <Spinner
+            android:id="@+id/sp_country"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/dropdown"
+            android:padding="16dp"
+            android:paddingLeft="22dp"
+            android:textAlignment="center"
+            android:paddingRight="22dp"/>
 
     <EditText
         android:id="@+id/et_cityreg"

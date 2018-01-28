@@ -10,7 +10,7 @@ public class OrderHistoryModel {
     String price;
     String username;
     String date;
-    int logo;
+    String logo;
 
     public int getDelimg() {
         return delimg;
@@ -94,11 +94,11 @@ public class OrderHistoryModel {
         this.date = date;
     }
 
-    public int getLogo() {
+    public String getLogo() {
         return logo;
     }
 
-    public void setLogo(int logo) {
+    public void setLogo(String logo) {
         this.logo = logo;
     }
 }

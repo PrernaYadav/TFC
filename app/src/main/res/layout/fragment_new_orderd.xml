@@ -5,12 +5,28 @@
     android:orientation="vertical"
     tools:context="com.infosolution.dev.tfc.business_fragments.NewOrderdFragment">
 
+
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rc_newOrder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
+
         />
+
+
+        <TextView
+            android:id="@+id/text_empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="No Data Available"
+            android:gravity="center"
+            android:textSize="25dp"
+            android:textColor="@android:color/black"
+            android:visibility="gone"
+
+            />
 
 
 

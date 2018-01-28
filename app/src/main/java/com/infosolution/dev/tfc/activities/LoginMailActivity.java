@@ -22,6 +22,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.infosolution.dev.tfc.Class.ConfigInfo;
 import com.infosolution.dev.tfc.R;
+import com.infosolution.dev.tfc.business.LoginBusinessActivity;
 import com.infosolution.dev.tfc.user.Navigation;
 
 import org.json.JSONArray;
@@ -123,11 +124,19 @@ public class LoginMailActivity extends AppCompatActivity {
     private void Login() {
 
 
+        pdLoading = new ProgressDialog(LoginMailActivity.this);
+        //this method will be running on UI thread
+        pdLoading.setMessage("\tLoading...");
+        pdLoading.setCancelable(false);
+        pdLoading.show();
+
+
         StringRequest stringRequest = new StringRequest(Request.Method.POST, ConfigInfo.login,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
 
+                        pdLoading.dismiss();
 
                         sharedPreferences();
                         JSONObject jsono = null;
@@ -140,24 +149,16 @@ public class LoginMailActivity extends AppCompatActivity {
 
                             Log.e("pppppppppp", jsono.toString());
 
-                            Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
+                          //  Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
+                          //  Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
                         }
 
 
 
                         try {
 
-
-
-
-
-
-
-
-
-                                JSONArray jarray = jsono.getJSONArray("record");
+                            JSONArray jarray = jsono.getJSONArray("record");
                                 for (int i = 0; i < jarray.length(); i++) {
                                     JSONObject object = jarray.getJSONObject(i);
                                     String userID = object.getString("userid");
@@ -178,27 +179,11 @@ public class LoginMailActivity extends AppCompatActivity {
 
                                     Intent intent=new Intent(LoginMailActivity.this,Navigation.class);
                                     startActivity(intent);
-
-
-
                                 }
 
-
-
-
-
-                            } catch(JSONException e){
+                        } catch(JSONException e){
                                 e.printStackTrace();
                             }
-
-
-
-
-
-
-
-                        // Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
-//                        pdLoading.dismiss();
 
 
                     }
@@ -206,7 +191,7 @@ public class LoginMailActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        pdLoading.dismiss();
 
                         Toast.makeText(LoginMailActivity.this, error.toString(), Toast.LENGTH_LONG).show();
 

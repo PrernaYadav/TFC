@@ -25,4 +25,16 @@
         android:layout_marginTop="2dp"
         />
 
+  <TextView
+      android:id="@+id/emptyhisbusi"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:text="No Data Available"
+      android:gravity="center"
+      android:textSize="25dp"
+      android:textColor="@android:color/black"
+      android:visibility="gone"
+
+      />
+
 </LinearLayout>

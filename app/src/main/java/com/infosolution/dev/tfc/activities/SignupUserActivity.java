@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
@@ -25,6 +26,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.infosolution.dev.tfc.Class.ConfigInfo;
 import com.infosolution.dev.tfc.R;
+import com.infosolution.dev.tfc.business.LoginBusinessActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -53,6 +55,7 @@ public class SignupUserActivity extends AppCompatActivity {
     private  String encodedResume;
     private static final int REQUEST_CODE_JOB = 1;
     Bitmap bmap;
+
 
     private static final String email_pattern =
             "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
@@ -152,10 +155,20 @@ public class SignupUserActivity extends AppCompatActivity {
 
     private void Signup() {
 
+        pdLoading = new ProgressDialog(SignupUserActivity.this);
+        //this method will be running on UI thread
+        pdLoading.setMessage("\tLoading...");
+        pdLoading.setCancelable(false);
+        pdLoading.show();
+
         StringRequest stringRequest = new StringRequest(Request.Method.POST, ConfigInfo.registration,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+
+                        pdLoading.dismiss();
+                        Toast.makeText(SignupUserActivity.this,"User Registered Successfully ! Your varification link has been sended to your email",Toast.LENGTH_LONG).show();
+                        UploadApi();
 
                         try {
                             JSONObject json = (JSONObject) new JSONTokener(response).nextValue();
@@ -171,10 +184,17 @@ public class SignupUserActivity extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        UploadApi();
+                        final Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                Intent intent = new Intent(SignupUserActivity.this, LoginMailActivity.class);
+                                startActivity(intent);
 
-                        Intent intent = new Intent(SignupUserActivity.this, LoginMailActivity.class);
-                        startActivity(intent);
+                            }
+                        }, 2000);
+
+
 
 
 
@@ -187,7 +207,7 @@ public class SignupUserActivity extends AppCompatActivity {
 
                         Toast.makeText(SignupUserActivity.this, error.toString(), Toast.LENGTH_LONG).show();
 
-//                       pdLoading.dismiss();
+                      pdLoading.dismiss();
                     }
                 }) {
             @Override
@@ -276,7 +296,7 @@ public class SignupUserActivity extends AppCompatActivity {
                     public void onResponse(String response) {
 
                         Log.i("uploadres",""+response);
-                        Toast.makeText(SignupUserActivity.this,"User Registered Successfully ! Your varification link has been sended to your email",Toast.LENGTH_LONG).show();
+//                        Toast.makeText(SignupUserActivity.this,"User Registered Successfully ! Your varification link has been sended to your email",Toast.LENGTH_LONG).show();
                     }
                 },
                 new Response.ErrorListener() {

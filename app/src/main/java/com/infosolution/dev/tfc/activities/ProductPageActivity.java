@@ -22,6 +22,7 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.infosolution.dev.tfc.Class.ConfigInfo;
 import com.infosolution.dev.tfc.R;
+import com.infosolution.dev.tfc.user.Navigation;
 import com.infosolution.dev.tfc.user.PostCommentActivity;
 
 import java.util.HashMap;
@@ -93,9 +94,10 @@ public class ProductPageActivity extends AppCompatActivity {
                 .into(ivproduct);
 
         tvtotalprice.setText(price);
+        pricee=tvtotalprice.getText().toString();
+        qtyy=proqty.getText().toString();
 
-    /*    qtyyy = Integer.parseInt(proqty.getText().toString());
-        priceee = Integer.parseInt(price);*/
+
         tvminus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -143,10 +145,13 @@ public class ProductPageActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Intent intent = new Intent(ProductPageActivity.this,PostCommentActivity.class);
+
+                        Log.i("abcres",""+response.toString());
+
+                        Intent intent = new Intent(ProductPageActivity.this,Navigation.class);
                         startActivity(intent);
 
-                        Toast.makeText(ProductPageActivity.this,response.toString(),Toast.LENGTH_LONG).show();
+                        Toast.makeText(ProductPageActivity.this,"Your Order has been placed successfully",Toast.LENGTH_LONG).show();
                     }
                 },
                 new Response.ErrorListener() {

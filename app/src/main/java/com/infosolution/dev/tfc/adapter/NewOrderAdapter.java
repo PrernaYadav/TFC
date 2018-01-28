@@ -67,6 +67,7 @@ public class NewOrderAdapter extends RecyclerView.Adapter<NewOrderAdapter.MyView
     @Override
     public int getItemCount() {
         if (newOrderModelArrayList == null)
+
             return 0;
         return newOrderModelArrayList.size();
     }

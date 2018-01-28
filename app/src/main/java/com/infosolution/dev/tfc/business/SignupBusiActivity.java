@@ -53,13 +53,13 @@ public class SignupBusiActivity extends AppCompatActivity {
 
 
 
-        tvsignin.setOnClickListener(new View.OnClickListener() {
+       /* tvsignin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(SignupBusiActivity.this,LoginBusinessActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
         btnsignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

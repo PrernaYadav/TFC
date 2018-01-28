@@ -59,10 +59,10 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
         holder.tvdeliver.setText(orderHistoryModelArrayList.get(position).getDeliver());
         holder.del.setText(orderHistoryModelArrayList.get(position).getDel());
         holder.delimg.setImageResource(orderHistoryModelArrayList.get(position).getDelimg());
-        holder.ivlogohis.setImageResource(orderHistoryModelArrayList.get(position).getLogo());
+       // holder.ivlogohis.setImageResource(orderHistoryModelArrayList.get(position).getLogo());
 
 
-       // Glide.with(activity).load(orderHistoryModel.getLogo()).into(holder.ivlogohis);
+        Glide.with(activity).load(orderHistoryModel.getLogo()).into(holder.ivlogohis);
 
 
         Del= orderHistoryModelArrayList.get(position).getDeliver();

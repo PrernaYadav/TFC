@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -20,12 +21,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.infosolution.dev.tfc.Class.ConfigInfo;
 import com.infosolution.dev.tfc.R;
 import com.infosolution.dev.tfc.adapter.OrderHistoryAdapter;
 import com.infosolution.dev.tfc.model.OrderHistoryModel;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -45,6 +48,7 @@ public class OrderHisBusinessFragment extends Fragment {
     private ArrayList<OrderHistoryModel> historyModelArrayList;
 
     private String ResId;
+    private TextView emptyView;
 
 
     public OrderHisBusinessFragment() {
@@ -64,6 +68,7 @@ public class OrderHisBusinessFragment extends Fragment {
 
         rvhistorybusi=v.findViewById(R.id.rc_orderhisbusi);
 
+        emptyView = v.findViewById(R.id.emptyhisbusi);
 
         rvhistorybusi.setLayoutManager(new LinearLayoutManager(getContext()));
         rvhistorybusi.setHasFixedSize(true);
@@ -92,15 +97,44 @@ public class OrderHisBusinessFragment extends Fragment {
                         // Toast.makeText(getContext(), response.toString(), Toast.LENGTH_LONG).show();
 
 
+
+
+
+
+
+
+
                         try {
 
                             JSONObject jsono = new JSONObject(response);
+
+
+                            /*String status = jsono.getString("status");
+
+                            Log.i("status",""+status);
+
+                            if (status.equals("success"))
+                            {
+
+                                rvhistorybusi.setVisibility(View.VISIBLE);
+                                emptyView.setVisibility(View.GONE);
+                                 Toast.makeText(getContext(), "successs", Toast.LENGTH_LONG).show();
+                            }
+                            else
+                            {
+                                  Toast.makeText(getContext(),"failed"+ status, Toast.LENGTH_LONG).show();
+                                rvhistorybusi.setVisibility(View.GONE);
+                                emptyView.setVisibility(View.VISIBLE);
+                            }*/
+
+
+
                             JSONArray jarray = jsono.getJSONArray("data");
                             for (int i = 0; i < jarray.length(); i++) {
                                 JSONObject object = jarray.getJSONObject(i);
                                 String    ProductName = object.getString("menu_name");
                                 String  Quantity = object.getString("quantity");
-                                //String  Logo = object.getString("logo");
+                             //   String  Logo = object.getString("logo");
                                 String   Price = object.getString("price");
                                 String   Date = object.getString("date");
                                 String   UserName = object.getString("user_name");
@@ -114,7 +148,8 @@ public class OrderHisBusinessFragment extends Fragment {
                                 orderHistoryModel.setDate(Date);
                                 orderHistoryModel.setUsername(UserName);
                                 orderHistoryModel.setDel(Deliver);
-                                orderHistoryModel.setLogo(R.drawable.icon);
+                              //  orderHistoryModel.setLogo(Logo);
+
 
 
                                 if (Deliver.equals("1")){
@@ -150,6 +185,7 @@ public class OrderHisBusinessFragment extends Fragment {
 
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("res_id", ResId);
+                Log.i("asdf",""+params);
 
                 return params;
             }

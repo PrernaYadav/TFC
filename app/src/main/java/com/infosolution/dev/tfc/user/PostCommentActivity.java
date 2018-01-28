@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.infosolution.dev.tfc.Class.ConfigInfo;
 import com.infosolution.dev.tfc.R;
 
@@ -30,12 +32,16 @@ import java.util.Map;
 public class PostCommentActivity extends AppCompatActivity {
 
     private EditText etcom;
-    private TextView tvcount;
+    private TextView tvcount,tvcomname;
     private String ResId,UserId,UserName,Comment;
     private RatingBar rb;
-    String Rating;
-
+   private String Rating,UserImage;
+private ImageView iv;
     private Button btnpost;
+    private View view;
+    private ImageView ivbackk;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,17 +54,32 @@ public class PostCommentActivity extends AppCompatActivity {
 //fetching required values
 
         final SharedPreferences prefs = getSharedPreferences("useriddsign", MODE_PRIVATE);
-        UserId = prefs.getString("useriddsign", null);
+        UserId = prefs.getString("userid", null);
         UserName = prefs.getString("usernamesign", null);
+        UserImage = prefs.getString("profileimage", null);
 
         final SharedPreferences prefss = getSharedPreferences("resmenuDetails", MODE_PRIVATE);
         ResId = prefss.getString("resid", null);
 
+        view=findViewById(R.id.ab_changepassworda);
+        ivbackk=findViewById(R.id.iv);
+        ivbackk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
 
 
         etcom=findViewById(R.id.et_com);
+        tvcomname=findViewById(R.id.tv_comname);
         tvcount=findViewById(R.id.tv_counttt);
         btnpost=findViewById(R.id.btn_postcom);
+        iv=findViewById(R.id.ivvvvv);
+
+        tvcomname.setText(UserName);
+        Glide.with(this).load(UserImage).into(iv);
 
         etcom.setTypeface(typefaceregular);
         tvcount.setTypeface(typefaceregular);
@@ -110,46 +131,42 @@ public class PostCommentActivity extends AppCompatActivity {
     }
 
     private void Post() {
+
         Rating=String.valueOf(rb.getRating());
-
-        Toast.makeText(PostCommentActivity.this, String.valueOf(rb.getRating()), Toast.LENGTH_SHORT).show();
-
         Comment=etcom.getText().toString();
+
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, ConfigInfo.PostComment,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
+                        Log.e("response.....email.....", response);
+                        Toast.makeText(PostCommentActivity.this, "Your Comment Has been Posted Successfully", Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(PostCommentActivity.this,CommentsActivity.class);
                         startActivity(intent);
 
-         Toast.makeText(PostCommentActivity.this,response.toString(),Toast.LENGTH_LONG).show();
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
-
-                        Toast.makeText(PostCommentActivity.this, error.toString(), Toast.LENGTH_LONG).show();
-
-//                        pdLoading.dismiss();
+                     //   Toast.makeText(PostCommentActivity.this, error.toString(), Toast.LENGTH_LONG).show();
                     }
                 }) {
             @Override
             protected Map<String, String> getParams() {
+
 
                 Map<String, String> params = new HashMap<String, String>();
 
                 params.put("resid", ResId);
                 params.put("comment", Comment);
                 params.put("username", UserName);
-                params.put("userimage", "123");
+                params.put("userimage", UserImage);
                 params.put("rating", Rating);
                 params.put("userid", UserId);
 
-                Log.i("paramscomment",""+params);
+                Log.i("bnm",""+params);
 
 
                 return params;

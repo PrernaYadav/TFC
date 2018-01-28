@@ -118,11 +118,11 @@ public class UploadMenuFragment extends Fragment {
 
 
 
-        bmap  = BitmapFactory.decodeResource(getResources(),  R.drawable.icon);
+       /* bmap  = BitmapFactory.decodeResource(getResources(),  R.drawable.icon);
         ByteArrayOutputStream bao = new ByteArrayOutputStream();
         bmap.compress(Bitmap.CompressFormat.JPEG, 100, bao);
         byte [] ba = bao.toByteArray();
-        encodedResume=Base64.encodeToString(ba,Base64.DEFAULT);
+        encodedResume=Base64.encodeToString(ba,Base64.DEFAULT);*/
 
      /*   etmenuname.setHint(MN);
         etprice.setHint(P);
@@ -200,7 +200,7 @@ public class UploadMenuFragment extends Fragment {
 
 
 
-                        Toast.makeText(getContext(), error.toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), "Please Upload Menu Image", Toast.LENGTH_LONG).show();
 
                       pdLoading.dismiss();
                     }

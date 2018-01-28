@@ -318,7 +318,7 @@ public class HomeFragment extends Fragment  {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getContext(), error.toString(), Toast.LENGTH_LONG).show();
+                     //   Toast.makeText(getContext(), error.toString(), Toast.LENGTH_LONG).show();
                     }
                 }) {
             @Override
@@ -499,7 +499,7 @@ public class HomeFragment extends Fragment  {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.e("response..........", response.toString());
+                       // Log.e("response..........", response.toString());
                         resuser = response;
                         new FetchEventPreviousDataTask().execute();
                         Log.i("resuserr",""+resuser);
@@ -510,7 +510,7 @@ public class HomeFragment extends Fragment  {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getContext(), error.toString(), Toast.LENGTH_LONG).show();
+                      //  Toast.makeText(getContext(), error.toString(), Toast.LENGTH_LONG).show();
                     }
                 }) {
             @Override

@@ -82,13 +82,13 @@ public class LoginBusinessActivity extends AppCompatActivity {
         tvforgtpass.setTypeface(typefacebold);
 
 
-     /*   tvsignup.setOnClickListener(new View.OnClickListener() {
+        tvsignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent= new Intent(LoginBusinessActivity.this,SignupBusiActivity.class);
                 startActivity(intent);
             }
-        });*/
+        });
 
 
         btnsignin.setOnClickListener(new View.OnClickListener() {
