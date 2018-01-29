@@ -133,11 +133,15 @@ else
         longitude=location.getLongitude();
         latitde=location.getLatitude();
 
+        String lon,lat;
+        lat = String.valueOf(latitde);
+        lon = String.valueOf(longitude);
+
 
         SharedPreferences sharedPreferencess = getApplicationContext().getSharedPreferences("latlong", Context.MODE_PRIVATE);
         SharedPreferences.Editor editorr = sharedPreferencess.edit();
-        editorr.putString("lat", String.valueOf(latitde));
-        editorr.putString("laong", String.valueOf(longitude));
+        editorr.putString("lat",lat );
+        editorr.putString("laong",lon);
         editorr.commit();
 
 

@@ -27,6 +27,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.infosolution.dev.tfc.Class.ConfigInfo;
 import com.infosolution.dev.tfc.R;
 import com.infosolution.dev.tfc.business.LoginBusinessActivity;
@@ -61,7 +62,7 @@ public class UploadMenuFragment extends Fragment {
     private Spinner spfoodtype,spcollectiontime;
     private  Context ctx;
     private Bitmap bmap;
-    private  String MN,P,Q;
+    private  String MN,P,Q,T;
 
 
 
@@ -106,13 +107,14 @@ public class UploadMenuFragment extends Fragment {
         Intent intent= getActivity().getIntent();
         MN=intent.getStringExtra("menuname");
         P=intent.getStringExtra("price");
-        //T=intent.getStringExtra("timing");
+        T=intent.getStringExtra("img");
         Q=intent.getStringExtra("qty");
 
 
         etmenuname.setText(MN);
         etprice.setText(P);
         etqtyleft.setText(Q);
+        Glide.with(this).load(T).into(ivmenuimage);
 
 
 
@@ -188,6 +190,8 @@ public class UploadMenuFragment extends Fragment {
                         etmenuname.setText("Please Enter Menu Name");
                         etprice.setText("Please Enter Price");
                         etqtyleft.setText("Please Enter Quantity left");
+
+                        ivmenuimage.setImageResource(android.R.color.transparent);
 
                         pdLoading.dismiss();
 

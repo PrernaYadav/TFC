@@ -23,6 +23,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:hint="Shreyansh "
+        android:textColor="@android:color/black"
         android:textColorHint="#676767"
         android:gravity="center_horizontal"
         android:backgroundTint="@android:color/white"/>
@@ -36,6 +37,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:hint="Shreyansh srivastva"
+        android:textColor="@android:color/black"
         android:textColorHint="#676767"
         android:gravity="center_horizontal"
         android:backgroundTint="@android:color/white"/>
@@ -48,6 +50,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:textColor="@android:color/black"
         android:hint="Abc@gmail.com"
         android:inputType="textEmailAddress"
         android:textColorHint="#676767"
@@ -62,6 +65,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:hint="85638669863"
+        android:textColor="@android:color/black"
         android:inputType="number"
         android:textColorHint="#676767"
         android:gravity="center"

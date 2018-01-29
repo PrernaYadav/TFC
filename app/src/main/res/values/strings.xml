@@ -5,39 +5,54 @@
     <string name="select">Choose a country</string>
     <string-array name="cusine_array">
         <item>Cusine Type</item>
-        <item>A</item>
-        <item>B</item>
-        <item>C</item>
-        <item>D</item>
+        <item>Chinese</item>
+        <item>Italian</item>
+        <item>Indian</item>
+        <item>Mugalai</item>
+        <item>Thai</item>
+        <item>American</item>
+        <item>Maxican</item>
+        <item>Cajun</item>
+        <item>Soul Food</item>
+        <item>Greek Cuisine</item>
+        <item>Japanese</item>
+        <item>Moroccan</item>
+        <item>French Food</item>
+        <item>Others</item>
     </string-array>
 
     <string name="selectday">Choose a country</string>
     <string-array name="closingDay_array">
         <item>Closing Days</item>
-        <item>A</item>
-        <item>B</item>
-        <item>C</item>
-        <item>D</item>
+        <item>Sunday</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
     </string-array>
 
     <string name="selecttime">Choose a country</string>
     <string-array name="closingTime_array">
         <item>Closing Time</item>
-        <item>A</item>
-        <item>B</item>
-        <item>C</item>
-        <item>D</item>
+        <item>Early Night</item>
+        <item>Mid Night</item>
+        <item>Late Night</item>
+
     </string-array>
 
     <string name="foodtype">Choose a FoodType</string>
     <string-array name="foodtype_array">
+        <item>Please Select Food Type</item>
         <item>Veg</item>
         <item>Non-Veg</item>
-        <item>Both</item>
+
     </string-array>
 
     <string name="collectiontime">Choose a FoodType</string>
     <string-array name="collection_array">
+        <item>Collection Time</item>
         <item>12.00 - 12.30 PM</item>
         <item>12.30 - 1.00 PM</item>
         <item>1.00 - 1.30 PM</item>

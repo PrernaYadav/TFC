@@ -1,6 +1,7 @@
 package com.infosolution.dev.tfc.business_fragments;
 
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.infosolution.dev.tfc.R;
+import com.infosolution.dev.tfc.user.ChangePasswordActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -66,6 +68,8 @@ public class EditProfileBusiFragment extends Fragment {
         btnchangepass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent =new Intent(getContext(), ChangePasswordActivity.class);
+                startActivity(intent);
 
             }
         });

@@ -98,6 +98,7 @@ public class UploadedMenuAdapter extends RecyclerView.Adapter<UploadedMenuAdapte
                     intent.putExtra("price",uploadedMenusList.get(pos).getPriceupld());
                     intent.putExtra("timing",uploadedMenusList.get(pos).getTiminguplad());
                     intent.putExtra("qty",uploadedMenusList.get(pos).getQtyupld());
+                    intent.putExtra("img",uploadedMenusList.get(pos).getImgupld());
 
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 

@@ -2,12 +2,15 @@ package com.infosolution.dev.tfc.business_fragments;
 
 
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +34,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -47,7 +51,7 @@ public class OrderHisBusinessFragment extends Fragment {
 
     private ArrayList<OrderHistoryModel> historyModelArrayList;
 
-    private String ResId;
+    private String ResId,im;
     private TextView emptyView;
 
 
@@ -61,6 +65,13 @@ public class OrderHisBusinessFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_order_his, container, false);
+
+
+        Bitmap bmap  = BitmapFactory.decodeResource(getResources(),  R.drawable.icon);
+        ByteArrayOutputStream bao = new ByteArrayOutputStream();
+        bmap.compress(Bitmap.CompressFormat.JPEG, 100, bao);
+        byte [] ba = bao.toByteArray();
+          im= Base64.encodeToString(ba,Base64.DEFAULT);
 
 
         final SharedPreferences prefs = getActivity().getSharedPreferences("LogindataB", MODE_PRIVATE);
@@ -148,7 +159,7 @@ public class OrderHisBusinessFragment extends Fragment {
                                 orderHistoryModel.setDate(Date);
                                 orderHistoryModel.setUsername(UserName);
                                 orderHistoryModel.setDel(Deliver);
-                              //  orderHistoryModel.setLogo(Logo);
+                                orderHistoryModel.setLogo(im);
 
 
 

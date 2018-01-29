@@ -138,25 +138,52 @@ public class LoginMailActivity extends AppCompatActivity {
 
                         pdLoading.dismiss();
 
-                        sharedPreferences();
-                        JSONObject jsono = null;
                         try {
-                            jsono = new JSONObject(response);
+                            JSONObject jsono = new JSONObject(response);
+                            String status = jsono.getString("status");
+
+                            if (status.equals("Success"))
+                            {
+
+                                JSONArray jarray = jsono.getJSONArray("record");
+                                for (int i = 0; i < jarray.length(); i++) {
+                                    JSONObject object = jarray.getJSONObject(i);
+                                    String userID = object.getString("userid");
+                                    String Email = object.getString("email");
+                                    String Username = object.getString("name");
+                                    String Phone = object.getString("phone");
+                                    String Profileimage = object.getString("Profile");
+
+
+                                    SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("useriddsign", Context.MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putString("userid", userID);
+                                    editor.putString("email", Email);
+                                    editor.putString("usernamesign", Username);
+                                    editor.putString("phone", Phone);
+                                    editor.putString("profileimage", Profileimage);
+                                    editor.commit();
+
+
+                                }
+
+
+                                // Toast.makeText(LoginMailActivity.this, "successs", Toast.LENGTH_LONG).show();
+                                Intent intent=new Intent(LoginMailActivity.this,Navigation.class);
+                                startActivity(intent);
+                            }
+                            else
+                            {
+                                  Toast.makeText(LoginMailActivity.this,"Please Check Your Login Credential.", Toast.LENGTH_LONG).show();
+
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        if (response.equals("Success")) {
-
-                            Log.e("pppppppppp", jsono.toString());
-
-                          //  Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
-                        } else {
-                          //  Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
-                        }
 
 
 
-                        try {
+                     /*   try {
 
                             JSONArray jarray = jsono.getJSONArray("record");
                                 for (int i = 0; i < jarray.length(); i++) {
@@ -177,13 +204,12 @@ public class LoginMailActivity extends AppCompatActivity {
                                     editor.putString("profileimage", Profileimage);
                                     editor.commit();
 
-                                    Intent intent=new Intent(LoginMailActivity.this,Navigation.class);
-                                    startActivity(intent);
+
                                 }
 
                         } catch(JSONException e){
                                 e.printStackTrace();
-                            }
+                            }*/
 
 
                     }

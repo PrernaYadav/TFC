@@ -12,191 +12,191 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:backgroundTint="@android:color/white"
-        android:src="@drawable/uploadimage"
-        android:tint="@android:color/white" />
+            <ImageView
+                android:id="@+id/imagepicker"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
 
-    <EditText
-        android:id="@+id/et_namesignupbusi"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@android:color/white"
-        android:gravity="center"
-        android:hint="Please Enter Contact Person"
-        android:inputType="text"
-        android:padding="10dp"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white"
-        android:textCursorDrawable="@null"
-        android:textStyle="bold" />
+                android:src="@drawable/uploadimage" />
 
-    <EditText
-        android:id="@+id/et_storenamebusi"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@android:color/white"
-        android:gravity="center"
-        android:hint="Please Enter Store Name"
-        android:inputType="text"
-        android:padding="10dp"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white"
-        android:textCursorDrawable="@null"
-        android:textStyle="bold" />
+            <EditText
+                android:id="@+id/et_namesignupbusi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@android:color/white"
+                android:gravity="center"
+                android:hint="Please Enter Contact Person"
+                android:inputType="text"
+                android:padding="10dp"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white"
+                android:textCursorDrawable="@null"
+                android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/et_positionbusi"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@android:color/white"
-        android:gravity="center"
-        android:hint="Please Enter Your Position"
-        android:inputType="text"
-        android:padding="10dp"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white"
-        android:textCursorDrawable="@null"
-        android:textStyle="bold" />
+            <EditText
+                android:id="@+id/et_storenamebusi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@android:color/white"
+                android:gravity="center"
+                android:hint="Please Enter Store Name"
+                android:inputType="text"
+                android:padding="10dp"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white"
+                android:textCursorDrawable="@null"
+                android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/et_phonebusi"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@android:color/white"
-        android:gravity="center"
-        android:hint="Please Enter Phone Number"
-        android:inputType="number"
-        android:padding="10dp"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white"
-        android:textCursorDrawable="@null"
-        android:textStyle="bold" />
+            <EditText
+                android:id="@+id/et_positionbusi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@android:color/white"
+                android:gravity="center"
+                android:hint="Please Enter Your Position"
+                android:inputType="text"
+                android:padding="10dp"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white"
+                android:textCursorDrawable="@null"
+                android:textStyle="bold" />
 
-
-    <EditText
-        android:id="@+id/et_othphonebusi"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@android:color/white"
-        android:gravity="center"
-        android:hint="Please Enter Other Phone Number"
-        android:inputType="number"
-        android:padding="10dp"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white"
-        android:textCursorDrawable="@null"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/et_passbusinxt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@android:color/white"
-        android:gravity="center"
-        android:hint="Please Enter Password"
-        android:inputType="textPassword"
-        android:padding="10dp"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white"
-        android:textCursorDrawable="@null"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/et_reppassbusi"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@android:color/white"
-        android:gravity="center"
-        android:hint="Repeat Password"
-        android:inputType="textPassword"
-        android:padding="10dp"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white"
-        android:textCursorDrawable="@null"
-        android:textStyle="bold" />
+            <EditText
+                android:id="@+id/et_phonebusi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@android:color/white"
+                android:gravity="center"
+                android:hint="Please Enter Phone Number"
+                android:inputType="number"
+                android:padding="10dp"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white"
+                android:textCursorDrawable="@null"
+                android:textStyle="bold" />
 
 
-    <Button
-        android:id="@+id/btn_signupbusinxt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/yellowborder"
-        android:text="Next"
-        android:textAllCaps="true"
-        android:textColor="#fff"
-        android:textStyle="bold" />
+            <EditText
+                android:id="@+id/et_othphonebusi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@android:color/white"
+                android:gravity="center"
+                android:hint="Please Enter Other Phone Number"
+                android:inputType="number"
+                android:padding="10dp"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white"
+                android:textCursorDrawable="@null"
+                android:textStyle="bold" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:layout_marginBottom="20dp"
-        android:orientation="horizontal">
+            <EditText
+                android:id="@+id/et_passbusinxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@android:color/white"
+                android:gravity="center"
+                android:hint="Please Enter Password"
+                android:inputType="textPassword"
+                android:padding="10dp"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white"
+                android:textCursorDrawable="@null"
+                android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Already Account?"
-            android:textColor="@android:color/white"
-            android:textStyle="bold" />
+            <EditText
+                android:id="@+id/et_reppassbusi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@android:color/white"
+                android:gravity="center"
+                android:hint="Repeat Password"
+                android:inputType="textPassword"
+                android:padding="10dp"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white"
+                android:textCursorDrawable="@null"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/tv__signinsignupbusi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="Sign In"
 
-            android:textColor="@android:color/white"
-            android:textStyle="bold" />
+            <Button
+                android:id="@+id/btn_signupbusinxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/yellowborder"
+                android:text="Next"
+                android:textAllCaps="true"
+                android:textColor="#fff"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Already Account?"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv__signinsignupbusi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="Sign In"
+
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold" />
 
 
-    </LinearLayout>
+            </LinearLayout>
 
-    </LinearLayout>
+        </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -25,6 +25,7 @@ import com.infosolution.dev.tfc.R;
 import com.infosolution.dev.tfc.user.Navigation;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -134,10 +135,60 @@ public class LoginBusinessActivity extends AppCompatActivity {
 
                         sharedPreferencess();
                         Log.e("pppppppppp", response);
-                     //   Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
+
                         pdLoading.dismiss();
 
+
                         try {
+                            JSONObject result = new JSONObject(response);
+                            String status = result.getString("status");
+
+                            if (status.equals("Success"))
+                            {
+
+
+                                JSONArray routearray = result.getJSONArray("record");
+                                for (int i = 0; i < routearray.length(); i++) {
+
+                                    ResIdB = routearray.getJSONObject(i).getString("res_id");
+                                    EmailB = routearray.getJSONObject(i).getString("email");
+                                    Phone1B = routearray.getJSONObject(i).getString("phone1");
+                                    Phone2B = routearray.getJSONObject(i).getString("phone2");
+                                    ProImg = routearray.getJSONObject(i).getString("logo");
+                                    Nameee = routearray.getJSONObject(i).getString("name");
+
+                                    SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("LogindataB", Context.MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putString("resid", ResIdB);
+                                    editor.putString("emailid", EmailB);
+                                    editor.putString("phone1", Phone1B);
+                                    editor.putString("phone2", Phone2B);
+                                    editor.putString("proimg", ProImg);
+                                    editor.putString("name", Nameee);
+                                    editor.commit();
+
+                                }
+                                Intent intent = new Intent(LoginBusinessActivity.this,BusinessNavigation.class);
+                                startActivity(intent);
+
+                              //   Toast.makeText(LoginBusinessActivity.this, "successs", Toast.LENGTH_LONG).show();
+                            }
+                            else
+                            {
+                                  Toast.makeText(LoginBusinessActivity.this,"Please Check Your Login Credential.", Toast.LENGTH_LONG).show();
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+
+
+
+
+
+                     /*   try {
 
 
                             JSONObject result = new JSONObject(response);
@@ -165,10 +216,9 @@ public class LoginBusinessActivity extends AppCompatActivity {
 
                         } catch (Exception e) {
                             e.printStackTrace();
-                        }
+                        }*/
 //                        pdLoading.dismiss();
-                        Intent intent = new Intent(LoginBusinessActivity.this,BusinessNavigation.class);
-                        startActivity(intent);
+
 
                     }
                 },

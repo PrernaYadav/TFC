@@ -74,6 +74,7 @@ public class Navigation extends AppCompatActivity
 /*View view=navigationView.inflateHeaderView(R.layout.nav_header_main);*/
         tvnavheader = (TextView)header.findViewById(R.id.tv_navheader);
         ivimg = (ImageView) header.findViewById(R.id.imageViewnavheader);
+        Glide.with(this).load(Imagee).into(ivimg);
       tvnavheader.setText(Namee);
 
 

@@ -201,6 +201,10 @@ public class NewOrderdFragment extends Fragment {
                         String ColTime = object.getString("collection_time");
                         String Date = object.getString("date");
                         String stat = object.getString("status");
+                        String Delid = object.getString("del_id");
+                        String Userid = object.getString("user_id");
+                        String Resid = object.getString("res_id");
+                        String Menuid = object.getString("menu_id");
 
                         NewOrderModel newOrderModel = new NewOrderModel();
                         newOrderModel.setCollectionTime(ColTime);
@@ -211,7 +215,10 @@ public class NewOrderdFragment extends Fragment {
                         newOrderModel.setMenuName(MenuName);
                         newOrderModel.setPrice(Price);
                         newOrderModel.setDate(Date);
-
+                        newOrderModel.setDelid(Delid);
+                        newOrderModel.setUserIdNew(Userid);
+                        newOrderModel.setResIdNew(Resid);
+                        newOrderModel.setMenuId(Menuid);
 
                         newOrderModelList.add(newOrderModel);
 

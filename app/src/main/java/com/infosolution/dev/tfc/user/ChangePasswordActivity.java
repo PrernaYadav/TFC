@@ -1,5 +1,6 @@
 package com.infosolution.dev.tfc.user;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +21,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.infosolution.dev.tfc.Class.ConfigInfo;
 import com.infosolution.dev.tfc.R;
+import com.infosolution.dev.tfc.business.LoginBusinessActivity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -94,6 +96,9 @@ public class ChangePasswordActivity extends AppCompatActivity {
                         Toast.makeText(ChangePasswordActivity.this,"Password Has been Changed Successfully.",Toast.LENGTH_LONG).show();
                         etoldpass.setText("Enter Old Password");
                         etnewpass.setText("Enter New Password");
+
+                        Intent intent = new Intent(ChangePasswordActivity.this, LoginBusinessActivity.class);
+                        startActivity(intent);
                     }
                 },
                 new Response.ErrorListener() {

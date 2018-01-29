@@ -15,6 +15,44 @@ public class NewOrderModel {
     String date;
     //String Logo;
     String Status;
+    String UserIdNew;
+
+    public String getUserIdNew() {
+        return UserIdNew;
+    }
+
+    public void setUserIdNew(String userIdNew) {
+        UserIdNew = userIdNew;
+    }
+
+    public String getResIdNew() {
+        return ResIdNew;
+    }
+
+    public void setResIdNew(String resIdNew) {
+        ResIdNew = resIdNew;
+    }
+
+    public String getMenuId() {
+        return MenuId;
+    }
+
+    public void setMenuId(String menuId) {
+        MenuId = menuId;
+    }
+
+    String ResIdNew;
+    String MenuId;
+
+    public String getDelid() {
+        return Delid;
+    }
+
+    public void setDelid(String delid) {
+        Delid = delid;
+    }
+
+    String Delid;
 
 
 

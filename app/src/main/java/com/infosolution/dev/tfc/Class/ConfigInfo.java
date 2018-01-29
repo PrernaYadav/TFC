@@ -23,4 +23,7 @@ public class ConfigInfo {
     public static final String newOrder= "http://thefoodcircle.co.uk/restaurant/demo/web-service/orderDetail.php";
 
 
+    public static final String resbusi= "http://thefoodcircle.co.uk/restaurant/demo/web-service/res_registration.php";
+
+
 }
