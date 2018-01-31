@@ -34,9 +34,10 @@ public class ProductPageActivity extends AppCompatActivity {
     int count=1;
     String qty,price,proimage;
     int qtyyy,priceee,totalpricee;
-    private String tp,qtyy;
+    private String tp,qtyy,numberOnly;
     Button btnbook;
     private ImageView ivproduct;
+    private  View view;
 
    private String UserId,ResId,MenuID,MenuName,pricee,Quantity;
 
@@ -44,6 +45,15 @@ public class ProductPageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_page);
+
+        view=findViewById(R.id.tonight);
+        ImageView iv = findViewById(R.id.ivv);
+        iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         ivproduct=findViewById(R.id.iv_proimg);
         proqty = (TextView) findViewById(R.id.tv_proqty);
@@ -84,6 +94,13 @@ public class ProductPageActivity extends AppCompatActivity {
         price=intent.getStringExtra("priceee");
         proimage=intent.getStringExtra("img");
 
+
+        numberOnly= price.replaceAll("[^0-9]", "");
+
+
+
+
+
         qtyyy = Integer.parseInt(qty);
 
 
@@ -93,7 +110,7 @@ public class ProductPageActivity extends AppCompatActivity {
                 .load(Uri.parse(proimage))
                 .into(ivproduct);
 
-        tvtotalprice.setText(price);
+        tvtotalprice.setText(numberOnly);
         pricee=tvtotalprice.getText().toString();
         qtyy=proqty.getText().toString();
 
@@ -111,7 +128,7 @@ public class ProductPageActivity extends AppCompatActivity {
 
                 qtyy=proqty.getText().toString();
 
-                 tp = String.valueOf(Integer.parseInt(qtyy) * Integer.parseInt(price));
+                 tp = String.valueOf(Integer.parseInt(qtyy) * Integer.parseInt(numberOnly));
                  tvtotalprice.setText(tp);
                 pricee=tvtotalprice.getText().toString();
               //  Quantity=proqty.getText().toString();
@@ -130,7 +147,7 @@ public class ProductPageActivity extends AppCompatActivity {
                 proqty.setText(String.valueOf(count));
                 qtyy=proqty.getText().toString();
 
-                tp = String.valueOf(Integer.parseInt(qtyy) * Integer.parseInt(price));
+                tp = String.valueOf(Integer.parseInt(qtyy) * Integer.parseInt(numberOnly));
                 tvtotalprice.setText(tp);
                 pricee=tvtotalprice.getText().toString();
 

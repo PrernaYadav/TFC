@@ -73,6 +73,14 @@ public class LoginMailActivity extends AppCompatActivity {
         tvsignup.setTypeface(typefaceregular);
         tvfrgtpass.setTypeface(typefaceregular);
 
+        tvfrgtpass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent(LoginMailActivity.this,ForgotPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         sh_Pref = getSharedPreferences("Login Credentials", PRIVATE_MODE);
         boolean check = sh_Pref.getBoolean(IS_LOGIN, false);
@@ -136,6 +144,8 @@ public class LoginMailActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
 
+                        Log.i("sigresss",""+response.toString());
+
                         pdLoading.dismiss();
 
                         try {
@@ -153,6 +163,17 @@ public class LoginMailActivity extends AppCompatActivity {
                                     String Username = object.getString("name");
                                     String Phone = object.getString("phone");
                                     String Profileimage = object.getString("Profile");
+                                    String loginstatus = object.getString("login_status");
+                                    
+                                    if (loginstatus.equals("0")){
+                                        Toast.makeText(LoginMailActivity.this, "Please verify your email id, We have sent a verification mail on your registered mail id on signup process.", Toast.LENGTH_SHORT).show();
+                                    }else {
+                                        sharedPreferences();
+                                        Intent intent=new Intent(LoginMailActivity.this,Navigation.class);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(intent);
+
+                                    }
 
 
                                     SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("useriddsign", Context.MODE_PRIVATE);
@@ -169,8 +190,7 @@ public class LoginMailActivity extends AppCompatActivity {
 
 
                                 // Toast.makeText(LoginMailActivity.this, "successs", Toast.LENGTH_LONG).show();
-                                Intent intent=new Intent(LoginMailActivity.this,Navigation.class);
-                                startActivity(intent);
+
                             }
                             else
                             {
@@ -183,33 +203,7 @@ public class LoginMailActivity extends AppCompatActivity {
 
 
 
-                     /*   try {
 
-                            JSONArray jarray = jsono.getJSONArray("record");
-                                for (int i = 0; i < jarray.length(); i++) {
-                                    JSONObject object = jarray.getJSONObject(i);
-                                    String userID = object.getString("userid");
-                                    String Email = object.getString("email");
-                                    String Username = object.getString("name");
-                                    String Phone = object.getString("phone");
-                                    String Profileimage = object.getString("Profile");
-
-
-                                    SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("useriddsign", Context.MODE_PRIVATE);
-                                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                                    editor.putString("userid", userID);
-                                    editor.putString("email", Email);
-                                    editor.putString("usernamesign", Username);
-                                    editor.putString("phone", Phone);
-                                    editor.putString("profileimage", Profileimage);
-                                    editor.commit();
-
-
-                                }
-
-                        } catch(JSONException e){
-                                e.printStackTrace();
-                            }*/
 
 
                     }

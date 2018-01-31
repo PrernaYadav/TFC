@@ -27,6 +27,7 @@
             android:padding="8dp"
             android:imeOptions="actionDone"
             android:singleLine="true"
+            android:textCursorDrawable="@null"
             android:textColor="@android:color/black"
             android:textColorHint="#40000000" />
     </LinearLayout>
@@ -111,7 +112,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rc_home"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginTop="2dp" />
 
 

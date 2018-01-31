@@ -1,4 +1,4 @@
-package com.infosolution.dev.tfc.user;
+package com.infosolution.dev.tfc.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -21,13 +21,15 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.infosolution.dev.tfc.Class.ConfigInfo;
 import com.infosolution.dev.tfc.R;
-import com.infosolution.dev.tfc.activities.LoginMailActivity;
 import com.infosolution.dev.tfc.business.LoginBusinessActivity;
+import com.infosolution.dev.tfc.user.ChangePasswordActivity;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class ChangePasswordActivity extends AppCompatActivity {
+public class ChangePasswordBusiActivity extends AppCompatActivity {
+
+
     private EditText etoldpass,etnewpass;
     private Button btnupdate;
     private  String oldpass,newpass,email;
@@ -35,16 +37,15 @@ public class ChangePasswordActivity extends AppCompatActivity {
     private ImageView ivbackk,iv;
     private TextView textView;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_change_password);
+        setContentView(R.layout.activity_change_password_busi);
 
-        etoldpass=findViewById(R.id.et_enteroldpass);
-        etnewpass=findViewById(R.id.et_enternewpass);
-        btnupdate=findViewById(R.id.btn_updatepass);
 
+        etoldpass=findViewById(R.id.et_enteroldpassbusi);
+        etnewpass=findViewById(R.id.et_enternewpassbusi);
+        btnupdate=findViewById(R.id.btn_updatepassbusi);
 
         Typeface typefaceregular = Typeface.createFromAsset(getAssets(), "font/tahoma.ttf");
         Typeface typefacebold = Typeface.createFromAsset(getAssets(), "font/tahomabd.ttf");
@@ -53,7 +54,8 @@ public class ChangePasswordActivity extends AppCompatActivity {
         etnewpass.setTypeface(typefaceregular);
         btnupdate.setTypeface(typefacebold);
 
-
+        final SharedPreferences prefs = getSharedPreferences("LogindataB", MODE_PRIVATE);
+        email = prefs.getString("emailid", null);
 
 
 
@@ -66,13 +68,6 @@ public class ChangePasswordActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
-        final SharedPreferences prefs = getSharedPreferences("useriddsign", MODE_PRIVATE);
-        email = prefs.getString("email", null);
-
         btnupdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,23 +75,25 @@ public class ChangePasswordActivity extends AppCompatActivity {
                 oldpass=etoldpass.getText().toString();
                 newpass=etnewpass.getText().toString();
 
-                ChangePass();
+                ChangePassword();
 
             }
         });
+
+
     }
 
-    private void ChangePass() {
+    private void ChangePassword() {
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, ConfigInfo.changePass,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://thefoodcircle.co.uk/restaurant/demo/web-service/change-businesspassword.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(ChangePasswordActivity.this,"Password Has been Changed Successfully.",Toast.LENGTH_LONG).show();
+                        Toast.makeText(ChangePasswordBusiActivity.this,"Password Has been Changed Successfully.",Toast.LENGTH_LONG).show();
                         etoldpass.setText("Enter Old Password");
                         etnewpass.setText("Enter New Password");
 
-                     /*   Intent intent = new Intent(ChangePasswordActivity.this, LoginMailActivity.class);
+                      /*  Intent intent = new Intent(ChangePasswordBusiActivity.this, LoginBusinessActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                         finish();*/
@@ -107,7 +104,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
 
 
-                        Toast.makeText(ChangePasswordActivity.this, error.toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(ChangePasswordBusiActivity.this, error.toString(), Toast.LENGTH_LONG).show();
 
 //                        pdLoading.dismiss();
                     }

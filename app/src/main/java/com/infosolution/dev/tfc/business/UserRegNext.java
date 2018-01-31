@@ -1,5 +1,7 @@
 package com.infosolution.dev.tfc.business;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -23,6 +25,7 @@ import com.infosolution.dev.tfc.R;
 import com.infosolution.dev.tfc.activities.LoginMailActivity;
 import com.infosolution.dev.tfc.activities.SignupUserActivity;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -35,7 +38,8 @@ public class UserRegNext extends AppCompatActivity {
     private Button btnsignup;
     private String EmailId, Address, Country, City, ZipCode, Website, OtherInfo;
     private String Contactperson, Storename, Position,  Password;
-   private String Phone1, Phone2;
+   private String Phone1, Phone2,encoded,Res;
+   int residd;
 
     private String Cusinetype, CloasingDay, CloasingTime,Lat,Longi,ImagePick;
 
@@ -75,6 +79,12 @@ public class UserRegNext extends AppCompatActivity {
 
 
 
+        final SharedPreferences preferences = getSharedPreferences("Imagepicker", MODE_PRIVATE);
+        encoded = preferences.getString("imagee", null);
+
+
+
+
 
 
 
@@ -98,7 +108,9 @@ public class UserRegNext extends AppCompatActivity {
                 CloasingDay = spclosingdays.getSelectedItem().toString();
                 CloasingTime = spcloasingtime.getSelectedItem().toString();
 
+                ImageUpload();
                 SignupBusi();
+
 
 
 
@@ -112,11 +124,28 @@ public class UserRegNext extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
-
                         Toast.makeText(UserRegNext.this,"Restaurent Registered Successfully ! Ragistration activation code is send to your mail",Toast.LENGTH_LONG).show();
 
+
+
                         Log.i("busisuc",""+response);
+
+
+                        try {
+
+                            JSONObject mainObject = new JSONObject(response);
+                            JSONObject uniObject = mainObject.getJSONObject("data");
+                              residd = uniObject.getInt("id");
+
+                            Res = String.valueOf(residd);
+
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+
+
 
                         Intent intent=new Intent(UserRegNext.this,LoginBusinessActivity.class);
                         startActivity(intent);
@@ -160,6 +189,12 @@ public class UserRegNext extends AppCompatActivity {
                 params.put("website",Website);
                 params.put("zip",ZipCode);
 
+
+                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("country", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("country", Country);
+                editor.commit();
+
                 Log.i("busiparamm",""+params);
 
 
@@ -175,4 +210,54 @@ public class UserRegNext extends AppCompatActivity {
     }
 
 
-}
+    private void ImageUpload() {
+
+
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://thefoodcircle.co.uk/restaurant/demo/web-service/res_logo_upload.php",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+
+                         Toast.makeText(UserRegNext.this,"Your image has been sucessfully updated",Toast.LENGTH_LONG).show();
+                      //  Toast.makeText(UserRegNext.this, response.toString(), Toast.LENGTH_SHORT).show();
+
+
+
+                        Log.i("uploadimageres",""+response.toString());
+
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+
+                        Toast.makeText(UserRegNext.this, error.toString(), Toast.LENGTH_LONG).show();
+
+
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+
+                Map<String, String> params = new HashMap<String, String>();
+
+                params.put("image", encoded);
+                params.put("resid", Res);
+
+                Log.i("uploadimage",""+params);
+
+
+                return params;
+            }
+
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+
+
+}}

@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             if (location != null)
                 onLocationChanged(location);
 else
-                Toast.makeText(getBaseContext(), "No Location Provider Found Check Your Code", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), " ", Toast.LENGTH_SHORT).show();
 
 
         }

@@ -38,10 +38,12 @@ import com.infosolution.dev.tfc.Class.ConfigInfo;
 import com.infosolution.dev.tfc.Class.RecyclerItemClickListener;
 import com.infosolution.dev.tfc.R;
 import com.infosolution.dev.tfc.activities.BuyNowActivity;
+import com.infosolution.dev.tfc.activities.LoginMailActivity;
 import com.infosolution.dev.tfc.activities.MainActivity;
 import com.infosolution.dev.tfc.activities.ProductPageActivity;
 import com.infosolution.dev.tfc.adapter.Homeadapter;
 import com.infosolution.dev.tfc.model.Home;
+import com.infosolution.dev.tfc.user.Navigation;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -144,7 +146,7 @@ public class HomeFragment extends Fragment  {
             public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
 
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                 //   city = etsearchcity.getText().toString();
+                    //   city = etsearchcity.getText().toString();
 
                     SharedPreferences shared = getContext().getSharedPreferences("etcity", Context.MODE_PRIVATE);
                     SharedPreferences.Editor et = shared.edit();
@@ -264,7 +266,7 @@ public class HomeFragment extends Fragment  {
                             home.setPrice(Price);
                             home.setQuantity(Quantity);
                             home.setProimage(Proimage);
-                           // home.setAvailimg(Availimg);
+                            // home.setAvailimg(Availimg);
 
                             if (Foodtype.equals("Veg")){
                                 home.setAvailimg(R.drawable.green);
@@ -301,24 +303,140 @@ public class HomeFragment extends Fragment  {
 
     private void Fetchcity() {
 
+        pd = new ProgressDialog(getContext());
+        pd.setMessage("loading");
+        pd.show();
+
         StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://thefoodcircle.co.uk/restaurant/demo/web-service/search_cityname.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         Log.e("response..........", response);
                         ressss = response;
-                        new FetchEventPreviousData().execute();
+                        homeList.clear();
+                        pd.dismiss();
+
+                        try {
+
+
+                            JSONObject jsono = new JSONObject(response);
+                            JSONArray jarray = jsono.getJSONArray("restaurents");
+
+                            for (int i = 0; i < jarray.length(); i++) {
+                                JSONObject object = jarray.getJSONObject(i);
+
+                                Username = object.getString("name");
+                                resID = object.getString("id");
+                                Logoo = object.getString("logo");
+                                Addresss = object.getString("address");
+                                fav = object.getString("fav_staus");
+                             //   int favv = Integer.parseInt(fav);
+
+
+                                SharedPreferences sharedPreferencess = getContext().getSharedPreferences("resmenuDetailss", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPreferencess.edit();
+                                editor.putString("log", Logoo);
+                                editor.putString("add", Addresss);
+                                editor.commit();
+
+                                Log.i("resname", "" + Username);
+                                Log.i("resId", "" + resID);
+                                Home home = new Home();
+
+                                if (fav.equals(1)) {
+
+                                    home.setFav(R.drawable.favselectedicon);
+                                } else if (fav.equals(0)){
+
+                                    home.setFav(R.drawable.fav);
+                                }
+                                home.setUsername(Username);
+                                home.setRes(resID);
+                                home.setFavstatus(fav);
+
+
+                                JSONObject jsono1 = new JSONObject(response);
+                                jarray = jsono.getJSONArray("restaurents");
+                                JSONArray jarray1 = object.getJSONArray("menu");
+
+                                for (int j = 0; j < jarray1.length(); j++) {
+                                    JSONObject object1 = jarray1.getJSONObject(j);
+
+                                    Proname = object1.getString("menu_name");
+                                    Timing = object1.getString("collection_time");
+                                    Price = object1.getString("menu_rate");
+                                    Quantity = object1.getString("quantity_left");
+                                    Proimage = object1.getString("img1");
+                                    Availimg = object1.getString("img2");
+                                    Fav = object1.getString("img3");
+                                    menuID = object1.getString("id");
+                                    CollectionTime = object1.getString("collection_time");
+                                    Foodtype = object1.getString("food_type");
+                                    Log.i("menuId", "" + menuID);
+
+                                    SharedPreferences sharedPreferences = getContext().getSharedPreferences("resmenuDetails", Context.MODE_PRIVATE);
+                                    SharedPreferences.Editor editorr = sharedPreferences.edit();
+                                    editorr.putString("name", Proname);
+                                    editorr.putString("resid", resID);
+                                    editorr.putString("menuid", menuID);
+                                    editorr.putString("quantityyy", Quantity);
+                                    editorr.putString("ct", CollectionTime);
+                                    editorr.commit();
+
+
+                                    if (Quantity.equals("0")){
+                                        home.setTrans(R.drawable.bgtrans);
+                                    }
+
+                                    home.setProname(Proname);
+                                    home.setTiming(Timing);
+                                    home.setPrice(Price);
+                                    home.setQuantity(Quantity);
+                                    home.setProimage(Proimage);
+                                    // home.setAvailimg(Availimg);
+
+                                    if (Foodtype.equals("Veg")){
+                                        home.setAvailimg(R.drawable.green);
+                                    }else if (Foodtype.equals("Non-Veg")){
+                                        home.setAvailimg(R.drawable.red);
+                                    }
+
+
+                                    //home.setFav(R.id.iv_fav);
+                                    homeList.add(home);
+
+                                }
+
+
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+
+
+
+
+
+
+                     //   new FetchEventPreviousData().execute();
                         // Toast.makeText(CommentsActivity.this, response.toString(), Toast.LENGTH_LONG).show();
 
                         Log.i("ressssss..", "" + response.toString());
 
-
+                        rcview.setAdapter(homeadapter);
+                        homeadapter.notifyDataSetChanged();
                     }
+
+
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                     //   Toast.makeText(getContext(), error.toString(), Toast.LENGTH_LONG).show();
+                        pd.dismiss();
+                        //   Toast.makeText(getContext(), error.toString(), Toast.LENGTH_LONG).show();
                     }
                 }) {
             @Override
@@ -343,129 +461,7 @@ public class HomeFragment extends Fragment  {
 
     }
 
-    public class FetchEventPreviousData extends AsyncTask<Object, Object, Boolean> {
 
-        @Override
-        protected void onPreExecute() {
-            pd = new ProgressDialog(getContext());
-            pd.setMessage("loading");
-            pd.show();
-        }
-
-        @Override
-        protected Boolean doInBackground(Object... params) {
-            try {
-              /*  String dataurl = "http://thefoodcircle.co.uk/restaurant/demo/web-service/res_list.php";
-                HttpPost httppost = new HttpPost(dataurl);
-                HttpClient httpclient = new DefaultHttpClient();
-                HttpResponse response = httpclient.execute(httppost);
-                Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
-                int status = response.getStatusLine().getStatusCode();
-                if (status == 200) {
-                    HttpEntity entity = response.getEntity();
-                    String data = EntityUtils.toString(entity);*/
-                JSONObject jsono = new JSONObject(ressss);
-                JSONArray jarray = jsono.getJSONArray("restaurents");
-
-                for (int i = 0; i < jarray.length(); i++) {
-                    JSONObject object = jarray.getJSONObject(i);
-
-                    Username = object.getString("name");
-                    resID = object.getString("id");
-                    Logoo = object.getString("logo");
-                    Addresss = object.getString("address");
-                    fav = object.getString("fav_staus");
-                    int favv = Integer.parseInt(fav);
-
-                    SharedPreferences sharedPreferencess = getContext().getSharedPreferences("resmenuDetailss", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferencess.edit();
-                    editor.putString("log", Logoo);
-                    editor.putString("add", Addresss);
-                    editor.commit();
-
-                    Log.i("resname", "" + Username);
-                    Log.i("resId", "" + resID);
-                    Home home = new Home();
-
-
-                    if (favv == 1) {
-
-                        home.setFav(R.drawable.favselectedicon);
-                    } else {
-                        home.setFav(R.drawable.fav);
-                    }
-                    home.setUsername(Username);
-                    home.setRes(resID);
-                    home.setFavstatus(fav);
-
-
-                    JSONObject jsono1 = new JSONObject(ressss);
-                    jarray = jsono.getJSONArray("restaurents");
-                    JSONArray jarray1 = object.getJSONArray("menu");
-
-                    for (int j = 0; j < jarray1.length(); j++) {
-                        JSONObject object1 = jarray1.getJSONObject(j);
-
-                        Proname = object1.getString("menu_name");
-                        Timing = object1.getString("collection_time");
-                        Price = object1.getString("menu_rate");
-                        Quantity = object1.getString("quantity_left");
-                        Proimage = object1.getString("img1");
-                        Availimg = object1.getString("img2");
-                        Fav = object1.getString("img3");
-                        CollectionTime = object1.getString("collection_time");
-                        Foodtype = object1.getString("food_type");
-                        menuID = object1.getString("id");
-                        Log.i("menuId", "" + menuID);
-
-                        SharedPreferences sharedPreferences = getContext().getSharedPreferences("resmenuDetails", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editorr = sharedPreferences.edit();
-                        editorr.putString("name", Proname);
-                        editorr.putString("resid", resID);
-                        editorr.putString("menuid", menuID);
-                        editorr.putString("ct", CollectionTime);
-                        editorr.putString("quantityyy", Quantity);
-                        editorr.commit();
-
-
-                        home.setProname(Proname);
-                        home.setTiming(Timing);
-                        home.setPrice(Price);
-                        home.setQuantity(Quantity);
-                        home.setProimage(Proimage);
-                       // home.setAvailimg(Availimg);
-
-                        if (Foodtype.equals("Veg")){
-                            home.setAvailimg(R.drawable.green);
-                        }else if (Foodtype.equals("Non-Veg")){
-                            home.setAvailimg(R.drawable.red);
-                        }
-
-
-                        //home.setFav(R.id.iv_fav);
-                        homeList.add(home);
-
-                    }
-
-
-                }
-
-
-                return true;
-//                }
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            }
-            return false;
-        }
-
-        @Override
-        protected void onPostExecute(Boolean result) {
-            pd.dismiss();
-            rcview.setAdapter(homeadapter);
-            homeadapter.notifyDataSetChanged();
-        }
-    }
 
     public void checkString() {
         final SharedPreferences ct = getContext().getSharedPreferences("usercityy", MODE_PRIVATE);
@@ -477,13 +473,13 @@ public class HomeFragment extends Fragment  {
 
 
         if (TextUtils.isEmpty(city)) {
-           // Toast.makeText(getContext(),"City Not Found",Toast.LENGTH_LONG).show();
+            // Toast.makeText(getContext(),"City Not Found",Toast.LENGTH_LONG).show();
             SendId();
 
 
 
         } else {
-         //   Toast.makeText(getContext(),"City Found",Toast.LENGTH_LONG).show();
+            //   Toast.makeText(getContext(),"City Found",Toast.LENGTH_LONG).show();
             Fetchcity();
 
 
@@ -499,7 +495,7 @@ public class HomeFragment extends Fragment  {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                       // Log.e("response..........", response.toString());
+                        // Log.e("response..........", response.toString());
                         resuser = response;
                         new FetchEventPreviousDataTask().execute();
                         Log.i("resuserr",""+resuser);
@@ -510,7 +506,7 @@ public class HomeFragment extends Fragment  {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                      //  Toast.makeText(getContext(), error.toString(), Toast.LENGTH_LONG).show();
+                        //  Toast.makeText(getContext(), error.toString(), Toast.LENGTH_LONG).show();
                     }
                 }) {
             @Override

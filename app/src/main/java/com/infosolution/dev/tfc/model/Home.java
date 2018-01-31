@@ -88,6 +88,16 @@ public class Home {
     String count;
     int fav;
 
+    public int getTrans() {
+        return Trans;
+    }
+
+    public void setTrans(int trans) {
+        Trans = trans;
+    }
+
+    int Trans;
+
     public Home(String foodType) {
         FoodType = foodType;
     }

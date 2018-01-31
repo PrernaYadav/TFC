@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:orientation="horizontal"
+    android:background="#2A2342"
+    >
+
+    <ImageView
+        android:id="@+id/ivchange"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/back"
+        android:layout_marginTop="13dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="5dp"
+        />
+
+    <TextView
+        android:id="@+id/tvchange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change Password"
+        android:layout_centerInParent="true"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        />
+
+</RelativeLayout>

@@ -22,6 +22,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.infosolution.dev.tfc.Class.ConfigInfo;
 import com.infosolution.dev.tfc.R;
+import com.infosolution.dev.tfc.activities.ForgotPasswordActivity;
+import com.infosolution.dev.tfc.activities.LoginMailActivity;
 import com.infosolution.dev.tfc.user.Navigation;
 
 import org.json.JSONArray;
@@ -35,17 +37,17 @@ import java.util.regex.Pattern;
 
 public class LoginBusinessActivity extends AppCompatActivity {
 
-    private EditText etusername,etpassword;
+    private EditText etusername, etpassword;
     private Button btnsignin;
-    private  String email,password;
+    private String email, password;
     private ProgressDialog pdLoading;
-    private TextView tvsignup,tvforgtpass;
-    private String ResIdB,EmailB,Phone1B,Phone2B,ProImg,Nameee;
+    private TextView tvsignup, tvforgtpass;
+  //  private String ResIdB, EmailB, Phone1B, Phone2B, ProImg, Nameee;
 
     private SharedPreferences sh_Preff;
     private SharedPreferences.Editor editorr;
     private static final String IS_LOGINN = "IsLoggedInn";
-   private int PRIVATE_MODE = 0;
+    private int PRIVATE_MODE = 0;
 
 
     private static final String email_pattern =
@@ -70,11 +72,20 @@ public class LoginBusinessActivity extends AppCompatActivity {
         }
 
 
-        etusername=findViewById(R.id.et_usernamebusi);
-        etpassword=findViewById(R.id.et_passwordbusi);
-        btnsignin=findViewById(R.id.btn_signinbusi);
-        tvsignup=findViewById(R.id.tv_signupbusi);
-        tvforgtpass=findViewById(R.id.tv_forgotpassbusi);
+        etusername = findViewById(R.id.et_usernamebusi);
+        etpassword = findViewById(R.id.et_passwordbusi);
+        btnsignin = findViewById(R.id.btn_signinbusi);
+        tvsignup = findViewById(R.id.tv_signupbusi);
+        tvforgtpass = findViewById(R.id.tv_forgotpassbusi);
+
+
+        tvforgtpass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent(LoginBusinessActivity.this,ForgotPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
 
         etusername.setTypeface(typefaceregular);
         etpassword.setTypeface(typefaceregular);
@@ -86,7 +97,7 @@ public class LoginBusinessActivity extends AppCompatActivity {
         tvsignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(LoginBusinessActivity.this,SignupBusiActivity.class);
+                Intent intent = new Intent(LoginBusinessActivity.this, SignupBusiActivity.class);
                 startActivity(intent);
             }
         });
@@ -96,8 +107,8 @@ public class LoginBusinessActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                email=etusername.getText().toString().trim();
-                password=etpassword.getText().toString().trim();
+                email = etusername.getText().toString().trim();
+                password = etpassword.getText().toString().trim();
 
 
 /*                 pdLoading = new ProgressDialog(LoginMailActivity.this);
@@ -112,7 +123,7 @@ public class LoginBusinessActivity extends AppCompatActivity {
                     etusername.setError("Invalid Email");
                 } else if (etpassword.getText().toString().trim().length() < 0) {
                     etpassword.setError("Password Length is short");
-                }else {
+                } else {
                     Loginbusi();
                 }
 
@@ -143,19 +154,19 @@ public class LoginBusinessActivity extends AppCompatActivity {
                             JSONObject result = new JSONObject(response);
                             String status = result.getString("status");
 
-                            if (status.equals("Success"))
-                            {
+                            if (status.equals("Success")) {
 
 
                                 JSONArray routearray = result.getJSONArray("record");
                                 for (int i = 0; i < routearray.length(); i++) {
 
-                                    ResIdB = routearray.getJSONObject(i).getString("res_id");
-                                    EmailB = routearray.getJSONObject(i).getString("email");
-                                    Phone1B = routearray.getJSONObject(i).getString("phone1");
-                                    Phone2B = routearray.getJSONObject(i).getString("phone2");
-                                    ProImg = routearray.getJSONObject(i).getString("logo");
-                                    Nameee = routearray.getJSONObject(i).getString("name");
+                                    String   ResIdB = routearray.getJSONObject(i).getString("res_id");
+                                    String  EmailB = routearray.getJSONObject(i).getString("email");
+                                    String   Phone1B = routearray.getJSONObject(i).getString("phone1");
+                                    String   Phone2B = routearray.getJSONObject(i).getString("phone2");
+                                    String  ProImg = routearray.getJSONObject(i).getString("logo");
+                                    String   Nameee = routearray.getJSONObject(i).getString("name");
+                                    String store = routearray.getJSONObject(i).getString("store_name");
 
                                     SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("LogindataB", Context.MODE_PRIVATE);
                                     SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -165,17 +176,16 @@ public class LoginBusinessActivity extends AppCompatActivity {
                                     editor.putString("phone2", Phone2B);
                                     editor.putString("proimg", ProImg);
                                     editor.putString("name", Nameee);
+                                    editor.putString("store", store);
                                     editor.commit();
 
                                 }
-                                Intent intent = new Intent(LoginBusinessActivity.this,BusinessNavigation.class);
+                                Intent intent = new Intent(LoginBusinessActivity.this, BusinessNavigation.class);
                                 startActivity(intent);
-
-                              //   Toast.makeText(LoginBusinessActivity.this, "successs", Toast.LENGTH_LONG).show();
-                            }
-                            else
-                            {
-                                  Toast.makeText(LoginBusinessActivity.this,"Please Check Your Login Credential.", Toast.LENGTH_LONG).show();
+                                finish();
+                                //   Toast.makeText(LoginBusinessActivity.this, "successs", Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(LoginBusinessActivity.this, "Please Check Your Login Credential.", Toast.LENGTH_LONG).show();
 
                             }
                         } catch (JSONException e) {
@@ -185,41 +195,6 @@ public class LoginBusinessActivity extends AppCompatActivity {
 
 
 
-
-
-
-                     /*   try {
-
-
-                            JSONObject result = new JSONObject(response);
-                            JSONArray routearray = result.getJSONArray("record");
-                            for (int i = 0; i < routearray.length(); i++) {
-
-                                ResIdB = routearray.getJSONObject(i).getString("res_id");
-                                EmailB = routearray.getJSONObject(i).getString("email");
-                                Phone1B = routearray.getJSONObject(i).getString("phone1");
-                                Phone2B = routearray.getJSONObject(i).getString("phone2");
-                                ProImg = routearray.getJSONObject(i).getString("logo");
-                                Nameee = routearray.getJSONObject(i).getString("name");
-
-                                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("LogindataB", Context.MODE_PRIVATE);
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
-                                  editor.putString("resid", ResIdB);
-                                  editor.putString("emailid", EmailB);
-                                  editor.putString("phone1", Phone1B);
-                                  editor.putString("phone2", Phone2B);
-                                  editor.putString("proimg", ProImg);
-                                  editor.putString("name", Nameee);
-                                editor.commit();
-
-                            }
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }*/
-//                        pdLoading.dismiss();
-
-
                     }
                 },
                 new Response.ErrorListener() {
@@ -227,10 +202,9 @@ public class LoginBusinessActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
 
 
-
                         Toast.makeText(LoginBusinessActivity.this, error.toString(), Toast.LENGTH_LONG).show();
 
-                       pdLoading.dismiss();
+                        pdLoading.dismiss();
                     }
                 }) {
             @Override
@@ -238,9 +212,8 @@ public class LoginBusinessActivity extends AppCompatActivity {
 
                 Map<String, String> params = new HashMap<String, String>();
 
-                params.put("email",email );
-                params.put("password",password );
-
+                params.put("email", email);
+                params.put("password", password);
 
 
                 return params;
@@ -251,6 +224,7 @@ public class LoginBusinessActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
+
     public void sharedPreferencess() {
 
         sh_Preff = getSharedPreferences("Login Busi", PRIVATE_MODE);
@@ -261,7 +235,7 @@ public class LoginBusinessActivity extends AppCompatActivity {
         editorr.commit();
     }
 
-    }
+}
 
 
 

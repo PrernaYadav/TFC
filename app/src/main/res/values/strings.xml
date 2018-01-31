@@ -125,4 +125,27 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_business_navigation">BusinessNavigation</string>
+
+
+    <string name="terms1">1. The food circle is registered in England and wales. Company number ....</string>
+    <string name="terms2">2. We provide a platform between customer and business.</string>
+    <string name="terms3">3. By using of our website or mobile application you indicate that you accept our terms and condition.</string>
+    <string name="terms4">4. We reserve the right to change terms and condition at any time. Please visit our website for the latest terms and conditions.</string>
+    <string name="terms5">5. all persons who access the Website through your internet connection are aware of these Website Terms and that they comply with them.
+</string>
+
+
+
+    <string name="terms6">6. By placing order, you are entering in to binding contract between you and business.</string>
+    <string name="terms7">7. Once your order is confirmed you are responsible for collection.</string>
+    <string name="terms8">8. Order cannot be cancelled if you have passed the deadline.</string>
+    <string name="terms9">9. Any unforeseen circumstances please let the us know ASAP.</string>
+    <string name="terms10">10.Please not that we are fighting against food waste. Please do not book if you cannot collect your order.</string>
+    <string name="terms11">11.Deadline for cancelation is 3 hours before collection time start.</string>
+    <string name="terms12">12. We will notify you via email or application notification, once your order is confirmed, for acceptance or rejection of your order.</string>
+    <string name="terms13">13.Stores have the discretion to reject Orders at any time because they are too busy, due to weather conditions or for any other reason.</string>
+    <string name="terms14">14.Businesses are responsible for any health and hygiene dispute.</string>
+    <string name="terms15">15.It is the Stores that are responsible for providing this menu information and ensuring that it is factually accurate and up-to-date, and we do not undertake any such responsibility. If you are in doubt about allergy warnings, contents of a dish or any other menu information, you should confirm with the Store directly before ordering.</string>
+    <string name="terms_conditions"><![CDATA[Terms & Conditions]]></string>
+
 </resources>

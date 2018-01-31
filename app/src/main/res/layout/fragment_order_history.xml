@@ -4,65 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ececec"
-    tools:context="com.infosolution.dev.tfc.business_fragments.OrderHistoryFragment">
+    tools:context="com.infosolution.dev.tfc.fragment.OrderHistoryFragment">
 
 
-   <!-- <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
 
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="10dp"
-        android:padding="10dp"
-        android:background="@android:color/white"
-        android:layout_marginRight="10dp">
-
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:src="@mipmap/ic_launcher"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="All Menu Details"
-            android:textAppearance="?android:textAppearanceMedium"
-            android:layout_centerInParent="true"
-            android:textColor="@android:color/black"
-            android:paddingLeft="30dp"
-            />
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="right"
-            android:src="@drawable/back"
-            android:scaleX="-1"
-            android:layout_alignParentRight="true"
-            android:tint="@android:color/black"
-            />
-
-    </RelativeLayout>-->
-
-<!--<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">-->
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Your Order History"
-        android:textColor="#656565"
-        android:gravity="center"
-        android:layout_marginTop="30dp"
-        android:textStyle="bold"
-        android:textAppearance="?android:textAppearanceMedium"
-        />
 
 
   <!--  <GridView

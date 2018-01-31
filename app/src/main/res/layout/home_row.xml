@@ -5,10 +5,17 @@
     android:background="@android:color/white"
     android:orientation="vertical">
 
+
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
 <FrameLayout
     android:layout_width="match_parent"
@@ -50,6 +57,9 @@
             android:textColor="@android:color/black"
             android:gravity="center"
             android:layout_gravity="center"/>
+
+
+
     </FrameLayout>
 
 
@@ -73,6 +83,8 @@
             android:textColor="@android:color/black"
             android:gravity="center"
             android:layout_gravity="center"/>
+
+
     </FrameLayout>
 
 
@@ -168,22 +180,18 @@
             android:visibility="gone"
             android:layout_marginLeft="10dp"/>
 
-
-
-
-
-
-
-
-
-
     </RelativeLayout>
 
+
+    <ImageView
+        android:id="@+id/iv_trans"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:scaleType="fitXY"/>
+
+
 </FrameLayout>
+        </LinearLayout>
 
-
-
-
-    </LinearLayout>
-
+</LinearLayout>
 </LinearLayout>

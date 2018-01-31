@@ -13,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -48,15 +49,6 @@ public class BusinessNavigation extends AppCompatActivity
         Namee = prefs.getString("name", null);
 
 
-       /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -72,8 +64,7 @@ public class BusinessNavigation extends AppCompatActivity
         tv = (TextView)header.findViewById(R.id.tv_namebusiii);
         iv = (ImageView) header.findViewById(R.id.imageViewbusi);
         tv.setText(Namee);
-
-        if (Imagee.equals("")){
+        if (TextUtils.isEmpty(Imagee)){
             iv.setImageResource(R.drawable.icon);
         }else {
             Glide.with(this).load(Imagee).into(iv);

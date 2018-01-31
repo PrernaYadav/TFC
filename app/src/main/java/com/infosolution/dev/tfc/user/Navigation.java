@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.design.widget.NavigationView;
@@ -13,7 +15,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
+import android.text.TextUtils;
+import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,10 +27,11 @@ import com.bumptech.glide.Glide;
 import com.infosolution.dev.tfc.R;
 import com.infosolution.dev.tfc.fragment.EditProfileFragment;
 import com.infosolution.dev.tfc.activities.LoginMailActivity;
-import com.infosolution.dev.tfc.business_fragments.OrderHistoryFragment;
+import com.infosolution.dev.tfc.fragment.OrderHistoryFragment;
 import com.infosolution.dev.tfc.fragment.FavFragment;
 import com.infosolution.dev.tfc.fragment.HomeFragment;
 
+import java.io.ByteArrayOutputStream;
 
 
 public class Navigation extends AppCompatActivity
@@ -36,7 +40,8 @@ public class Navigation extends AppCompatActivity
 
    private ImageView ivimg;
    private TextView tvnavheader;
-   private String Imagee,Namee;
+   private String Imagee,Namee,Im;
+   private Bitmap bmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +56,10 @@ public class Navigation extends AppCompatActivity
         final SharedPreferences prefs = getSharedPreferences("useriddsign", MODE_PRIVATE);
         Imagee = prefs.getString("profileimage", null);
         Namee = prefs.getString("usernamesign", null);
+
+
+
+
 
 
        /* tvnavheader.setText(Name);
@@ -74,7 +83,13 @@ public class Navigation extends AppCompatActivity
 /*View view=navigationView.inflateHeaderView(R.layout.nav_header_main);*/
         tvnavheader = (TextView)header.findViewById(R.id.tv_navheader);
         ivimg = (ImageView) header.findViewById(R.id.imageViewnavheader);
-        Glide.with(this).load(Imagee).into(ivimg);
+
+        if (TextUtils.isEmpty(Imagee)){
+ivimg.setImageResource(R.drawable.icon);
+        }else {
+            Glide.with(this).load(Imagee).into(ivimg);
+        }
+
       tvnavheader.setText(Namee);
 
 
@@ -127,6 +142,7 @@ public class Navigation extends AppCompatActivity
         int id = item.getItemId();
         if (id == R.id.nav_dashboard){
 
+            setTitle("Home");
             HomeFragment fragment =new HomeFragment();
             FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.frame,fragment," ");
@@ -136,6 +152,7 @@ public class Navigation extends AppCompatActivity
 
     else    if (id == R.id.nav_camera) {
 
+            setTitle("Favourite");
             FavFragment fragment =new FavFragment();
             FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.frame,fragment," ");
@@ -144,14 +161,14 @@ public class Navigation extends AppCompatActivity
 
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
-
+            setTitle("Order History");
             OrderHistoryFragment fragment =new OrderHistoryFragment();
             FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.frame,fragment," ");
             fragmentTransaction.commit();
 
         } else if (id == R.id.nav_slideshow) {
-
+            setTitle("Edit Profile");
             EditProfileFragment fragment =new EditProfileFragment();
             FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.frame,fragment," ");

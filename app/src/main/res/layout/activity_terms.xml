@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical">
+
+
+    <include layout="@layout/terms_action"
+        android:id="@+id/terms"/>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/terms1"
+        android:textColor="@android:color/black"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/terms2"
+        android:layout_marginTop="5dp"
+        android:textColor="@android:color/black"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/terms3"
+        android:layout_marginTop="5dp"
+        android:textColor="@android:color/black"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/terms4"
+        android:layout_marginTop="5dp"
+        android:textColor="@android:color/black"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/terms5"
+        android:layout_marginTop="5dp"
+        android:textColor="@android:color/black"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/terms6"
+        android:layout_marginTop="5dp"
+        android:textColor="@android:color/black"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/terms7"
+        android:layout_marginTop="5dp"
+        android:textColor="@android:color/black"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/terms8"
+        android:layout_marginTop="5dp"
+        android:textColor="@android:color/black"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/terms9"
+        android:layout_marginTop="5dp"
+        android:textColor="@android:color/black"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/terms10"
+        android:layout_marginTop="5dp"
+        android:textColor="@android:color/black"/>
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/terms11"
+        android:layout_marginTop="5dp"
+        android:textColor="@android:color/black"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/terms12"
+        android:layout_marginTop="5dp"
+        android:textColor="@android:color/black"/>
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/terms13"
+        android:layout_marginTop="5dp"
+        android:textColor="@android:color/black"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/terms14"
+        android:layout_marginTop="5dp"
+        android:textColor="@android:color/black"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/terms15"
+        android:layout_marginTop="5dp"
+        android:textColor="@android:color/black"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</LinearLayout>

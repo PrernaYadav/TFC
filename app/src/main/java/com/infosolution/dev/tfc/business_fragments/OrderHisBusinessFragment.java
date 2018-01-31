@@ -28,6 +28,8 @@ import com.bumptech.glide.Glide;
 import com.infosolution.dev.tfc.Class.ConfigInfo;
 import com.infosolution.dev.tfc.R;
 import com.infosolution.dev.tfc.adapter.OrderHistoryAdapter;
+import com.infosolution.dev.tfc.adapter.OrderHistoryBusiAdapter;
+import com.infosolution.dev.tfc.model.OrderHistoryBusiModel;
 import com.infosolution.dev.tfc.model.OrderHistoryModel;
 
 import org.json.JSONArray;
@@ -47,9 +49,9 @@ import static android.content.Context.MODE_PRIVATE;
 public class OrderHisBusinessFragment extends Fragment {
 
   private   RecyclerView rvhistorybusi;
-    private OrderHistoryAdapter orderHistoryAdapter;
+    private OrderHistoryBusiAdapter orderHistoryAdapter;
 
-    private ArrayList<OrderHistoryModel> historyModelArrayList;
+    private ArrayList<OrderHistoryBusiModel> historyModelArrayList;
 
     private String ResId,im;
     private TextView emptyView;
@@ -91,7 +93,7 @@ public class OrderHisBusinessFragment extends Fragment {
 
         rvhistorybusi.setAdapter(orderHistoryAdapter);
         historyModelArrayList= new ArrayList<>();
-        orderHistoryAdapter = new OrderHistoryAdapter(historyModelArrayList, getContext(), getActivity());
+        orderHistoryAdapter = new OrderHistoryBusiAdapter(historyModelArrayList, getContext(), getActivity());
         FetchHistoryOrder();
 
 
@@ -141,7 +143,7 @@ public class OrderHisBusinessFragment extends Fragment {
 
 
                             JSONArray jarray = jsono.getJSONArray("data");
-                            for (int i = 0; i < jarray.length(); i++) {
+                            for (int i = jarray.length()-1; i >= 0 ; i--) {
                                 JSONObject object = jarray.getJSONObject(i);
                                 String    ProductName = object.getString("menu_name");
                                 String  Quantity = object.getString("quantity");
@@ -152,14 +154,14 @@ public class OrderHisBusinessFragment extends Fragment {
                                 String   Deliver = object.getString("del_id");
 
 
-                                OrderHistoryModel orderHistoryModel= new OrderHistoryModel();
+                                OrderHistoryBusiModel orderHistoryModel= new OrderHistoryBusiModel();
                                 orderHistoryModel.setProname(ProductName);
                                 orderHistoryModel.setQuantity(Quantity);
                                 orderHistoryModel.setPrice(Price);
                                 orderHistoryModel.setDate(Date);
                                 orderHistoryModel.setUsername(UserName);
                                 orderHistoryModel.setDel(Deliver);
-                                orderHistoryModel.setLogo(im);
+                               orderHistoryModel.setLogo(R.drawable.icon);
 
 
 

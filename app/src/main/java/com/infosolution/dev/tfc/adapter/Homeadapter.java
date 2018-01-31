@@ -74,6 +74,7 @@ private    String qty,price;
         holder.favstatus.setText(homeList.get(position).getFavstatus());
         holder.ivfav.setImageResource(homeList.get(position).getFav());
         holder.ivavail.setImageResource(homeList.get(position).getAvailimg());
+        holder.ivtrans.setImageResource(homeList.get(position).getTrans());
 
         Glide.with(activity).load(home.getProimage()).into(holder.ivproimage);
       //  Glide.with(activity).load(home.getAvailimg()).into(holder.ivavail);
@@ -91,7 +92,7 @@ private    String qty,price;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        ImageView ivproimage, ivavail, ivfav;
+        ImageView ivproimage, ivavail, ivfav,ivtrans;
         TextView tvusername, tvproname, tvprice, tvquantity, tvtiming, tvcount,ress,favstatus;
         Context ctx;
         ArrayList<Home> home = new ArrayList<Home>();
@@ -108,6 +109,7 @@ private    String qty,price;
             this.ctx = ctx;
 
             ivproimage = (ImageView) view.findViewById(R.id.iv_proimagee);
+            ivtrans = (ImageView) view.findViewById(R.id.iv_trans);
             ivavail = (ImageView) view.findViewById(R.id.iv_avail);
             ivfav = (ImageView) view.findViewById(R.id.iv_fav);
             tvproname = (TextView) view.findViewById(R.id.tv_proname);
@@ -163,6 +165,7 @@ private    String qty,price;
                     Intent intent = new Intent(activity, BuyNowActivity.class);
                     intent.putExtra("qty",homeList.get(position).getQuantity());
                     intent.putExtra("price",homeList.get(position).getPrice());
+                    intent.putExtra("time",homeList.get(position).getTiming());
                     intent.putExtra("proimage",homeList.get(position).getProimage());
                   activity.startActivity(intent);
                 }

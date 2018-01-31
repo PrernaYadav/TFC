@@ -1,4 +1,4 @@
-package com.infosolution.dev.tfc.business_fragments;
+package com.infosolution.dev.tfc.fragment;
 
 
 import android.content.SharedPreferences;
@@ -102,7 +102,7 @@ public class OrderHistoryFragment extends Fragment {
 
                             JSONObject jsono = new JSONObject(response);
                             JSONArray jarray = jsono.getJSONArray("data");
-                            for (int i = 0; i < jarray.length(); i++) {
+                            for (int i = jarray.length()-1; i >= 0 ; i--) {
                                 JSONObject object = jarray.getJSONObject(i);
                                 String    ProductName = object.getString("menu_name");
                                 String  Quantity = object.getString("quantity");
@@ -110,6 +110,8 @@ public class OrderHistoryFragment extends Fragment {
                                 String   Price = object.getString("price");
                                 String   Date = object.getString("date");
                                 String   UserName = object.getString("user_name");
+                                String   Deliver = object.getString("del_id");
+
 
                                 OrderHistoryModel orderHistoryModel= new OrderHistoryModel();
                                 orderHistoryModel.setProname(ProductName);
@@ -118,6 +120,15 @@ public class OrderHistoryFragment extends Fragment {
                                 orderHistoryModel.setDate(Date);
                                 orderHistoryModel.setUsername(UserName);
                                 orderHistoryModel.setLogo(Logo);
+                                orderHistoryModel.setDel(Deliver);
+
+                                if (Deliver.equals("1")){
+                                    orderHistoryModel.setDeliver("Delivered");
+                                    orderHistoryModel.setDelimg(R.drawable.deliver);
+                                }else if (Deliver.equals("0")){
+                                    orderHistoryModel.setDeliver("Undeliver");
+                                    orderHistoryModel.setDelimg(R.drawable.undeliver);
+                                }
                                 historyModelArrayList.add(orderHistoryModel);
 
 

@@ -22,7 +22,8 @@ public class BuyNowActivity extends AppCompatActivity {
     private ImageView ivlogo,ivreslogo;
     private Button btnbuy;
     private String UserId,ResId,MenuID,MenuName,pricee,Quantity,Ct;
-   private String qty,price,proimage,logo,Add;
+   private String qty,price,proimage,logo,Add,timing;
+   int q;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +48,9 @@ public class BuyNowActivity extends AppCompatActivity {
         qty=intent.getStringExtra("qty");
         price=intent.getStringExtra("price");
         proimage=intent.getStringExtra("proimage");
+        timing=intent.getStringExtra("time");
+
+        q = Integer.parseInt(qty);;
 
 
 
@@ -81,8 +85,15 @@ public class BuyNowActivity extends AppCompatActivity {
 
         tvqty.setText(qty);
         tvprice.setText(price);
-        tvtime.setText(Ct);
+        tvtime.setText(timing);
         tvadd.setText(Add);
+
+        if (q <= 0){
+            btnbuy.setText("Sold Out");
+            btnbuy.setClickable(false);
+        }else {
+            btnbuy.setText("Buy Now");
+        }
 
         ivlogo=findViewById(R.id.iv_proimagebuy);
         Glide.with(this)

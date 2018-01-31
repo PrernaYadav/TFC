@@ -46,7 +46,7 @@ public class SignupUserActivity extends AppCompatActivity {
 
     private EditText etname, etemail, etphone, etpass, etreppass;
     private Button btnsignup;
-    private TextView tvsignin;
+    private TextView tvsignin,tvterms;
     private String name, email, phone, pass, repass;
     private ProgressDialog pdLoading;
     String userID,userName,Email;
@@ -72,6 +72,8 @@ public class SignupUserActivity extends AppCompatActivity {
         etpass = findViewById(R.id.et_passwordsignup);
         etreppass = findViewById(R.id.et_reppasswordsignup);
         btnsignup = findViewById(R.id.btn_signup);
+        tvterms = findViewById(R.id.tv_terms);
+
         ivimg=findViewById(R.id.iv_resuserimg);
         ivimg.setImageResource(R.drawable.icon);
 
@@ -83,6 +85,13 @@ public class SignupUserActivity extends AppCompatActivity {
          encodedResume=Base64.encodeToString(ba,Base64.DEFAULT);
 
 
+         tvterms.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 Intent intent = new Intent(SignupUserActivity.this,TermsActivity.class);
+                 startActivity(intent);
+             }
+         });
 
 
 
