@@ -89,7 +89,7 @@ public class HomeFragment extends Fragment  {
     private String Timing;
     private String Price;
     private String Quantity;
-    private String Availimg, CollectionTime, Logoo, Addresss;
+    private String Availimg, CollectionTime, Logoo, Addresss,UserName;
     private String Count;
     private String Fav;
     private String resID, menuID, Quantityyy;
@@ -123,8 +123,7 @@ public class HomeFragment extends Fragment  {
 
         checkString();
 
-       /* Intent intent=getActivity().getIntent();
-        city=intent.getStringExtra("citttyy");*/
+
 
         rcview = v.findViewById(R.id.rc_home);
 
@@ -175,130 +174,7 @@ public class HomeFragment extends Fragment  {
     }
 
 
-    public class FetchEventPreviousDataTask extends AsyncTask<Object, Object, Boolean> {
 
-        @Override
-        protected void onPreExecute() {
-            pd = new ProgressDialog(getContext());
-            pd.setMessage("loading");
-            pd.show();
-        }
-
-        @Override
-        protected Boolean doInBackground(Object... params) {
-            try {
-                String dataurl = "http://thefoodcircle.co.uk/restaurant/demo/web-service/res_list.php";
-                HttpPost httppost = new HttpPost(dataurl);
-                HttpClient httpclient = new DefaultHttpClient();
-                HttpResponse response = httpclient.execute(httppost);
-                Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
-                int status = response.getStatusLine().getStatusCode();
-                if (status == 200) {
-                    HttpEntity entity = response.getEntity();
-                    String data = EntityUtils.toString(entity);
-                    JSONObject jsono = new JSONObject(resuser);
-                    JSONArray jarray = jsono.getJSONArray("restaurents");
-
-                    for (int i = 0; i < jarray.length(); i++) {
-                        JSONObject object = jarray.getJSONObject(i);
-
-                        Username = object.getString("name");
-                        resID = object.getString("id");
-                        Logoo = object.getString("logo");
-                        Addresss = object.getString("address");
-                        fav = object.getString("fav_staus");
-                        int favv = Integer.parseInt(fav);
-
-
-                        SharedPreferences sharedPreferencess = getContext().getSharedPreferences("resmenuDetailss", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferencess.edit();
-                        editor.putString("log", Logoo);
-                        editor.putString("add", Addresss);
-                        editor.commit();
-
-                        Log.i("resname", "" + Username);
-                        Log.i("resId", "" + resID);
-                        Home home = new Home();
-
-                        if (fav.equals(1)) {
-
-                            home.setFav(R.drawable.favselectedicon);
-                        } else if (fav.equals(0)){
-
-                            home.setFav(R.drawable.fav);
-                        }
-                        home.setUsername(Username);
-                        home.setRes(resID);
-                        home.setFavstatus(fav);
-
-
-                        JSONObject jsono1 = new JSONObject(resuser);
-                        jarray = jsono.getJSONArray("restaurents");
-                        JSONArray jarray1 = object.getJSONArray("menu");
-
-                        for (int j = 0; j < jarray1.length(); j++) {
-                            JSONObject object1 = jarray1.getJSONObject(j);
-
-                            Proname = object1.getString("menu_name");
-                            Timing = object1.getString("collection_time");
-                            Price = object1.getString("menu_rate");
-                            Quantity = object1.getString("quantity_left");
-                            Proimage = object1.getString("img1");
-                            Availimg = object1.getString("img2");
-                            Fav = object1.getString("img3");
-                            menuID = object1.getString("id");
-                            CollectionTime = object1.getString("collection_time");
-                            Foodtype = object1.getString("food_type");
-                            Log.i("menuId", "" + menuID);
-
-                            SharedPreferences sharedPreferences = getContext().getSharedPreferences("resmenuDetails", Context.MODE_PRIVATE);
-                            SharedPreferences.Editor editorr = sharedPreferences.edit();
-                            editorr.putString("name", Proname);
-                            editorr.putString("resid", resID);
-                            editorr.putString("menuid", menuID);
-                            editorr.putString("quantityyy", Quantity);
-                            editorr.putString("ct", CollectionTime);
-                            editorr.commit();
-
-
-                            home.setProname(Proname);
-                            home.setTiming(Timing);
-                            home.setPrice(Price);
-                            home.setQuantity(Quantity);
-                            home.setProimage(Proimage);
-                            // home.setAvailimg(Availimg);
-
-                            if (Foodtype.equals("Veg")){
-                                home.setAvailimg(R.drawable.green);
-                            }else if (Foodtype.equals("Non-Veg")){
-                                home.setAvailimg(R.drawable.red);
-                            }
-
-
-                            //home.setFav(R.id.iv_fav);
-                            homeList.add(home);
-
-                        }
-
-
-                    }
-
-
-                    return true;
-                }
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            }
-            return false;
-        }
-
-        @Override
-        protected void onPostExecute(Boolean result) {
-            pd.dismiss();
-            rcview.setAdapter(homeadapter);
-            homeadapter.notifyDataSetChanged();
-        }
-    }
 
 
     private void Fetchcity() {
@@ -325,11 +201,11 @@ public class HomeFragment extends Fragment  {
                             for (int i = 0; i < jarray.length(); i++) {
                                 JSONObject object = jarray.getJSONObject(i);
 
-                                Username = object.getString("name");
-                                resID = object.getString("id");
-                                Logoo = object.getString("logo");
-                                Addresss = object.getString("address");
-                                fav = object.getString("fav_staus");
+                              String  Username = object.getString("name");
+                                String  resID = object.getString("id");
+                                String Logoo = object.getString("logo");
+                                String Addresss = object.getString("address");
+                                String  fav = object.getString("fav_staus");
                              //   int favv = Integer.parseInt(fav);
 
 
@@ -341,18 +217,10 @@ public class HomeFragment extends Fragment  {
 
                                 Log.i("resname", "" + Username);
                                 Log.i("resId", "" + resID);
-                                Home home = new Home();
+                                /*Home home = new Home();
 
-                                if (fav.equals(1)) {
 
-                                    home.setFav(R.drawable.favselectedicon);
-                                } else if (fav.equals(0)){
-
-                                    home.setFav(R.drawable.fav);
-                                }
-                                home.setUsername(Username);
-                                home.setRes(resID);
-                                home.setFavstatus(fav);
+                                homeList.add(home);*/
 
 
                                 JSONObject jsono1 = new JSONObject(response);
@@ -361,6 +229,7 @@ public class HomeFragment extends Fragment  {
 
                                 for (int j = 0; j < jarray1.length(); j++) {
                                     JSONObject object1 = jarray1.getJSONObject(j);
+                                    Home homeE = new Home();
 
                                     Proname = object1.getString("menu_name");
                                     Timing = object1.getString("collection_time");
@@ -372,6 +241,7 @@ public class HomeFragment extends Fragment  {
                                     menuID = object1.getString("id");
                                     CollectionTime = object1.getString("collection_time");
                                     Foodtype = object1.getString("food_type");
+
                                     Log.i("menuId", "" + menuID);
 
                                     SharedPreferences sharedPreferences = getContext().getSharedPreferences("resmenuDetails", Context.MODE_PRIVATE);
@@ -384,45 +254,46 @@ public class HomeFragment extends Fragment  {
                                     editorr.commit();
 
 
+                                    if (fav.equals(1)) {
+
+                                        homeE.setFav(R.drawable.favselectedicon);
+                                    } else if (fav.equals(0)){
+
+                                        homeE.setFav(R.drawable.fav);
+                                    }
+                                    homeE.setUsername(Username);
+                                    homeE.setRes(resID);
+                                    homeE.setFavstatus(fav);
+
+
+
                                     if (Quantity.equals("0")){
-                                        home.setTrans(R.drawable.bgtrans);
+                                        homeE.setTrans(R.drawable.bgtrans);
                                     }
 
-                                    home.setProname(Proname);
-                                    home.setTiming(Timing);
-                                    home.setPrice(Price);
-                                    home.setQuantity(Quantity);
-                                    home.setProimage(Proimage);
+                                    homeE.setProname(Proname);
+                                    homeE.setTiming(Timing);
+                                    homeE.setPrice(Price);
+                                    homeE.setQuantity(Quantity);
+                                    homeE.setProimage(Proimage);
                                     // home.setAvailimg(Availimg);
 
                                     if (Foodtype.equals("Veg")){
-                                        home.setAvailimg(R.drawable.green);
+                                        homeE.setAvailimg(R.drawable.green);
                                     }else if (Foodtype.equals("Non-Veg")){
-                                        home.setAvailimg(R.drawable.red);
+                                        homeE.setAvailimg(R.drawable.red);
                                     }
 
 
                                     //home.setFav(R.id.iv_fav);
-                                    homeList.add(home);
+                                    homeList.add(homeE);
 
                                 }
-
-
                             }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
-
-
-
-
-
-
-
-                     //   new FetchEventPreviousData().execute();
-                        // Toast.makeText(CommentsActivity.this, response.toString(), Toast.LENGTH_LONG).show();
 
                         Log.i("ressssss..", "" + response.toString());
 
@@ -495,10 +366,109 @@ public class HomeFragment extends Fragment  {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        // Log.e("response..........", response.toString());
-                        resuser = response;
-                        new FetchEventPreviousDataTask().execute();
-                        Log.i("resuserr",""+resuser);
+
+                        try {
+
+
+                            JSONObject jsono = new JSONObject(response);
+                            JSONArray jarray = jsono.getJSONArray("restaurents");
+
+                            for (int i = 0; i < jarray.length(); i++) {
+                                JSONObject object = jarray.getJSONObject(i);
+
+                                Username = object.getString("name");
+                                resID = object.getString("id");
+                                Logoo = object.getString("logo");
+                                Addresss = object.getString("address");
+                                fav = object.getString("fav_staus");
+                                //   int favv = Integer.parseInt(fav);
+
+
+                                SharedPreferences sharedPreferencess = getContext().getSharedPreferences("resmenuDetailss", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPreferencess.edit();
+                                editor.putString("log", Logoo);
+                                editor.putString("add", Addresss);
+                                editor.commit();
+
+                                Log.i("resname", "" + Username);
+                                Log.i("resId", "" + resID);
+                                Home home = new Home();
+
+                                if (fav.equals(1)) {
+
+                                    home.setFav(R.drawable.favselectedicon);
+                                } else if (fav.equals(0)){
+
+                                    home.setFav(R.drawable.fav);
+                                }
+                                home.setUsername(Username);
+                                home.setRes(resID);
+                                home.setFavstatus(fav);
+
+
+                                JSONObject jsono1 = new JSONObject(response);
+                                jarray = jsono.getJSONArray("restaurents");
+                                JSONArray jarray1 = object.getJSONArray("menu");
+
+                                for (int j = 0; j < jarray1.length(); j++) {
+                                    JSONObject object1 = jarray1.getJSONObject(j);
+                                    Home homeE = new Home();
+
+                                    Proname = object1.getString("menu_name");
+                                    Timing = object1.getString("collection_time");
+                                    Price = object1.getString("menu_rate");
+                                    Quantity = object1.getString("quantity_left");
+                                    Proimage = object1.getString("img1");
+                                    Availimg = object1.getString("img2");
+                                    Fav = object1.getString("img3");
+                                    menuID = object1.getString("id");
+                                    CollectionTime = object1.getString("collection_time");
+                                    Foodtype = object1.getString("food_type");
+                                    Log.i("menuId", "" + menuID);
+
+                                    SharedPreferences sharedPreferences = getContext().getSharedPreferences("resmenuDetails", Context.MODE_PRIVATE);
+                                    SharedPreferences.Editor editorr = sharedPreferences.edit();
+                                    editorr.putString("name", Proname);
+                                    editorr.putString("resid", resID);
+                                    editorr.putString("menuid", menuID);
+                                    editorr.putString("quantityyy", Quantity);
+                                    editorr.putString("ct", CollectionTime);
+                                    editorr.commit();
+
+
+                                    if (Quantity.equals("0")){
+                                        homeE.setTrans(R.drawable.bgtrans);
+                                    }
+
+                                    homeE.setProname(Proname);
+                                    homeE.setTiming(Timing);
+                                    homeE.setPrice(Price);
+                                    homeE.setQuantity(Quantity);
+                                    homeE.setProimage(Proimage);
+                                    // home.setAvailimg(Availimg);
+
+                                    if (Foodtype.equals("Veg")){
+                                        homeE.setAvailimg(R.drawable.green);
+                                    }else if (Foodtype.equals("Non-Veg")){
+                                        homeE.setAvailimg(R.drawable.red);
+                                    }
+
+
+                                    //home.setFav(R.id.iv_fav);
+                                    homeList.add(homeE);
+
+                                }
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        Log.i("ressssss..", "" + response.toString());
+
+                        rcview.setAdapter(homeadapter);
+                        homeadapter.notifyDataSetChanged();
+
 
 
                     }

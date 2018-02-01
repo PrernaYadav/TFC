@@ -64,26 +64,26 @@
     android:layout_weight="2"
     android:layout_marginLeft="20dp"
     android:layout_marginRight="20dp"
+    android:background="@drawable/border"
     android:layout_marginTop="10dp"
     >
     <EditText
         android:id="@+id/et_price_upload"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:gravity="right"
         android:hint="Please Enter Price"
         android:inputType="number"
         android:padding="10dp"
         android:layout_weight="1"
         android:backgroundTint="@android:color/transparent"
-        android:drawableTint="@android:color/transparent"
         android:textAppearance="?android:textAppearanceSmall"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
         android:textCursorDrawable="@null"
         android:textStyle="bold" />
 
-   <!-- <TextView
+    <TextView
         android:id="@+id/tv_currsign"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -93,7 +93,7 @@
         android:textAppearance="?android:textAppearanceSmall"
         android:textStyle="bold"
         android:textColor="@android:color/white"
-        android:layout_gravity="center"/>-->
+        android:layout_gravity="center"/>
 
 </LinearLayout>
 

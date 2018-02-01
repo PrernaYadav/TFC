@@ -122,23 +122,7 @@ public class OrderHisBusinessFragment extends Fragment {
                             JSONObject jsono = new JSONObject(response);
 
 
-                            /*String status = jsono.getString("status");
 
-                            Log.i("status",""+status);
-
-                            if (status.equals("success"))
-                            {
-
-                                rvhistorybusi.setVisibility(View.VISIBLE);
-                                emptyView.setVisibility(View.GONE);
-                                 Toast.makeText(getContext(), "successs", Toast.LENGTH_LONG).show();
-                            }
-                            else
-                            {
-                                  Toast.makeText(getContext(),"failed"+ status, Toast.LENGTH_LONG).show();
-                                rvhistorybusi.setVisibility(View.GONE);
-                                emptyView.setVisibility(View.VISIBLE);
-                            }*/
 
 
 
@@ -150,7 +134,7 @@ public class OrderHisBusinessFragment extends Fragment {
                              //   String  Logo = object.getString("logo");
                                 String   Price = object.getString("price");
                                 String   Date = object.getString("date");
-                                String   UserName = object.getString("user_name");
+                                String   UserName = object.getString("name");
                                 String   Deliver = object.getString("del_id");
 
 

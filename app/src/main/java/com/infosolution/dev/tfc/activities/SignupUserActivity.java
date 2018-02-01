@@ -26,14 +26,12 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.infosolution.dev.tfc.Class.ConfigInfo;
 import com.infosolution.dev.tfc.R;
-import com.infosolution.dev.tfc.business.LoginBusinessActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -153,6 +151,7 @@ public class SignupUserActivity extends AppCompatActivity {
 
                 }else {
                     Signup();
+
                 }
 
 
@@ -174,10 +173,10 @@ public class SignupUserActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
+                        UploadApi();
                         pdLoading.dismiss();
                         Toast.makeText(SignupUserActivity.this,"User Registered Successfully ! Your varification link has been sended to your email",Toast.LENGTH_LONG).show();
-                        UploadApi();
+
 
                         try {
                             JSONObject json = (JSONObject) new JSONTokener(response).nextValue();
@@ -298,6 +297,7 @@ public class SignupUserActivity extends AppCompatActivity {
         }
     }
     private void UploadApi() {
+
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://thefoodcircle.co.uk/restaurant/demo/web-service/profile-upload.php",
                 new Response.Listener<String>() {

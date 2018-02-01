@@ -96,7 +96,7 @@ ivimg.setImageResource(R.drawable.icon);
 
 
         navigationView.setNavigationItemSelectedListener(this);
-
+        setTitle("The Food Circle");
         HomeFragment fragment =new HomeFragment();
         FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.frame,fragment," ");
@@ -142,7 +142,7 @@ ivimg.setImageResource(R.drawable.icon);
         int id = item.getItemId();
         if (id == R.id.nav_dashboard){
 
-            setTitle("Home");
+            setTitle("The Food Circle");
             HomeFragment fragment =new HomeFragment();
             FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.frame,fragment," ");

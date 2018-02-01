@@ -92,8 +92,6 @@ public class UploadMenuFragment extends Fragment {
 
         final SharedPreferences prefs = getContext().getSharedPreferences("LogindataB", MODE_PRIVATE);
         ResIdB = prefs.getString("resid", null);
-
-        final SharedPreferences preferences =getActivity().getSharedPreferences("country", MODE_PRIVATE);
         Country = prefs.getString("country", null);
 
 
@@ -110,10 +108,10 @@ public class UploadMenuFragment extends Fragment {
         etqtyleft = v.findViewById(R.id.et_qtyleft);
         ivmenuimage = v.findViewById(R.id.iv_image_upload);
         btnupload = v.findViewById(R.id.btn_submit_upload);
-       // tvcurr=v.findViewById(R.id.tv_currsign);
+        tvcurr=v.findViewById(R.id.tv_currsign);
 
 
-/*        if (Country.equals("United Kingdom")){
+        if (Country.equals("United Kingdom")){
             tvcurr.setText("£");
         }else if (Country.equals("India")){
             tvcurr.setText("₹");
@@ -137,7 +135,7 @@ public class UploadMenuFragment extends Fragment {
             tvcurr.setText("฿");
         }
 
-Currency=tvcurr.getText().toString();*/
+Currency=tvcurr.getText().toString();
 
 
         etmenuname.setText("Please Enter Menu Name");
@@ -159,11 +157,11 @@ Currency=tvcurr.getText().toString();*/
        // Glide.with(this).load(T).into(ivmenuimage);
 
 
-        bmap  = BitmapFactory.decodeResource(getResources(),  R.drawable.icon);
+       /* bmap  = BitmapFactory.decodeResource(getResources(),  R.drawable.icon);
         ByteArrayOutputStream bao = new ByteArrayOutputStream();
         bmap.compress(Bitmap.CompressFormat.JPEG, 100, bao);
         byte [] ba = bao.toByteArray();
-        encodedResume=Base64.encodeToString(ba,Base64.DEFAULT);
+        encodedResume=Base64.encodeToString(ba,Base64.DEFAULT);*/
 
 
 
@@ -290,7 +288,7 @@ Currency=tvcurr.getText().toString();*/
                             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                             photo.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
                             byte[] byteArray = byteArrayOutputStream.toByteArray();
-                          //  encodedResume = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                            encodedResume = Base64.encodeToString(byteArray, Base64.DEFAULT);
 
                             ivmenuimage.setImageBitmap(photo);
                             Log.i("imagebase",encodedResume);

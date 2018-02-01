@@ -53,15 +53,15 @@ public class FavFragment extends Fragment {
     private ProgressDialog pd;
 
     private String Proname;
-    private String  Proimage;
+    private String Proimage;
     private String Username;
-    private  String Timing;
-    private  String Price;
+    private String Timing;
+    private String Price;
     private String Quantity;
     private String Availimg;
     private String Count;
-    private String Fav,ress;
-    private String resID,menuID,Quantityyy,Foodtype;
+    private String Fav, ress;
+    private String resID, menuID, Quantityyy, Foodtype;
     String UserId;
 
 
@@ -75,7 +75,7 @@ public class FavFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-        View v= inflater.inflate(R.layout.fragment_fav, container, false);
+        View v = inflater.inflate(R.layout.fragment_fav, container, false);
 
         FetchFav();
         //fetching userid
@@ -85,47 +85,93 @@ public class FavFragment extends Fragment {
         UserId = prefs.getString("userid", null);
 
 
-
-        rcview=v.findViewById(R.id.rc_fav);
+        rcview = v.findViewById(R.id.rc_fav);
 
 
         rcview.setLayoutManager(new LinearLayoutManager(getContext()));
         rcview.setHasFixedSize(true);
 
         rcview.setAdapter(homeadapter);
-        homeList= new ArrayList<>();
+        homeList = new ArrayList<>();
         homeadapter = new Homeadapter(homeList, getContext(), getActivity());
 
 
-
-        new FetchEventPreviousDataTaskFav().execute();
-
+     //   new FetchEventPreviousDataTaskFav().execute();
 
 
-
-
-  return v;
+        return v;
     }
 
 
-
-
     private void FetchFav() {
+
+
+
+
+        pd = new ProgressDialog(getContext());
+        pd.setMessage("loading");
+        pd.show();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://thefoodcircle.co.uk/restaurant/demo/web-service/my_fav_res.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         Log.e("response..........", response);
-                        ress=response;
+                        pd.dismiss();
+                     //   homeList.clear();
+//                        ress = response;
                         // Toast.makeText(CommentsActivity.this, response.toString(), Toast.LENGTH_LONG).show();
 
-                        Log.i("ressssss..",""+response.toString());
+                        Log.i("ressssss..", "" + response.toString());
 
+                        try {
 
+                            JSONObject jsono = new JSONObject(response);
+                            JSONArray jarray = jsono.getJSONArray("data");
+                            for (int i = 0; i < jarray.length(); i++) {
+                                JSONObject object = jarray.getJSONObject(i);
 
+                                Username= object.getString("name");
+                                resID = object.getString("id");
+                                Home home= new Home();
+                                home.setUsername(Username);
+   // jarray = jsono.getJSONArray("data");
 
+                                JSONArray jarray1 = object.getJSONArray("menu");
+                                for (int j = 0; j < jarray1.length(); j++) {
+                                    Home homee= new Home();
+                                    JSONObject object1 = jarray1.getJSONObject(j);
+                                    Proname = object1.getString("menu_name");
+                                    Timing = object1.getString("collection_time");
+                                    Price = object1.getString("menu_rate");
+                                    Quantity = object1.getString("quantity_left");
+                                    Proimage = object1.getString("img1");
+                                    Availimg = object1.getString("img2");
+                                    Fav = object1.getString("img3");
+                                    menuID = object1.getString("id");
 
+                                    Foodtype = object1.getString("food_type");
+                                    if (Foodtype.equals("Veg")){
+                                        homee.setAvailimg(R.drawable.green);
+                                    }else if (Foodtype.equals("Non-Veg")){
+                                        homee.setAvailimg(R.drawable.red);
+                                    }
+
+                                    homee.setUsername(Username);
+                                    homee.setProname(Proname);
+                                    homee.setTiming(Timing);
+                                    homee.setPrice(Price);
+                                    homee.setQuantity(Quantity);
+                                    homee.setProimage(Proimage);
+                                    homeList.add(homee);
+                                }
+                            }
+
+                            rcview.setAdapter(homeadapter);
+                            homeadapter.notifyDataSetChanged();
+                        } catch (Exception e) {
+
+                        }
 
 
                     }
@@ -134,6 +180,7 @@ public class FavFragment extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getContext(), error.toString(), Toast.LENGTH_LONG).show();
+                        pd.dismiss();
                     }
                 }) {
             @Override
@@ -142,7 +189,7 @@ public class FavFragment extends Fragment {
 
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("userid", UserId);
-        Log.i("mmm",""+params);
+                Log.i("mmm", "" + params);
 
                 return params;
             }
@@ -153,7 +200,7 @@ public class FavFragment extends Fragment {
         requestQueue.add(stringRequest);
     }
 
-    public class FetchEventPreviousDataTaskFav extends AsyncTask<Object, Object, Boolean> {
+   /* public class FetchEventPreviousDataTaskFav extends AsyncTask<Object, Object, Boolean> {
 
         @Override
         protected void onPreExecute() {
@@ -246,8 +293,7 @@ public class FavFragment extends Fragment {
             rcview.setAdapter(homeadapter);
             homeadapter.notifyDataSetChanged();
         }
-    }
-
+    }*/
 
 
 }

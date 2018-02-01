@@ -167,6 +167,7 @@ public class LoginBusinessActivity extends AppCompatActivity {
                                     String  ProImg = routearray.getJSONObject(i).getString("logo");
                                     String   Nameee = routearray.getJSONObject(i).getString("name");
                                     String store = routearray.getJSONObject(i).getString("store_name");
+                                    String Country = routearray.getJSONObject(i).getString("fb_url");
 
                                     SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("LogindataB", Context.MODE_PRIVATE);
                                     SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -177,6 +178,7 @@ public class LoginBusinessActivity extends AppCompatActivity {
                                     editor.putString("proimg", ProImg);
                                     editor.putString("name", Nameee);
                                     editor.putString("store", store);
+                                    editor.putString("country", Country);
                                     editor.commit();
 
                                 }

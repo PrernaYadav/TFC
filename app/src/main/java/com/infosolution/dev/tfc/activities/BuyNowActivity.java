@@ -111,6 +111,7 @@ public class BuyNowActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent1 = new Intent(BuyNowActivity.this,PostCommentActivity.class);
                 startActivity(intent1);
+                finish();
             }
         });
 
@@ -119,6 +120,7 @@ public class BuyNowActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent1 = new Intent(BuyNowActivity.this,CommentsActivity.class);
                 startActivity(intent1);
+                finish();
             }
         });
 
@@ -132,6 +134,7 @@ public class BuyNowActivity extends AppCompatActivity {
                 intent1.putExtra("qtyyy",qty);
                 intent1.putExtra("priceee",price);
                 startActivity(intent1);
+                finish();
 
             }
         });

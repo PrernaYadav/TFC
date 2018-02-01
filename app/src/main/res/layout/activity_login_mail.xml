@@ -37,12 +37,13 @@
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:backgroundTint="@android:color/white"
+
         android:textColorHint="@android:color/white"
         android:gravity="center"
         android:textStyle="bold"
         android:inputType="textEmailAddress"
-        android:padding="10dp"
+        android:padding="12dp"
+        android:background="@drawable/border"
         android:textCursorDrawable="@null"
         android:textAppearance="?android:textAppearanceSmall"
         android:textColor="@android:color/white"/>
@@ -58,10 +59,10 @@
         android:textCursorDrawable="@null"
         android:inputType="textPassword"
         android:textStyle="bold"
-        android:backgroundTint="@android:color/white"
         android:textColorHint="@android:color/white"
         android:gravity="center"
-        android:padding="10dp"
+        android:background="@drawable/border"
+        android:padding="12dp"
         android:textAppearance="?android:textAppearanceSmall"
         android:textColor="@android:color/white"/>
 
