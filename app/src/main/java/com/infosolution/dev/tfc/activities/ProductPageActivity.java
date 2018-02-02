@@ -1,5 +1,8 @@
 package com.infosolution.dev.tfc.activities;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -38,7 +41,8 @@ public class ProductPageActivity extends AppCompatActivity {
     Button btnbook;
     private ImageView ivproduct;
     private  View view;
-
+private TextView ResName,MenuNamee,ColTime;
+private String RName,MName,CTime;
    private String UserId,ResId,MenuID,MenuName,pricee,Quantity;
 
     @Override
@@ -54,6 +58,15 @@ public class ProductPageActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+
+        ResName=findViewById(R.id.tv_resnam);
+        MenuNamee=findViewById(R.id.tv_menunam);
+        ColTime=findViewById(R.id.tv_coltim);
+
+
+
+
 
         ivproduct=findViewById(R.id.iv_proimg);
         proqty = (TextView) findViewById(R.id.tv_proqty);
@@ -85,7 +98,28 @@ public class ProductPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Book();
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(ProductPageActivity.this);
+                builder1.setMessage("Do You Want to Place Your Order?");
+                builder1.setCancelable(true);
+
+                builder1.setPositiveButton(
+                        "Yes",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                               Book();
+                            }
+                        });
+
+                builder1.setNegativeButton(
+                        "No",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alert11 = builder1.create();
+                alert11.show();
             }
         });
 
@@ -93,6 +127,18 @@ public class ProductPageActivity extends AppCompatActivity {
         qty=intent.getStringExtra("qtyyy");
         price=intent.getStringExtra("priceee");
         proimage=intent.getStringExtra("img");
+        RName=intent.getStringExtra("resname");
+        MName=intent.getStringExtra("menuname");
+        CTime=intent.getStringExtra("timing");
+
+        ResName.setText(RName);
+        MenuNamee.setText(MName);
+        ColTime.setText(CTime);
+
+
+       ResName.setTypeface(typefacebold);
+       MenuNamee.setTypeface(typefaceregular);
+        ColTime.setTypeface(typefaceregular);
 
 
         numberOnly= price.replaceAll("[^0-9]", "");
@@ -164,6 +210,8 @@ public class ProductPageActivity extends AppCompatActivity {
                     public void onResponse(String response) {
 
                         Log.i("abcres",""+response.toString());
+
+                     //   Toast.makeText(ProductPageActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
 
                         Intent intent = new Intent(ProductPageActivity.this,Navigation.class);
                         startActivity(intent);

@@ -24,6 +24,9 @@ public class BuyNowActivity extends AppCompatActivity {
     private String UserId,ResId,MenuID,MenuName,pricee,Quantity,Ct;
    private String qty,price,proimage,logo,Add,timing;
    int q;
+   private View view;
+
+   private String ResName,menuName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +52,8 @@ public class BuyNowActivity extends AppCompatActivity {
         price=intent.getStringExtra("price");
         proimage=intent.getStringExtra("proimage");
         timing=intent.getStringExtra("time");
+        ResName =intent.getStringExtra("resname");
+        menuName =intent.getStringExtra("proname");
 
         q = Integer.parseInt(qty);;
 
@@ -62,6 +67,15 @@ public class BuyNowActivity extends AppCompatActivity {
         tvviewcom=findViewById(R.id.tv_viewcommbuy);
         tvpostcom=findViewById(R.id.tv_postcommbuy);
         btnbuy=findViewById(R.id.btn_buynow);
+
+        view=findViewById(R.id.buyaction);
+        ImageView iv =findViewById(R.id.ivnowbuy);
+        iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
 
         Typeface typefaceregular = Typeface.createFromAsset(getAssets(), "font/tahoma.ttf");
@@ -133,8 +147,11 @@ public class BuyNowActivity extends AppCompatActivity {
                 intent1.putExtra("img",proimage);
                 intent1.putExtra("qtyyy",qty);
                 intent1.putExtra("priceee",price);
+                intent1.putExtra("resname",ResName);
+                intent1.putExtra("menuname",menuName);
+                intent1.putExtra("timing",timing);
                 startActivity(intent1);
-                finish();
+
 
             }
         });

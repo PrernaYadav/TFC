@@ -1,12 +1,14 @@
 package com.infosolution.dev.tfc.fragment;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,8 +38,8 @@ import static android.content.Context.MODE_PRIVATE;
  */
 public class EditProfileFragment extends Fragment {
     private Button btnchangepass,btndone;
-  private   String Username,EmailId,PhoneNO,UserId;
-    private EditText etname,etemail,etphone;
+  private   String Username,EmailId,PhoneNO,UserId,RESCHECK;
+            private EditText etname,etemail,etphone;
     FrameLayout fl;
 
 
@@ -52,6 +54,25 @@ public class EditProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_edit_profile, container, false);
         btnchangepass=v.findViewById(R.id.btn_changepassep);
+
+
+        final SharedPreferences prefsS = getContext().getSharedPreferences("useriddsign", MODE_PRIVATE);
+        UserId = prefsS.getString("userid", null);
+
+
+        final SharedPreferences prefs = getContext().getSharedPreferences("edituserr", MODE_PRIVATE);
+        Username = prefs.getString("usernamesignn", null);
+        EmailId = prefs.getString("emaill", null);
+        PhoneNO = prefs.getString("phonee", null);
+        RESCHECK = prefs.getString("useridd", null);
+
+
+        if (TextUtils.isEmpty(RESCHECK)){
+            GetUpdatedData();
+        }
+
+
+
         btndone=v.findViewById(R.id.btn_doneep);
         etname=v.findViewById(R.id.et_nameep);
         etemail=v.findViewById(R.id.et_emailep);
@@ -67,15 +88,14 @@ public class EditProfileFragment extends Fragment {
         etemail.setTypeface(typefaceregular);
         etphone.setTypeface(typefaceregular);
 
-        final SharedPreferences prefs = getContext().getSharedPreferences("useriddsign", MODE_PRIVATE);
-        Username = prefs.getString("usernamesign", null);
-        EmailId = prefs.getString("email", null);
-        PhoneNO = prefs.getString("phone", null);
-        UserId = prefs.getString("userid", null);
+
 
         etname.setText(Username);
         etemail.setText(EmailId);
         etphone.setText(PhoneNO);
+
+
+
 
 btndone.setOnClickListener(new View.OnClickListener() {
     @Override
@@ -84,6 +104,23 @@ btndone.setOnClickListener(new View.OnClickListener() {
         Username=etname.getText().toString();
         EmailId=etemail.getText().toString();
         PhoneNO=etphone.getText().toString();
+
+        SharedPreferences preferences =getContext().getSharedPreferences("edituserr", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.clear();
+        editor.commit();
+
+
+        SharedPreferences pref = getContext().getSharedPreferences("Edittt", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editorr = pref.edit();
+        editorr.putString("username", Username);
+        editorr.putString("emailid", EmailId);
+        editorr.putString("phone", PhoneNO);
+
+        editorr.commit();
+
+
+
         EditPRo();
     }
 });
@@ -154,6 +191,16 @@ btndone.setOnClickListener(new View.OnClickListener() {
 
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         requestQueue.add(stringRequest);
+
+    }
+
+
+    public void GetUpdatedData(){
+        final SharedPreferences prefsss = getActivity().getSharedPreferences("Edittt", MODE_PRIVATE);
+        Username = prefsss.getString("username", null);
+        EmailId = prefsss.getString("emailid", null);
+        PhoneNO = prefsss.getString("phone", null);
+
 
     }
 

@@ -15,6 +15,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.view.Menu;
@@ -61,16 +62,6 @@ public class Navigation extends AppCompatActivity
 
 
 
-
-       /* tvnavheader.setText(Name);
-
-        if (Imagee.equals("")){
-            ivimg.setImageResource(R.drawable.icon);
-        }else {
-            Glide.with(this).load(Imagee).into(ivimg);
-        }*/
-
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -96,7 +87,7 @@ ivimg.setImageResource(R.drawable.icon);
 
 
         navigationView.setNavigationItemSelectedListener(this);
-        setTitle("The Food Circle");
+        setTitle(Html.fromHtml("<small>The Food Circle - Tonight Plates</small>"));
         HomeFragment fragment =new HomeFragment();
         FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.frame,fragment," ");
@@ -142,7 +133,7 @@ ivimg.setImageResource(R.drawable.icon);
         int id = item.getItemId();
         if (id == R.id.nav_dashboard){
 
-            setTitle("The Food Circle");
+            setTitle(Html.fromHtml("<small>The Food Circle - Tonight Plates</small>"));
             HomeFragment fragment =new HomeFragment();
             FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.frame,fragment," ");

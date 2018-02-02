@@ -52,7 +52,7 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
 
 
         holder.tvproname.setText(orderHistoryModelArrayList.get(position).getProname());
-        holder.tvusername.setText(orderHistoryModelArrayList.get(position).getUsername());
+      //  holder.tvusername.setText(orderHistoryModelArrayList.get(position).getUsername());
         holder.tvprice.setText(orderHistoryModelArrayList.get(position).getPrice());
         holder.tvquantity.setText(orderHistoryModelArrayList.get(position).getQuantity());
         holder.tvdate.setText(orderHistoryModelArrayList.get(position).getDate());
@@ -96,7 +96,7 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
             tvproname = view.findViewById(R.id.tv_pronamehis);
             del = view.findViewById(R.id.del);
             tvdeliver = view.findViewById(R.id.tv_deliverhis);
-            tvusername = view.findViewById(R.id.tv_usernamehis);
+           // tvusername = view.findViewById(R.id.tv_usernamehis);
             tvprice = view.findViewById(R.id.tv_pricehis);
             tvquantity = (TextView) view.findViewById(R.id.tv_quantityhis);
             tvdate = (TextView) view.findViewById(R.id.tv_datehis);
@@ -109,7 +109,7 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
 
             tvproname.setTypeface(typefacebold);
             tvdate.setTypeface(typefacebold);
-            tvusername.setTypeface(typefacebold);
+//            tvusername.setTypeface(typefacebold);
             tvquantity.setTypeface(typefaceregular);
             tvprice.setTypeface(typefaceregular);
         }

@@ -8,18 +8,17 @@
     android:weightSum="2"
     tools:context="com.infosolution.dev.tfc.activities.MainActivity">
 
-  <ImageView
-      android:layout_width="match_parent"
-      android:layout_height="280dp"
-      android:scaleType="fitXY"
-      android:layout_weight="1"
-      android:src="@drawable/chef"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:layout_gravity="bottom"
+       android:layout_marginTop="325dp"
         android:orientation="vertical"
         android:background="#2A2442">
 
@@ -29,7 +28,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:gravity="center"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="30dp"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -61,7 +60,7 @@ android:textSize="15sp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:gravity="center"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -96,7 +95,7 @@ android:textSize="15sp"
             android:layout_below="@+id/btn_userregister"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="20dp"
             android:textAllCaps="false"
             android:textColor="#00DDCB"
             android:textSize="15sp"
@@ -112,5 +111,17 @@ android:textSize="15sp"
             android:gravity="center"
             android:visibility="gone"
             android:text="Continue as Guest" />
+
+
+
     </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="370dp"
+            android:scaleType="fitXY"
+            android:layout_weight="1"
+            android:layout_gravity="top"
+            android:src="@drawable/chef"/>
+    </FrameLayout>
 </LinearLayout>

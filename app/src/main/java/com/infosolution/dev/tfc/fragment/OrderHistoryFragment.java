@@ -118,7 +118,7 @@ public class OrderHistoryFragment extends Fragment {
                                 orderHistoryModel.setQuantity(Quantity);
                                 orderHistoryModel.setPrice(Price);
                                 orderHistoryModel.setDate(Date);
-                                orderHistoryModel.setUsername(UserName);
+                             //   orderHistoryModel.setUsername(UserName);
                                 orderHistoryModel.setLogo(Logo);
                                 orderHistoryModel.setDel(Deliver);
 

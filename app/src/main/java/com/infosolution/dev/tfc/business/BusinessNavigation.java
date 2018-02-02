@@ -13,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -44,9 +45,14 @@ public class BusinessNavigation extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarbusi);
         setSupportActionBar(toolbar);
 
+
+
+
         final SharedPreferences prefs = getSharedPreferences("LogindataB", MODE_PRIVATE);
         Imagee = prefs.getString("proimg", null);
         Namee = prefs.getString("name", null);
+
+
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -60,9 +66,10 @@ public class BusinessNavigation extends AppCompatActivity
 
         navigationView.setNavigationItemSelectedListener(this);
         View header=navigationView.getHeaderView(0);
-/*View view=navigationView.inflateHeaderView(R.layout.nav_header_main);*/
         tv = (TextView)header.findViewById(R.id.tv_namebusiii);
         iv = (ImageView) header.findViewById(R.id.imageViewbusi);
+
+
         tv.setText(Namee);
         if (TextUtils.isEmpty(Imagee)){
             iv.setImageResource(R.drawable.icon);
@@ -72,7 +79,8 @@ public class BusinessNavigation extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-
+        setTitle(Html.fromHtml("<small>The Food Circle - Tonight Plates</small>"));
+       // setTitle("The Food Circle");
         UploadMenuFragment fragment =new UploadMenuFragment();
         FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.frame,fragment," ");
@@ -119,7 +127,7 @@ public class BusinessNavigation extends AppCompatActivity
 
         if (id == R.id.nav_upldmenu) {
 
-            setTitle("Upload Menu");
+            setTitle(Html.fromHtml("<small>The Food Circle - Tonight Plates</small>"));
             UploadMenuFragment fragment =new UploadMenuFragment();
             FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.frame,fragment," ");

@@ -35,7 +35,7 @@ public class OrderHistoryBusiAdapter extends RecyclerView.Adapter<OrderHistoryBu
 
     @Override
     public OrderHistoryBusiAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.orderhistory_row, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.orderhisbusi_row, parent, false);
       return new MyViewHolder(view,context,orderHistoryModelArrayList);
 
     }
@@ -79,8 +79,8 @@ public class OrderHistoryBusiAdapter extends RecyclerView.Adapter<OrderHistoryBu
     public class MyViewHolder extends RecyclerView.ViewHolder {
         Context ctx;
         ArrayList<OrderHistoryBusiModel> orderHistoryModels = new ArrayList<OrderHistoryBusiModel>();
-        TextView tvproname, tvusername, tvprice, tvquantity, tvdate, tvdeliver,del;
-        ImageView ivlogohis,delimg;
+       private TextView tvproname, tvusername, tvprice, tvquantity, tvdate, tvdeliver,del;
+        private  ImageView ivlogohis,delimg;
 
         Typeface typefaceregular = Typeface.createFromAsset(activity.getAssets(), "font/tahoma.ttf");
         Typeface typefacebold = Typeface.createFromAsset(activity.getAssets(), "font/tahomabd.ttf");

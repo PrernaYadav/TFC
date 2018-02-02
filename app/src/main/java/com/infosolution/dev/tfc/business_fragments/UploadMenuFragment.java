@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -138,9 +139,9 @@ public class UploadMenuFragment extends Fragment {
 Currency=tvcurr.getText().toString();
 
 
-        etmenuname.setText("Please Enter Menu Name");
-        etprice.setText("Please Enter Price");
-        etqtyleft.setText("Please Enter Quantity left");
+        etmenuname.setHint("Please Enter Menu Name");
+        etprice.setHint("Please Enter Price");
+        etqtyleft.setHint("Please Enter Quantity left");
         ivmenuimage.setImageResource(R.drawable.uploadimage);
 
 
@@ -150,18 +151,23 @@ Currency=tvcurr.getText().toString();
         T=intent.getStringExtra("img");
         Q=intent.getStringExtra("qty");
 
+        if (TextUtils.isEmpty(MN)){
+            etmenuname.setHint("Please Enter Menu Name");
+            etprice.setHint("Please Enter Price");
+            etqtyleft.setHint("Please Enter Quantity Left");
+            ivmenuimage.setImageResource(R.drawable.upim);
+        }else {
+            etmenuname.setHint(MN);
+            etprice.setHint(P);
+            etqtyleft.setHint(Q);
+            Glide.with(this).load(T).into(ivmenuimage);
+        }
 
-        etmenuname.setText(MN);
-        etprice.setText(P);
-        etqtyleft.setText(Q);
-       // Glide.with(this).load(T).into(ivmenuimage);
-
-
-       /* bmap  = BitmapFactory.decodeResource(getResources(),  R.drawable.icon);
+        bmap  = BitmapFactory.decodeResource(getResources(),  R.drawable.icon);
         ByteArrayOutputStream bao = new ByteArrayOutputStream();
         bmap.compress(Bitmap.CompressFormat.JPEG, 100, bao);
         byte [] ba = bao.toByteArray();
-        encodedResume=Base64.encodeToString(ba,Base64.DEFAULT);*/
+        encodedResume=Base64.encodeToString(ba,Base64.DEFAULT);
 
 
 
@@ -243,9 +249,9 @@ Currency=tvcurr.getText().toString();
                     @Override
                     public void onErrorResponse(VolleyError error) {
 
-                        Toast.makeText(ctx, error.toString(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(ctx, error.toString(), Toast.LENGTH_SHORT).show();
 
-                      //  Toast.makeText(getContext(), "Please Upload Menu Image", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), "Please Upload Menu Image", Toast.LENGTH_LONG).show();
 
                       pdLoading.dismiss();
                     }
@@ -292,6 +298,9 @@ Currency=tvcurr.getText().toString();
 
                             ivmenuimage.setImageBitmap(photo);
                             Log.i("imagebase",encodedResume);
+
+
+
 
 
 

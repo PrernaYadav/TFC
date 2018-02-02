@@ -1,8 +1,11 @@
 package com.infosolution.dev.tfc.adapter;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,9 +15,11 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.infosolution.dev.tfc.R;
+import com.infosolution.dev.tfc.activities.LoginMailActivity;
 import com.infosolution.dev.tfc.business.BusinessNavigation;
 import com.infosolution.dev.tfc.model.Home;
 import com.infosolution.dev.tfc.model.UploadedMenu;
+import com.infosolution.dev.tfc.user.Navigation;
 
 import org.w3c.dom.Text;
 
@@ -31,6 +36,8 @@ public class UploadedMenuAdapter extends RecyclerView.Adapter<UploadedMenuAdapte
     private ArrayList<UploadedMenu> uploadedMenusList;
     Context context;
     private Activity activity;
+
+    private String ProName,Price,Timing,Qty,Image;
 
     public UploadedMenuAdapter(ArrayList<UploadedMenu> uploadedMenus, Context context, Activity activity) {
         this.uploadedMenusList = uploadedMenus;
@@ -92,22 +99,60 @@ public class UploadedMenuAdapter extends RecyclerView.Adapter<UploadedMenuAdapte
                 @Override
                 public void onClick(View view) {
                     int pos =getAdapterPosition();
-                    Intent intent = new Intent(activity, BusinessNavigation.class);
+                    ProName=uploadedMenusList.get(pos).getPronameupld();
+                  String  numberOnly=uploadedMenusList.get(pos).getPriceupld();
+                    Timing=uploadedMenusList.get(pos).getTiminguplad();
+                    Qty=uploadedMenusList.get(pos).getQtyupld();
+                    Image=uploadedMenusList.get(pos).getImgupld();
 
-                    intent.putExtra("menuname",uploadedMenusList.get(pos).getPronameupld());
-                    intent.putExtra("price",uploadedMenusList.get(pos).getPriceupld());
-                    intent.putExtra("timing",uploadedMenusList.get(pos).getTiminguplad());
-                    intent.putExtra("qty",uploadedMenusList.get(pos).getQtyupld());
-                    intent.putExtra("img",uploadedMenusList.get(pos).getImgupld());
+                    Price= numberOnly.replaceAll("[^0-9]", "");
 
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    Alert();
 
-                    activity.startActivity(intent);
+
+
                 }
             });
 
 
         }
+    }
+
+    private void Alert() {
+
+
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(activity);
+        builder1.setMessage("Do you want to upload menu with same price and same collection time?");
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        Intent intent = new Intent(activity, BusinessNavigation.class);
+                        intent.putExtra("menuname",ProName);
+                        intent.putExtra("price",Price);
+                        intent.putExtra("timing",Timing);
+                        intent.putExtra("qty",Qty);
+                        intent.putExtra("img",Image);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        activity.startActivity(intent);
+
+
+                    }
+                });
+
+        builder1.setNegativeButton(
+                "No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
     }
 
 

@@ -186,6 +186,15 @@ public class LoginMailActivity extends AppCompatActivity {
                                     editor.commit();
 
 
+                                    SharedPreferences sharedPreferencess = getApplicationContext().getSharedPreferences("edituserr", Context.MODE_PRIVATE);
+                                    SharedPreferences.Editor editorr = sharedPreferencess.edit();
+                                    editorr.putString("emaill", Email);
+                                    editorr.putString("usernamesignn", Username);
+                                    editorr.putString("phonee", Phone);
+                                    editor.putString("useridd", userID);
+                                    editorr.commit();
+
+
                                 }
 
 

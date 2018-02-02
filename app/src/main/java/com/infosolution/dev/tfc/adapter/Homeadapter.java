@@ -123,7 +123,7 @@ private    String qty,price;
           /*  qty=tvquantity.getText().toString();
             price=tvprice.getText().toString();*/
 
-          tvproname.setTypeface(typefaceregular);
+          tvproname.setTypeface(typefacebold);
           tvprice.setTypeface(typefaceregular);
           tvquantity.setTypeface(typefaceregular);
           tvtiming.setTypeface(typefaceregular);
@@ -167,6 +167,8 @@ private    String qty,price;
                     intent.putExtra("price",homeList.get(position).getPrice());
                     intent.putExtra("time",homeList.get(position).getTiming());
                     intent.putExtra("proimage",homeList.get(position).getProimage());
+                    intent.putExtra("proname",homeList.get(position).getProname());
+                    intent.putExtra("resname",homeList.get(position).getUsername());
                   activity.startActivity(intent);
                 }
             });

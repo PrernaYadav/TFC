@@ -11,20 +11,20 @@
         android:layout_height="wrap_content"
         android:background="#2A2342"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="5dp">
 
         <EditText
             android:id="@+id/et_searchcity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="2dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/roundedsearch"
             android:drawableLeft="@drawable/ic_searchicon"
             android:drawableTint="#40000000"
             android:hint="Enter City Name"
-            android:padding="8dp"
+            android:padding="1dp"
             android:imeOptions="actionDone"
             android:singleLine="true"
             android:textCursorDrawable="@null"
@@ -96,10 +96,7 @@
         </LinearLayout>
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:background="#80889CB4" />
+
 
     <!--<android.support.v7.widget.RecyclerView
         android:id="@+id/rc_home"

@@ -4,9 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2a2342"
+    android:background="@drawable/quantitybg"
     android:orientation="vertical"
     tools:context="com.infosolution.dev.tfc.activities.BuyNowActivity">
+    <include
+        layout="@layout/buynow_actionbar"
+        android:id="@+id/buyaction"/>
+
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -103,7 +107,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_ctime"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="7dp"
                     android:text="9:00 - 9:30PM"
                     android:textColor="@android:color/white" />
             </LinearLayout>

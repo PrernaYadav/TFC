@@ -83,7 +83,7 @@ public class HomeFragment extends Fragment  {
     private ArrayList<Home> homeList;
     private ProgressDialog pd;
 
-    private String Proname;
+   /* private String Proname;
     private String Proimage;
     private String Username;
     private String Timing;
@@ -92,7 +92,7 @@ public class HomeFragment extends Fragment  {
     private String Availimg, CollectionTime, Logoo, Addresss,UserName;
     private String Count;
     private String Fav;
-    private String resID, menuID, Quantityyy;
+    private String resID, menuID, Quantityyy;*/
     private EditText etsearchcity;
     // private String qty,price;
 
@@ -188,7 +188,7 @@ public class HomeFragment extends Fragment  {
                     @Override
                     public void onResponse(String response) {
                         Log.e("response..........", response);
-                        ressss = response;
+                     //   ressss = response;
                         homeList.clear();
                         pd.dismiss();
 
@@ -231,16 +231,16 @@ public class HomeFragment extends Fragment  {
                                     JSONObject object1 = jarray1.getJSONObject(j);
                                     Home homeE = new Home();
 
-                                    Proname = object1.getString("menu_name");
-                                    Timing = object1.getString("collection_time");
-                                    Price = object1.getString("menu_rate");
-                                    Quantity = object1.getString("quantity_left");
-                                    Proimage = object1.getString("img1");
-                                    Availimg = object1.getString("img2");
-                                    Fav = object1.getString("img3");
-                                    menuID = object1.getString("id");
-                                    CollectionTime = object1.getString("collection_time");
-                                    Foodtype = object1.getString("food_type");
+                                String    Proname = object1.getString("menu_name");
+                                    String   Timing = object1.getString("collection_time");
+                                    String   Price = object1.getString("menu_rate");
+                                    String   Quantity = object1.getString("quantity_left");
+                                    String   Proimage = object1.getString("img1");
+                                    String   Availimg = object1.getString("img2");
+                                   // String  Fav = object1.getString("img3");
+                                    String  menuID = object1.getString("id");
+                                    String   CollectionTime = object1.getString("collection_time");
+                                    String   Foodtype = object1.getString("food_type");
 
                                     Log.i("menuId", "" + menuID);
 
@@ -254,10 +254,10 @@ public class HomeFragment extends Fragment  {
                                     editorr.commit();
 
 
-                                    if (fav.equals(1)) {
+                                    if (fav.equals("1")) {
 
                                         homeE.setFav(R.drawable.favselectedicon);
-                                    } else if (fav.equals(0)){
+                                    } else if (fav.equals("0")){
 
                                         homeE.setFav(R.drawable.fav);
                                     }
@@ -376,11 +376,11 @@ public class HomeFragment extends Fragment  {
                             for (int i = 0; i < jarray.length(); i++) {
                                 JSONObject object = jarray.getJSONObject(i);
 
-                                Username = object.getString("name");
-                                resID = object.getString("id");
-                                Logoo = object.getString("logo");
-                                Addresss = object.getString("address");
-                                fav = object.getString("fav_staus");
+                             String   Username = object.getString("name");
+                                String resID = object.getString("id");
+                                String  Logoo = object.getString("logo");
+                                String  Addresss = object.getString("address");
+                                String  fav = object.getString("fav_staus");
                                 //   int favv = Integer.parseInt(fav);
 
 
@@ -414,16 +414,16 @@ public class HomeFragment extends Fragment  {
                                     JSONObject object1 = jarray1.getJSONObject(j);
                                     Home homeE = new Home();
 
-                                    Proname = object1.getString("menu_name");
-                                    Timing = object1.getString("collection_time");
-                                    Price = object1.getString("menu_rate");
-                                    Quantity = object1.getString("quantity_left");
-                                    Proimage = object1.getString("img1");
-                                    Availimg = object1.getString("img2");
-                                    Fav = object1.getString("img3");
-                                    menuID = object1.getString("id");
-                                    CollectionTime = object1.getString("collection_time");
-                                    Foodtype = object1.getString("food_type");
+                                    String   Proname = object1.getString("menu_name");
+                                    String   Timing = object1.getString("collection_time");
+                                    String   Price = object1.getString("menu_rate");
+                                    String   Quantity = object1.getString("quantity_left");
+                                    String   Proimage = object1.getString("img1");
+                                    String  Availimg = object1.getString("img2");
+                                    String  Fav = object1.getString("img3");
+                                    String menuID = object1.getString("id");
+                                    String  CollectionTime = object1.getString("collection_time");
+                                    String  Foodtype = object1.getString("food_type");
                                     Log.i("menuId", "" + menuID);
 
                                     SharedPreferences sharedPreferences = getContext().getSharedPreferences("resmenuDetails", Context.MODE_PRIVATE);

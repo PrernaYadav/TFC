@@ -181,6 +181,18 @@ public class LoginBusinessActivity extends AppCompatActivity {
                                     editor.putString("country", Country);
                                     editor.commit();
 
+
+                                    SharedPreferences pref = getApplicationContext().getSharedPreferences("editpro", Context.MODE_PRIVATE);
+                                    SharedPreferences.Editor editorr = pref.edit();
+                                    editorr.putString("emailidd", EmailB);
+                                    editorr.putString("phone11", Phone1B);
+                                    editorr.putString("phone22", Phone2B);
+                                    editorr.putString("proimgg", ProImg);
+                                    editorr.putString("namee", Nameee);
+                                    editorr.putString("storee", store);
+                                    editorr.putString("residd", ResIdB);
+                                    editorr.commit();
+
                                 }
                                 Intent intent = new Intent(LoginBusinessActivity.this, BusinessNavigation.class);
                                 startActivity(intent);

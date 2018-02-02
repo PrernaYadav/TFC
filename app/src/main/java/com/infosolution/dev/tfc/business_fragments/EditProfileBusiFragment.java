@@ -1,12 +1,14 @@
 package com.infosolution.dev.tfc.business_fragments;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,7 +40,7 @@ public class EditProfileBusiFragment extends Fragment {
 
     private Button btndoone,btnchangepass;
     private EditText etname,etname2,etemail,etphone;
-    private String Name,Email,Phonee,Store,ResID;
+    private String Name,Email,Phonee,Store,ResID,rescheck;
 
 
 
@@ -55,11 +57,25 @@ public class EditProfileBusiFragment extends Fragment {
 
 
         final SharedPreferences prefs = getActivity().getSharedPreferences("LogindataB", MODE_PRIVATE);
-        Name = prefs.getString("name", null);
-        Email = prefs.getString("emailid", null);
-        Phonee = prefs.getString("phone2", null);
-        Store = prefs.getString("store", null);
         ResID = prefs.getString("resid", null);
+
+
+        final SharedPreferences prefss = getActivity().getSharedPreferences("editpro", MODE_PRIVATE);
+        Name = prefss.getString("namee", null);
+        Email = prefss.getString("emailidd", null);
+        Phonee = prefss.getString("phone22", null);
+        Store = prefss.getString("storee", null);
+        rescheck = prefss.getString("residd", null);
+
+        if (TextUtils.isEmpty(rescheck)){
+            GetUpdatedData();
+        }
+
+
+
+
+
+
 
         btndoone = v.findViewById(R.id.btn_doneepbusi);
         btnchangepass = v.findViewById(R.id.btn_changepassepbusi);
@@ -92,8 +108,25 @@ public class EditProfileBusiFragment extends Fragment {
 
                 Name=etname.getText().toString();
                 Email=etemail.getText().toString();
-                Phonee=etphone.toString().toString();
+                Phonee=etphone.getText().toString();
                 Store=etname2.getText().toString();
+
+
+
+                SharedPreferences preferences =getContext().getSharedPreferences("editpro", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.clear();
+                editor.commit();
+
+
+
+                SharedPreferences pref = getContext().getSharedPreferences("Edit", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editorr = pref.edit();
+                editorr.putString("emailid", Email);
+                editorr.putString("phone", Phonee);
+                editorr.putString("name", Name);
+                editorr.putString("store", Store);
+                editorr.commit();
 
                 EditProfile();
 
@@ -123,16 +156,13 @@ public class EditProfileBusiFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
                        Toast.makeText(getContext(),"Your profile has been sucessfully updated.",Toast.LENGTH_LONG).show();
+                     //   Toast.makeText(getContext(), response.toString(), Toast.LENGTH_SHORT).show();
                        etname.setText(Name);
                        etemail.setText(Email);
                        etphone.setText(Phonee);
                        etname2.setText(Store);
 
-                       // Toast.makeText(getContext(), response.toString(), Toast.LENGTH_SHORT).show();
 
-                       /* Intent intent = new Intent(getContext(), LoginBusinessActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent);*/
 
                     }
                 },
@@ -170,5 +200,15 @@ public class EditProfileBusiFragment extends Fragment {
 
 
     }
+
+    public void GetUpdatedData(){
+        final SharedPreferences prefsss = getActivity().getSharedPreferences("Edit", MODE_PRIVATE);
+        Name = prefsss.getString("name", null);
+        Email = prefsss.getString("emailid", null);
+        Phonee = prefsss.getString("phone", null);
+        Store = prefsss.getString("store", null);
+
+    }
+
 
 }

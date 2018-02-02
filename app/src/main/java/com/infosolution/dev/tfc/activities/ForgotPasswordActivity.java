@@ -32,18 +32,19 @@ import java.util.Map;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
     private View view;
-    private ImageView ivbackk,iv;
+    private ImageView ivbackk, iv;
     private EditText etemail;
     private Button btn;
     private String Email;
     private ProgressDialog pdLoading;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
 
-        view=findViewById(R.id.ab_forpassworda);
-        ivbackk=findViewById(R.id.ivfor);
+        view = findViewById(R.id.ab_forpassworda);
+        ivbackk = findViewById(R.id.ivfor);
         ivbackk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,15 +52,15 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             }
         });
 
-etemail=findViewById(R.id.et_emailfor);
-btn=findViewById(R.id.btn_forgot);
-btn.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-        Email=etemail.getText().toString();
-        ForgotPass();
-    }
-});
+        etemail = findViewById(R.id.et_emailfor);
+        btn = findViewById(R.id.btn_forgot);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Email = etemail.getText().toString();
+                ForgotPass();
+            }
+        });
 
 
     }
@@ -77,12 +78,13 @@ btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onResponse(String response) {
 
-                        Log.i("sigresfss",""+response.toString());
+                        Log.i("sigresfss", "" + response.toString());
 
                         pdLoading.dismiss();
 
-                        Toast.makeText(ForgotPasswordActivity.this, "Your password has been send to your registered email id", Toast.LENGTH_SHORT).show();
+                        etemail.setText("Enter Registered Email Id");
 
+                        Toast.makeText(ForgotPasswordActivity.this, "Your password has been send to your registered email id", Toast.LENGTH_SHORT).show();
 
 
                     }
@@ -104,7 +106,7 @@ btn.setOnClickListener(new View.OnClickListener() {
 
                 params.put("email", Email);
 
-                Log.i("userpar",""+params);
+                Log.i("userpar", "" + params);
 
 
                 return params;

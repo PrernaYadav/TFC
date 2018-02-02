@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@android:color/white">
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="250dp"
+        android:layout_alignParentRight="true"
+        android:background="#1A000000"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/hiss"/>
+
+            <ImageView
+                android:id="@+id/iv_logohis"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:src="@drawable/icon"/>
+
+            <ImageView
+                android:id="@+id/delimg"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_gravity="right"
+                android:src="@drawable/deliver"/>
+
+            <TextView
+                android:id="@+id/tv_deliverhis"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Delivered"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="0dp"
+                android:layout_gravity="right"
+                android:padding="2dp"
+                android:textSize="11sp"
+                android:textColor="@android:color/white"
+                />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tv_pronamehis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Matar Paneer"
+            android:layout_gravity="center_horizontal"
+            android:textStyle="bold"
+            android:textColor="#9a9a9a"/>
+
+        <TextView
+            android:id="@+id/tv_usernamehis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Shreyansh srivastava"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center_horizontal"
+            android:textStyle="bold"
+            android:textColor="#9a9a9a"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="5dp">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quantity:"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#9a9a9a"/>
+
+
+            <TextView
+                android:id="@+id/tv_quantityhis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:layout_gravity="center_horizontal"
+
+                android:textColor="#9a9a9a"/>
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Price:"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center_horizontal"
+
+                android:textColor="#9a9a9a"/>
+
+
+            <TextView
+                android:id="@+id/tv_pricehis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#9a9a9a"/>
+
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:id="@+id/tv_datehis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="19-01-2018"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center_horizontal"
+            android:textStyle="bold"
+            android:textColor="#9a9a9a"/>
+
+        <TextView
+            android:id="@+id/del"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+    </LinearLayout>
+</RelativeLayout>

@@ -76,11 +76,11 @@ public class SignupUserActivity extends AppCompatActivity {
         ivimg.setImageResource(R.drawable.icon);
 
 
-        bmap  = BitmapFactory.decodeResource(getResources(),  R.drawable.icon);
+       /* bmap  = BitmapFactory.decodeResource(getResources(),  R.drawable.icon);
         ByteArrayOutputStream bao = new ByteArrayOutputStream();
         bmap.compress(Bitmap.CompressFormat.JPEG, 100, bao);
         byte [] ba = bao.toByteArray();
-         encodedResume=Base64.encodeToString(ba,Base64.DEFAULT);
+         encodedResume=Base64.encodeToString(ba,Base64.DEFAULT);*/
 
 
          tvterms.setOnClickListener(new View.OnClickListener() {
@@ -299,12 +299,13 @@ public class SignupUserActivity extends AppCompatActivity {
     private void UploadApi() {
 
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://thefoodcircle.co.uk/restaurant/demo/web-service/profile-upload.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://thefoodcircle.co.uk/restaurant/demo/web-service/userimageuploadAndroid.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
 
                         Log.i("uploadres",""+response);
+                     //   Toast.makeText(SignupUserActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
 //                        Toast.makeText(SignupUserActivity.this,"User Registered Successfully ! Your varification link has been sended to your email",Toast.LENGTH_LONG).show();
                     }
                 },
@@ -325,6 +326,7 @@ public class SignupUserActivity extends AppCompatActivity {
 
                 params.put("image", encodedResume);
                 params.put("userid", userID);
+                params.put("type ", "user");
 
 
 

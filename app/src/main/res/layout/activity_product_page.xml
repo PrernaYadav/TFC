@@ -4,29 +4,130 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/quantitybg"
     android:orientation="vertical"
     tools:context="com.infosolution.dev.tfc.activities.ProductPageActivity">
 
     <include
-        layout="@layout/tonightplates_actinbar"
-        android:id="@+id/tonight"/>
+        android:id="@+id/tonight"
+        layout="@layout/tonightplates_actinbar" />
 
 
     <ImageView
         android:id="@+id/iv_proimg"
         android:layout_width="match_parent"
-        android:layout_height="380dp"
+        android:layout_height="200dp"
+        android:scaleType="fitXY"
         android:src="@drawable/abc" />
 
-    <TextView
-        android:id="@+id/tv_totalprice"
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#00DDCB"
-        android:text="0"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"/>
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/tv_resnam"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:text="Restaurent Name"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/tv_menunam"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:text="Menu Name"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="#9a9a9a" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+android:layout_marginBottom="10dp"
+            android:weightSum="3"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
+            <View
+                android:layout_width="40dp"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="#d3d3d3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Collection Time"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="#9a9a9a" />
+
+
+            <View
+                android:layout_width="40dp"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+               android:layout_weight="1"
+                android:background="#d3d3d3" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_coltim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:text="Collection Time"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="#9a9a9a" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_marginTop="35dp"
+        android:background="#33d3d3d3">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/tv_totalprice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:text="0"
+            android:textColor="#e64231" />
 
 
     <LinearLayout
@@ -46,7 +147,7 @@
             android:background="@drawable/circle"
             android:gravity="center"
             android:text="-"
-            android:textColor="#00DDCB" />
+            android:textColor="#e64231" />
 
 
         <TextView
@@ -58,7 +159,7 @@
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="1"
-            android:textColor="#00DDCB"
+            android:textColor="#e64231"
             android:textStyle="bold" />
 
 
@@ -72,9 +173,7 @@
             android:background="@drawable/circle"
             android:gravity="center"
             android:text="+"
-            android:textColor="#00DDCB" />
-
-
+            android:textColor="#e64231" />
 
 
     </LinearLayout>
@@ -84,13 +183,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btn_userregister"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-android:layout_marginTop="10dp"
-        android:textColor="#00DDCB"
-        android:background="@drawable/borderet"
-        android:text="Book and Pay Now"
-        android:textStyle="bold"/>
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/borderetcolored"
+        android:text="Book Now"
+        android:textColor="#fff"
+        android:textStyle="bold" />
 
-
+    </LinearLayout>
 </LinearLayout>
