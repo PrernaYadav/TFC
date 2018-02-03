@@ -37,7 +37,8 @@ public class UploadedMenuAdapter extends RecyclerView.Adapter<UploadedMenuAdapte
     Context context;
     private Activity activity;
 
-    private String ProName,Price,Timing,Qty,Image;
+    private String ProName,Price,Timing,Qty;
+    private int Image;
 
     public UploadedMenuAdapter(ArrayList<UploadedMenu> uploadedMenus, Context context, Activity activity) {
         this.uploadedMenusList = uploadedMenus;
@@ -62,8 +63,8 @@ public class UploadedMenuAdapter extends RecyclerView.Adapter<UploadedMenuAdapte
         holder.qty.setText(uploadedMenusList.get(position).getQtyupld());
         holder.price.setText(uploadedMenusList.get(position).getPriceupld());
         holder.timing.setText(uploadedMenusList.get(position).getTiminguplad());
-
-        Glide.with(activity).load(uploadd.getImgupld()).into(holder.ivmenu);
+holder.ivmenu.setImageResource(uploadedMenusList.get(position).getImgupld());
+      //  Glide.with(activity).load(uploadd.getImgupld()).into(holder.ivmenu);
 
 
     }

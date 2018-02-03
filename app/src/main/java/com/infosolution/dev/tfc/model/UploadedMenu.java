@@ -9,7 +9,7 @@ public class UploadedMenu {
     String timinguplad;
     String qtyupld;
     String priceupld;
-    String imgupld;
+    int imgupld;
 
     public int getImgveg() {
         return imgveg;
@@ -61,11 +61,11 @@ public class UploadedMenu {
         this.priceupld = priceupld;
     }
 
-    public String getImgupld() {
+    public int getImgupld() {
         return imgupld;
     }
 
-    public void setImgupld(String imgupld) {
+    public void setImgupld(int imgupld) {
         this.imgupld = imgupld;
     }
 }

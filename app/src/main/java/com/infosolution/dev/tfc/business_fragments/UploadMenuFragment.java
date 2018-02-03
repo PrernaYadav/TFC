@@ -112,7 +112,37 @@ public class UploadMenuFragment extends Fragment {
         tvcurr=v.findViewById(R.id.tv_currsign);
 
 
-        if (Country.equals("United Kingdom")){
+
+        if (Country != null && Country.equalsIgnoreCase("United Kingdom")){
+            tvcurr.setText("£");
+        }else if (Country != null && Country.equalsIgnoreCase("India")){
+            tvcurr.setText("₹");
+        }else if (Country != null && Country.equalsIgnoreCase("United States")){
+            tvcurr.setText("$");
+        }else if (Country != null && Country.equalsIgnoreCase("Japan")){
+            tvcurr.setText("¥");
+        }else if (Country != null && Country.equalsIgnoreCase("Australia")){
+            tvcurr.setText("$");
+        }else if (Country != null && Country.equalsIgnoreCase("New Zealand")){
+            tvcurr.setText("$");
+        }else if (Country != null && Country.equalsIgnoreCase("Canada")){
+            tvcurr.setText("$");
+        }else if (Country != null && Country.equalsIgnoreCase("China")){
+            tvcurr.setText("¥");
+        }else if (Country != null && Country.equalsIgnoreCase("France")){
+            tvcurr.setText("₣");
+        }else if (Country != null && Country.equalsIgnoreCase("Singapore")){
+            tvcurr.setText("$");
+        }else if (Country != null && Country.equalsIgnoreCase("Thailand")){
+            tvcurr.setText("฿");
+        }
+
+
+
+
+
+
+      /*  if (Country.equals("United Kingdom")){
             tvcurr.setText("£");
         }else if (Country.equals("India")){
             tvcurr.setText("₹");
@@ -133,8 +163,8 @@ public class UploadMenuFragment extends Fragment {
         }else if (Country.equals("Singapore")){
             tvcurr.setText("$");
         }else if (Country.equals("Thailand")){
-            tvcurr.setText("฿");
-        }
+            tvcurr.setText("฿");*//*
+        }*/
 
 Currency=tvcurr.getText().toString();
 

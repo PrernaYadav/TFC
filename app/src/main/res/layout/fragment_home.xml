@@ -111,7 +111,19 @@
         android:id="@+id/rc_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         android:layout_marginTop="2dp" />
+
+    <TextView
+        android:id="@+id/tv_emptytext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="NO Buffet Found in your City.Please Search for Other Location"
+        android:textColor="@android:color/black"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_marginTop="50dp"/>
 
 
 </LinearLayout>

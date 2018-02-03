@@ -95,6 +95,7 @@ public class HomeFragment extends Fragment  {
     private String resID, menuID, Quantityyy;*/
     private EditText etsearchcity;
     // private String qty,price;
+    private  TextView tvempty;
 
     private String ressss, UserId, fav,resuser,Foodtype ;
 
@@ -126,6 +127,11 @@ public class HomeFragment extends Fragment  {
 
 
         rcview = v.findViewById(R.id.rc_home);
+
+
+
+
+        tvempty=v.findViewById(R.id.tv_emptytext);
 
 
 
@@ -227,6 +233,8 @@ public class HomeFragment extends Fragment  {
                                 jarray = jsono.getJSONArray("restaurents");
                                 JSONArray jarray1 = object.getJSONArray("menu");
 
+
+
                                 for (int j = 0; j < jarray1.length(); j++) {
                                     JSONObject object1 = jarray1.getJSONObject(j);
                                     Home homeE = new Home();
@@ -252,6 +260,11 @@ public class HomeFragment extends Fragment  {
                                     editorr.putString("quantityyy", Quantity);
                                     editorr.putString("ct", CollectionTime);
                                     editorr.commit();
+
+                                    if (TextUtils.isEmpty(Proname)){
+                                        tvempty.setVisibility(View.VISIBLE);
+                                        rcview.setVisibility(View.GONE);
+                                    }
 
 
                                     if (fav.equals("1")) {
@@ -434,6 +447,12 @@ public class HomeFragment extends Fragment  {
                                     editorr.putString("quantityyy", Quantity);
                                     editorr.putString("ct", CollectionTime);
                                     editorr.commit();
+
+
+                                    if (TextUtils.isEmpty(Proname)){
+                                        tvempty.setVisibility(View.VISIBLE);
+                                        rcview.setVisibility(View.GONE);
+                                    }
 
 
                                     if (Quantity.equals("0")){

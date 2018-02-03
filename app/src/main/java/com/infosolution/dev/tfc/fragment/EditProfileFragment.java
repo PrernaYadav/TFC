@@ -38,7 +38,7 @@ import static android.content.Context.MODE_PRIVATE;
  */
 public class EditProfileFragment extends Fragment {
     private Button btnchangepass,btndone;
-  private   String Username,EmailId,PhoneNO,UserId,RESCHECK;
+  private   String Username,EmailId,PhoneNO,UserId,resch;
             private EditText etname,etemail,etphone;
     FrameLayout fl;
 
@@ -64,10 +64,12 @@ public class EditProfileFragment extends Fragment {
         Username = prefs.getString("usernamesignn", null);
         EmailId = prefs.getString("emaill", null);
         PhoneNO = prefs.getString("phonee", null);
-        RESCHECK = prefs.getString("useridd", null);
+        resch = prefs.getString("useriddfor", null);
+
+        Log.i("rescheck",""+Username);
 
 
-        if (TextUtils.isEmpty(RESCHECK)){
+        if (TextUtils.isEmpty(Username)){
             GetUpdatedData();
         }
 

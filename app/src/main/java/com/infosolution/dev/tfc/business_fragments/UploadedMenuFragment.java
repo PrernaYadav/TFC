@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.infosolution.dev.tfc.Class.ConfigInfo;
 import com.infosolution.dev.tfc.R;
 import com.infosolution.dev.tfc.adapter.Homeadapter;
@@ -175,7 +177,11 @@ public class UploadedMenuFragment extends Fragment {
                         uploadedMenu.setTiminguplad(Timing);
                         uploadedMenu.setPriceupld(Price);
                         uploadedMenu.setQtyupld(Qty);
-                        uploadedMenu.setImgupld(Logo);
+                      //  uploadedMenu.setImgupld(Integer.parseInt(Logo));
+
+
+                        uploadedMenu.setImgupld(R.drawable.icon);
+
 
                         if (foodtype.equals("Non-Veg")){
                             uploadedMenu.setImgveg(R.drawable.red);

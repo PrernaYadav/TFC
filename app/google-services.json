@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "838216321227",
+    "firebase_url": "https://the-food-circle.firebaseio.com",
+    "project_id": "the-food-circle",
+    "storage_bucket": "the-food-circle.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:838216321227:android:bedcf82933a9119d",
+        "android_client_info": {
+          "package_name": "com.infosolution.dev.tfc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "838216321227-j0fi3po4j7qnalbhpahjsbg8djin4gkm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.infosolution.dev.tfc",
+            "certificate_hash": "3c55b8d2e4d5a04d4ef368bda61bb97d59e1a0d6"
+          }
+        },
+        {
+          "client_id": "838216321227-m51u5bvh22trgrp97o9e5lsl9qj93f72.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdGW8SPowcK2bXvoSwCW3RAWj79ZBi2S8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "838216321227-m51u5bvh22trgrp97o9e5lsl9qj93f72.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

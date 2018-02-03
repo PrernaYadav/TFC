@@ -191,7 +191,7 @@ public class LoginMailActivity extends AppCompatActivity {
                                     editorr.putString("emaill", Email);
                                     editorr.putString("usernamesignn", Username);
                                     editorr.putString("phonee", Phone);
-                                    editor.putString("useridd", userID);
+                                    editor.putString("useriddfor", userID);
                                     editorr.commit();
 
 
