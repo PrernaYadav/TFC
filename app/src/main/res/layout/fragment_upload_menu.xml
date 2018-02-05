@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:id="@+id/llreg"
     android:background="#110e19"
-    tools:context="com.infosolution.dev.tfc.business_fragments.UploadMenuFragment">
+    tools:context="com.dev.tfc.business_fragments.UploadMenuFragment">
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent">

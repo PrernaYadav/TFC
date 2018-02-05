@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/resbg"
-    tools:context="com.infosolution.dev.tfc.activities.LoginMailActivity">
+    tools:context="com.dev.tfc.activities.LoginMailActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

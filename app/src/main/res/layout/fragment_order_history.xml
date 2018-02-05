@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ececec"
-    tools:context="com.infosolution.dev.tfc.fragment.OrderHistoryFragment">
+    tools:context="com.dev.tfc.fragment.OrderHistoryFragment">
 
 
 

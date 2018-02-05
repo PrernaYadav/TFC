@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/quantitybg"
     android:orientation="vertical"
-    tools:context="com.infosolution.dev.tfc.user.PostCommentActivity">
+    tools:context="com.dev.tfc.user.PostCommentActivity">
 
 
     <include

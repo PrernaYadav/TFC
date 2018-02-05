@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:background="#2a2342"
     android:orientation="vertical"
-    tools:context="com.infosolution.dev.tfc.activities.BuyNowActivity">
+    tools:context="com.dev.tfc.activities.BuyNowActivity">
 
     <ScrollView
         android:layout_width="match_parent"

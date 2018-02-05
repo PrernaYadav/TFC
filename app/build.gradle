@@ -5,7 +5,7 @@ apply plugin: 'io.fabric'
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "com.infosolution.dev.tfc"
+        applicationId "com.dev.tfc"
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1

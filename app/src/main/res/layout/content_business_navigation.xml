@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.infosolution.dev.tfc.business.BusinessNavigation"
+    tools:context="com.dev.tfc.business.BusinessNavigation"
     tools:showIn="@layout/app_bar_business_navigation">
 
     <FrameLayout

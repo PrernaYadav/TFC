@@ -6,7 +6,7 @@
     android:background="#f5f5f5"
     android:id="@+id/container_layout"
     android:layout_gravity="center_horizontal"
-    tools:context="com.infosolution.dev.tfc.fragment.EditProfileFragment">
+    tools:context="com.dev.tfc.fragment.EditProfileFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

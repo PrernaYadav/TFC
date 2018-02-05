@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/quantitybg"
     android:orientation="vertical"
-    tools:context="com.infosolution.dev.tfc.activities.BuyNowActivity">
+    tools:context="com.dev.tfc.activities.BuyNowActivity">
     <include
         layout="@layout/buynow_actionbar"
         android:id="@+id/buyaction"/>

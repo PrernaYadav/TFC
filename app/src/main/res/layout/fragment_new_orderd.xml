@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.infosolution.dev.tfc.business_fragments.NewOrderdFragment">
+    tools:context="com.dev.tfc.business_fragments.NewOrderdFragment">
 
 
 

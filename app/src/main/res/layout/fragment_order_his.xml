@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ececec"
-    tools:context="com.infosolution.dev.tfc.business_fragments.OrderHisBusinessFragment">
+    tools:context="com.dev.tfc.business_fragments.OrderHisBusinessFragment">
 
   <!--  <TextView
         android:layout_width="match_parent"

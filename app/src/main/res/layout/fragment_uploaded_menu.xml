@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#EDEDED"
-    tools:context="com.infosolution.dev.tfc.business_fragments.UploadedMenuFragment">
+    tools:context="com.dev.tfc.business_fragments.UploadedMenuFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rc_uploadedmenu"
