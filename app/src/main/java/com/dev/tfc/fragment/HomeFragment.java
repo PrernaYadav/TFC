@@ -19,6 +19,7 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -33,12 +34,14 @@ import com.dev.tfc.model.Home;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import static android.content.Context.MODE_PRIVATE;
+import static android.content.Context.RECEIVER_VISIBLE_TO_INSTANT_APPS;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -96,10 +99,6 @@ public class HomeFragment extends Fragment  {
 
 
         rcview = v.findViewById(R.id.rc_home);
-
-
-
-
         tvempty=v.findViewById(R.id.tv_emptytext);
 
 
@@ -127,7 +126,10 @@ public class HomeFragment extends Fragment  {
                     et.putString("etcity", etsearchcity.getText().toString());
                     et.commit();
 
-
+                    SharedPreferences preferences =getContext().getSharedPreferences("usercityy", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.clear();
+                    editor.commit();
 
 
                     checkString();
@@ -171,9 +173,28 @@ public class HomeFragment extends Fragment  {
 
 
                             JSONObject jsono = new JSONObject(response);
+
+                            String res = jsono.getString("restaurents");
+
+
+                            if (res.equals("null")) {
+
+                              //  Toast.makeText(getContext(), "NUll Values", Toast.LENGTH_SHORT).show();
+                                rcview.setVisibility(View.GONE);
+                                tvempty.setVisibility(View.VISIBLE);
+
+                            }else {
+
+
+
                             JSONArray jarray = jsono.getJSONArray("restaurents");
 
-                            for (int i = 0; i < jarray.length(); i++) {
+
+
+                            rcview.setVisibility(View.VISIBLE);
+
+
+                                for (int i = 0; i < jarray.length(); i++) {
                                 JSONObject object = jarray.getJSONObject(i);
 
                               String  Username = object.getString("name");
@@ -219,6 +240,8 @@ public class HomeFragment extends Fragment  {
                                     String   CollectionTime = object1.getString("collection_time");
                                     String   Foodtype = object1.getString("food_type");
 
+
+
                                     Log.i("menuId", "" + menuID);
 
                                     SharedPreferences sharedPreferences = getContext().getSharedPreferences("resmenuDetails", Context.MODE_PRIVATE);
@@ -230,10 +253,7 @@ public class HomeFragment extends Fragment  {
                                     editorr.putString("ct", CollectionTime);
                                     editorr.commit();
 
-                                    if (TextUtils.isEmpty(Proname)){
-                                        tvempty.setVisibility(View.VISIBLE);
-                                        rcview.setVisibility(View.GONE);
-                                    }
+
 
 
                                     if (fav.equals("1")) {
@@ -271,7 +291,11 @@ public class HomeFragment extends Fragment  {
                                     homeList.add(homeE);
 
                                 }
-                            }
+                            }}
+                           /* }else{
+                               rcview.setVisibility(View.GONE);
+                               tvempty.setVisibility(View.VISIBLE);
+                            }*/
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -317,13 +341,16 @@ public class HomeFragment extends Fragment  {
 
 
     public void checkString() {
+
         final SharedPreferences ct = getContext().getSharedPreferences("usercityy", MODE_PRIVATE);
         city = ct.getString("citttyy", null);
 
-        final SharedPreferences ctt = getContext().getSharedPreferences("etcity", MODE_PRIVATE);
-        city = ctt.getString("etcity", null);
 
 
+        if (TextUtils.isEmpty(city)){
+            final SharedPreferences ctt = getContext().getSharedPreferences("etcity", MODE_PRIVATE);
+            city = ctt.getString("etcity", null);
+        }
 
         if (TextUtils.isEmpty(city)) {
             // Toast.makeText(getContext(),"City Not Found",Toast.LENGTH_LONG).show();

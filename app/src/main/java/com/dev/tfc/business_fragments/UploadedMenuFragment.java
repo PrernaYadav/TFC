@@ -3,6 +3,7 @@ package com.dev.tfc.business_fragments;
 
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -20,6 +21,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.dev.tfc.R;
 import com.dev.tfc.adapter.UploadedMenuAdapter;
 import com.dev.tfc.model.UploadedMenu;
@@ -168,9 +170,8 @@ public class UploadedMenuFragment extends Fragment {
                         uploadedMenu.setPriceupld(Price);
                         uploadedMenu.setQtyupld(Qty);
                       //  uploadedMenu.setImgupld(Integer.parseInt(Logo));
-
-
                         uploadedMenu.setImgupld(R.drawable.icon);
+
 
 
                         if (foodtype.equals("Non-Veg")){
